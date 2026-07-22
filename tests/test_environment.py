@@ -1,3 +1,5 @@
+import json
+
 import pytest
 from pydantic import ValidationError
 
@@ -148,3 +150,34 @@ def test_optional_strategic_audit_is_absent_from_hard_components() -> None:
     env.reset(seed=0)
     obs = env.step(valid_action(env))
     assert "strategic_quality" not in obs.reward_components.model_dump()
+
+
+def test_observation_exposes_every_action_cost_without_private_sidecar() -> None:
+    env = FounderDecisionEnvironment()
+    observation = env.reset(seed=0)
+    specs = {spec.action_type: spec for spec in observation.action_specs}
+    assert list(specs) == [
+        "interview_users",
+        "build_feature",
+        "sell_pilot",
+        "fundraise",
+        "change_price",
+        "abstain",
+    ]
+    assert specs["build_feature"].spend_cents == 60_000
+    assert specs["build_feature"].founder_hours == 24
+    assert specs["build_feature"].allowed == (
+        "build_feature" in observation.allowed_actions
+    )
+    dumped = observation.model_dump(mode="json")
+    serialized = json.dumps(dumped, sort_keys=True)
+    assert "preferred_action" not in serialized
+    assert "ground_truth" not in serialized
+    assert "transitions" not in serialized
+
+
+def test_public_action_specs_remain_available_after_step() -> None:
+    env = FounderDecisionEnvironment()
+    reset_observation = env.reset(seed=0)
+    step_observation = env.step(valid_action(env, "abstain"))
+    assert step_observation.action_specs == reset_observation.action_specs
