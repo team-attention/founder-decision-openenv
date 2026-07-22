@@ -9,9 +9,13 @@ from pathlib import Path
 import pytest
 
 from yc_founder_decision_env.agent_trial import (
+    TERRA_ORCHESTRATION_ATTESTATION,
+    TERRA_ORCHESTRATION_TASK_IDS,
     build_trusted_action,
     payload_sha256,
+    request_envelope_sha256,
     seal_artifact,
+    terra_request_contract,
     verify_artifact,
 )
 from yc_founder_decision_env.models import AgentDecision
@@ -78,6 +82,7 @@ def _decision(seed: int) -> dict[str, str]:
 
 
 def _terra_ledger(*, short_seed: int | None = None) -> dict[str, object]:
+    request_contract = terra_request_contract()
     episodes: dict[str, dict[str, object]] = {}
     for seed in HELD_OUT_SEEDS:
         env = FounderDecisionEnvironment()
@@ -88,6 +93,9 @@ def _terra_ledger(*, short_seed: int | None = None) -> dict[str, object]:
             turns.append(
                 {
                     "input_observation_sha256": payload_sha256(observation.model_dump(mode="json")),
+                    "request_envelope_sha256": request_envelope_sha256(
+                        observation, request_contract
+                    ),
                     "decision": decision,
                     "raw_response": json.dumps(decision),
                     "repair_response": None,
@@ -101,7 +109,10 @@ def _terra_ledger(*, short_seed: int | None = None) -> dict[str, object]:
             )
         if short_seed == seed:
             turns.pop()
-        episodes[str(seed)] = {"turns": turns}
+        episodes[str(seed)] = {
+            "orchestration_task_id": TERRA_ORCHESTRATION_TASK_IDS[str(seed)],
+            "turns": turns,
+        }
     return seal_artifact(
         {
             "schema_version": "terra-decision-ledger-v0.1.0",
@@ -112,6 +123,8 @@ def _terra_ledger(*, short_seed: int | None = None) -> dict[str, object]:
                 "model_weight_updates": False,
                 "prompt_version": "observation-only-v0.1.0",
             },
+            "request_contract": request_contract,
+            "orchestration_attestation": TERRA_ORCHESTRATION_ATTESTATION,
             "episodes": episodes,
         }
     )
@@ -167,6 +180,46 @@ def _frozen_q_artifact() -> dict[str, object]:
 def test_terra_ledger_rejects_incomplete_nonterminal_episode() -> None:
     with pytest.raises(ValueError, match="TERRA_INCOMPLETE_NONTERMINAL_EPISODE"):
         build_held_out_report(_terra_ledger(short_seed=16), _frozen_q_artifact(), [20260723])
+
+
+def test_report_rejects_resealed_legacy_terra_ledger_without_request_contract() -> None:
+    ledger = _terra_ledger()
+    del ledger["request_contract"]
+    with pytest.raises(ValueError, match="TERRA_REQUEST_CONTRACT_REQUIRED"):
+        build_held_out_report(seal_artifact(ledger), _frozen_q_artifact(), [20260723])
+
+
+@pytest.mark.parametrize(
+    ("mutate", "error"),
+    [
+        (
+            lambda ledger: ledger["request_contract"].__setitem__(
+                "decision_schema_sha256", "0" * 64
+            ),
+            "TERRA_DECISION_SCHEMA_HASH_MISMATCH",
+        ),
+        (
+            lambda ledger: ledger["episodes"]["17"].__setitem__(
+                "orchestration_task_id", ledger["episodes"]["16"]["orchestration_task_id"]
+            ),
+            "TERRA_ORCHESTRATION_TASK_ID_MISMATCH",
+        ),
+        (
+            lambda ledger: ledger["episodes"]["16"]["turns"][0].__setitem__(
+                "request_envelope_sha256", "0" * 64
+            ),
+            "TERRA_REQUEST_ENVELOPE_HASH_MISMATCH",
+        ),
+    ],
+)
+def test_report_rejects_resealed_terra_provenance_tampering(
+    mutate: object, error: str
+) -> None:
+    ledger = _terra_ledger()
+    mutate(ledger)  # type: ignore[operator]
+
+    with pytest.raises(ValueError, match=error):
+        build_held_out_report(seal_artifact(ledger), _frozen_q_artifact(), [20260723])
 
 
 def test_report_preserves_verified_terra_ledger_provenance_and_turn_hashes() -> None:
@@ -331,8 +384,17 @@ def test_committed_held_out_artifact_is_sealed_leakage_safe_and_replayable() -> 
     assert comparison["combined_reward"] is None
     assert comparison["replay"]["passed"] is True
     assert verify_held_out_replay(comparison)
-    assert "preferred_action" not in json.dumps(comparison)
-    assert "ground_truth" not in json.dumps(comparison)
+    ledger = comparison["terra_ledger"]
+    assert ledger["request_contract"] == terra_request_contract()
+    assert ledger["orchestration_attestation"] == TERRA_ORCHESTRATION_ATTESTATION
+    assert {
+        seed: episode["orchestration_task_id"]
+        for seed, episode in ledger["episodes"].items()
+    } == TERRA_ORCHESTRATION_TASK_IDS
+    comparison_without_prompt = copy.deepcopy(comparison)
+    del comparison_without_prompt["terra_ledger"]["request_contract"]["instruction"]
+    assert "preferred_action" not in json.dumps(comparison_without_prompt)
+    assert "ground_truth" not in json.dumps(comparison_without_prompt)
     assert comparison["policies"]["random"]["n_episodes"] == 40
     assert comparison["policies"]["black_box_rule"]["n_episodes"] == 8
     assert comparison["policies"]["terra"]["n_episodes"] == 8

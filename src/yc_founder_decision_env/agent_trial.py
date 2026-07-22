@@ -14,6 +14,28 @@ from .models import AgentDecision, FounderAction, FounderObservation, StateClaim
 from .server.environment import FounderDecisionEnvironment
 
 ARTIFACT_SCHEMA_VERSION = "agent-episode-v0.1.0"
+TERRA_LEDGER_SCHEMA_VERSION = "terra-decision-ledger-v0.1.0"
+TERRA_INSTRUCTION = (
+    "You are selecting one action in a frozen four-step synthetic founder-decision benchmark.\n"
+    "Use only the JSON observation in this message. Choose exactly one action. Return JSON only,\n"
+    "matching the supplied AgentDecision schema. Do not infer or request preferred_action,\n"
+    "ground_truth, transition tables, future observations, Q values, or oracle output. Costs and\n"
+    "allowed flags in action_specs are authoritative. The source_locator must be copied exactly\n"
+    "from source_locators. This is inference only; no model weights are updated."
+)
+TERRA_POLICY = {
+    "provider": "codex-subagent",
+    "model": "gpt-5.6-terra",
+    "mode": "inference",
+    "model_weight_updates": False,
+    "prompt_version": "observation-only-v0.1.0",
+}
+TERRA_ORCHESTRATION_TASK_IDS = {
+    str(seed): f"/root/terra_policy_seed{seed}" for seed in range(16, 24)
+}
+TERRA_ORCHESTRATION_ATTESTATION = (
+    "session-attested orchestration metadata; not cryptographically provider-signed by Codex"
+)
 
 
 class ObservationPolicy(Protocol):
@@ -25,6 +47,66 @@ class ObservationPolicy(Protocol):
 def payload_sha256(payload: Any) -> str:
     """Return a stable SHA-256 digest for a JSON-serializable payload."""
     return hashlib.sha256(stable_json(payload).encode("utf-8")).hexdigest()
+
+
+def terra_request_contract() -> dict[str, Any]:
+    """Return the immutable, observation-only request contract for every Terra turn."""
+    decision_schema = AgentDecision.model_json_schema()
+    return {
+        "instruction": TERRA_INSTRUCTION,
+        "decision_schema": decision_schema,
+        "decision_schema_sha256": payload_sha256(decision_schema),
+    }
+
+
+def request_envelope_sha256(
+    observation: FounderObservation, request_contract: dict[str, Any]
+) -> str:
+    """Hash the exact model-visible request envelope using stable JSON."""
+    return payload_sha256(
+        {
+            "instruction": request_contract["instruction"],
+            "observation": observation.model_dump(mode="json"),
+            "decision_schema": request_contract["decision_schema"],
+        }
+    )
+
+
+def validate_terra_ledger_contract(raw: dict[str, Any]) -> dict[str, Any]:
+    """Validate the sealed exact Terra request/model/seed orchestration contract."""
+    if raw.get("schema_version") != TERRA_LEDGER_SCHEMA_VERSION:
+        raise ValueError("INVALID_TERRA_LEDGER_SCHEMA")
+    if not verify_artifact(raw):
+        raise ValueError("TERRA_LEDGER_INTEGRITY_FAILURE")
+    if raw.get("policy") != TERRA_POLICY:
+        raise ValueError("INVALID_TERRA_PROVENANCE")
+    request_contract = raw.get("request_contract")
+    if not isinstance(request_contract, dict):
+        raise ValueError("TERRA_REQUEST_CONTRACT_REQUIRED")
+    expected_contract = terra_request_contract()
+    if request_contract.get("decision_schema_sha256") != payload_sha256(
+        request_contract.get("decision_schema")
+    ):
+        raise ValueError("TERRA_DECISION_SCHEMA_HASH_MISMATCH")
+    if request_contract != expected_contract:
+        raise ValueError("INVALID_TERRA_REQUEST_CONTRACT")
+    if raw.get("orchestration_attestation") != TERRA_ORCHESTRATION_ATTESTATION:
+        raise ValueError("TERRA_ORCHESTRATION_ATTESTATION_REQUIRED")
+    episodes = raw.get("episodes")
+    if not isinstance(episodes, dict) or set(episodes) != set(TERRA_ORCHESTRATION_TASK_IDS):
+        raise ValueError("TERRA_HELD_OUT_SPLIT_REQUIRED")
+    task_ids: list[str] = []
+    for seed_text, expected_task_id in TERRA_ORCHESTRATION_TASK_IDS.items():
+        episode = episodes.get(seed_text)
+        if (
+            not isinstance(episode, dict)
+            or episode.get("orchestration_task_id") != expected_task_id
+        ):
+            raise ValueError("TERRA_ORCHESTRATION_TASK_ID_MISMATCH")
+        task_ids.append(expected_task_id)
+    if len(set(task_ids)) != len(TERRA_ORCHESTRATION_TASK_IDS):
+        raise ValueError("TERRA_ORCHESTRATION_TASK_IDS_NOT_UNIQUE")
+    return request_contract
 
 
 def seal_artifact(payload: dict[str, Any]) -> dict[str, Any]:
@@ -136,30 +218,15 @@ def replay_agent_artifact(artifact: dict[str, Any]) -> str:
     return cast(str, replayed["episode"]["trajectory_sha256"])
 
 
-TERRA_LEDGER_SCHEMA_VERSION = "terra-decision-ledger-v0.1.0"
-
-
 def _read_decision_input(path: Path) -> tuple[dict[str, Any], dict[str, list[AgentDecision]]]:
     """Load only a sealed structured Terra ledger, never decision shorthand."""
     raw = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(raw, dict):
         raise ValueError("DECISIONS_OBJECT_REQUIRED")
-    if raw.get("schema_version") != TERRA_LEDGER_SCHEMA_VERSION:
-        raise ValueError("INVALID_TERRA_LEDGER_SCHEMA")
-    if not verify_artifact(raw):
-        raise ValueError("TERRA_LEDGER_INTEGRITY_FAILURE")
+    request_contract = validate_terra_ledger_contract(raw)
     policy = raw.get("policy")
     episodes = raw.get("episodes")
-    expected_policy = {
-        "provider": "codex-subagent",
-        "model": "gpt-5.6-terra",
-        "mode": "inference",
-        "model_weight_updates": False,
-        "prompt_version": "observation-only-v0.1.0",
-    }
-    if not isinstance(policy, dict) or policy != expected_policy:
-        raise ValueError("POLICY_METADATA_REQUIRED")
-    if not isinstance(episodes, dict) or not episodes:
+    if not isinstance(policy, dict) or not isinstance(episodes, dict):
         raise ValueError("EPISODES_REQUIRED")
     parsed: dict[str, list[AgentDecision]] = {}
     for seed_text, episode in episodes.items():
@@ -183,6 +250,10 @@ def _read_decision_input(path: Path) -> tuple[dict[str, Any], dict[str, list[Age
                 observation.model_dump(mode="json")
             ):
                 raise ValueError("TERRA_OBSERVATION_HASH_MISMATCH")
+            if turn.get("request_envelope_sha256") != request_envelope_sha256(
+                observation, request_contract
+            ):
+                raise ValueError("TERRA_REQUEST_ENVELOPE_HASH_MISMATCH")
             raw_response = turn.get("raw_response")
             repair_response = turn.get("repair_response")
             attempts = turn.get("parse_attempts")

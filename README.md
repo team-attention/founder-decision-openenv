@@ -93,4 +93,7 @@ uv run ycfd-rl-evaluate \
 ```
 
 See [`docs/RL_EXPERIMENT.md`](docs/RL_EXPERIMENT.md) for the frozen protocol, Terra adapter
-boundary, results, hashes, and replay instructions.
+boundary, results, hashes, and replay instructions. The Terra ledger freezes the exact
+instruction and decision schema, hashes every model-visible request envelope, and maps each
+held-out seed to a unique session-attested Codex task ID. This is repository integrity evidence,
+not a cryptographic provider signature for model selection or task identity.

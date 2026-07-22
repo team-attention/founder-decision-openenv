@@ -13,7 +13,14 @@ from collections.abc import Callable
 from pathlib import Path
 from typing import Any, cast
 
-from .agent_trial import build_trusted_action, payload_sha256, seal_artifact, verify_artifact
+from .agent_trial import (
+    build_trusted_action,
+    payload_sha256,
+    request_envelope_sha256,
+    seal_artifact,
+    validate_terra_ledger_contract,
+    verify_artifact,
+)
 from .models import ActionName, AgentDecision, FounderObservation
 from .q_learning import (
     ALPHA_RULE_VERSION,
@@ -27,7 +34,6 @@ from .rewards import SYNTHETIC_UTILITY_VERSION, synthetic_utility
 from .server.environment import ACTION_ORDER, FounderDecisionEnvironment
 
 HELD_OUT_SEEDS = tuple(range(16, 24))
-TERRA_LEDGER_SCHEMA_VERSION = "terra-decision-ledger-v0.1.0"
 Q_ARTIFACT_SCHEMA_VERSION = "q-learning-artifact-v0.1.0"
 REPORT_SCHEMA_VERSION = "held-out-comparison-v0.1.0"
 REQUIRED_POLICY_FAMILIES = {
@@ -210,7 +216,9 @@ def _aggregate(episodes: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
-def _validate_terra_episode(seed: int, raw_turns: list[Any]) -> list[AgentDecision]:
+def _validate_terra_episode(
+    seed: int, raw_turns: list[Any], request_contract: dict[str, Any]
+) -> list[AgentDecision]:
     if not raw_turns or len(raw_turns) > 4:
         raise ValueError("TERRA_DECISION_COUNT_INVALID")
     env = FounderDecisionEnvironment()
@@ -224,6 +232,10 @@ def _validate_terra_episode(seed: int, raw_turns: list[Any]) -> list[AgentDecisi
         expected_hash = payload_sha256(observation.model_dump(mode="json"))
         if raw_turn.get("input_observation_sha256") != expected_hash:
             raise ValueError("TERRA_OBSERVATION_HASH_MISMATCH")
+        if raw_turn.get("request_envelope_sha256") != request_envelope_sha256(
+            observation, request_contract
+        ):
+            raise ValueError("TERRA_REQUEST_ENVELOPE_HASH_MISMATCH")
         raw_response = raw_turn.get("raw_response")
         repair_response = raw_turn.get("repair_response")
         if not isinstance(raw_response, str):
@@ -248,32 +260,18 @@ def _validate_terra_episode(seed: int, raw_turns: list[Any]) -> list[AgentDecisi
 def _terra_input(
     terra: dict[str, Any],
 ) -> tuple[dict[int, list[AgentDecision]], dict[str, Any]]:
-    expected_seeds = {str(seed) for seed in HELD_OUT_SEEDS}
-    if terra.get("schema_version") != TERRA_LEDGER_SCHEMA_VERSION:
-        raise ValueError("INVALID_TERRA_LEDGER_SCHEMA")
-    if not verify_artifact(terra):
-        raise ValueError("TERRA_LEDGER_INTEGRITY_FAILURE")
-    policy = terra.get("policy")
-    expected_policy = {
-        "provider": "codex-subagent",
-        "model": "gpt-5.6-terra",
-        "mode": "inference",
-        "model_weight_updates": False,
-        "prompt_version": "observation-only-v0.1.0",
-    }
-    if not isinstance(policy, dict) or any(
-        policy.get(key) != value for key, value in expected_policy.items()
-    ):
-        raise ValueError("INVALID_TERRA_PROVENANCE")
+    request_contract = validate_terra_ledger_contract(terra)
     episodes = terra.get("episodes")
-    if not isinstance(episodes, dict) or set(episodes) != expected_seeds:
+    if not isinstance(episodes, dict):
         raise ValueError("TERRA_HELD_OUT_SPLIT_REQUIRED")
     parsed: dict[int, list[AgentDecision]] = {}
     for seed in HELD_OUT_SEEDS:
         episode = episodes[str(seed)]
         if not isinstance(episode, dict) or not isinstance(episode.get("turns"), list):
             raise ValueError("INVALID_TERRA_EPISODE")
-        parsed[seed] = _validate_terra_episode(seed, cast(list[Any], episode["turns"]))
+        parsed[seed] = _validate_terra_episode(
+            seed, cast(list[Any], episode["turns"]), request_contract
+        )
     return parsed, copy.deepcopy(terra)
 
 

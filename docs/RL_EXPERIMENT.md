@@ -37,11 +37,20 @@ model-weight update.
 ## Trial 1: Terra inference
 
 The sealed ledger records eight held-out seeds (`16..23`) and 32 sequential four-step
-decisions. Its policy provenance is `codex-subagent` / `gpt-5.6-terra` / `inference`, with
-`model_weight_updates: false`. Every turn has the SHA-256 of the actual public observation,
-an exact compact JSON raw response, no repair response, and `parse_attempts: 1`; therefore
-there were zero parse repairs. The separately sealed episode artifact replays all eight
-episodes from fresh environments.
+decisions. Its policy provenance is exactly `codex-subagent` / `gpt-5.6-terra` / `inference`,
+with `model_weight_updates: false`. It freezes the exact neutral instruction and exact
+`AgentDecision` JSON schema in `request_contract`, including a recomputed
+`decision_schema_sha256`. Each turn retains the public-observation SHA-256, the SHA-256 of
+the stable request envelope `{instruction, observation, decision_schema}`, the raw response,
+and parse-repair record. Each seed is mapped to one unique session task ID
+`/root/terra_policy_seed16` through `/root/terra_policy_seed23`.
+
+Those task IDs and the claimed model selection are **session-attested orchestration metadata**:
+they are integrity-sealed in this repository but are not cryptographically provider-signed by
+Codex. The validator rejects resealed ledgers whose model/prompt contract, schema hash,
+request-envelope hash, seed mapping, or unique task IDs do not match. There were zero parse
+repairs. The separately sealed episode artifact replays all eight episodes from fresh
+environments.
 
 Terra's mean total hard reward was `4.0` (all five per-step contract components averaged
 `0.2`), and its mean total synthetic utility was `1.837813`. These figures are metrics of
@@ -117,10 +126,10 @@ below cover the complete pretty-printed files.
 
 | Artifact | Embedded integrity SHA-256 | Full-file SHA-256 |
 | --- | --- | --- |
-| `terra-held-out-decisions-v0.1.0.json` | `70c30edea966323811051c7296bccd9fc3fca21a56bd14ffd8a5d51e01aaa302` | `718ad6b3093e492f3cdb7b62ff85133664673c3644765de55f5ef4694d49ca38` |
+| `terra-held-out-decisions-v0.1.0.json` | `fb4453d4058cbf714550b07b301f0275b3aa34084b9047ffe73d3abb7a056894` | `f3e7e8babe7dc7996a748f5f67f29a7b0119b5fd77532b61646f98e9aa6e96f6` |
 | `terra-agent-episodes-v0.1.0.json` | `de40fc5cf0754deebad1ee80716de6e6bad8efa12abcc7b6353b6679183cbc3f` | `0cb88948e417ae16d5aefe9b3ba387c32c89b033034d81a44fb55edeb155a854` |
 | `q-learning-v0.1.0.json` | `b995c94635e55b11cf7fcaa141531f53d1aa967912c0485c00e586cc1805ab33` | `3c9aa5c451afa5935beed1a031350cd84069edaae0565862b2043599e3f93cad` |
-| `held-out-comparison-v0.1.0.json` | `bc7d485bb075556088082fb07fa25d8f45e6c122d86ac9d8bbf89388ce69a1a1` | `f10e3017d2e917fe990801dbcbb20a4962e955dbf3752636aff7ea055d90298b` |
+| `held-out-comparison-v0.1.0.json` | `1fdcadc4b5f7a5846567bc427d97d04d7ba9b3b0865883514befd187ca71a0ea` | `4e3241bf9beb5fe1e6d1f85bead27e9cca4c22ed218881638a070c4a1a091293` |
 
 ## Interpretation and limitations
 
