@@ -14,6 +14,8 @@ size_categories:
 This is a 24-record original synthetic dataset for a four-step founder-decision environment.
 It is not a scrape, summary corpus, or redistribution of YC content.
 It is an independent synthetic benchmark and is not affiliated with or endorsed by YC.
+The executable environment and verifier are published at
+https://github.com/team-attention/founder-decision-openenv.
 
 ## Schema and provenance
 

@@ -4,14 +4,16 @@ Command Center authorized public publication on 2026-07-22. The public names int
 avoid implying YC affiliation or endorsement:
 
 - GitHub: `team-attention/founder-decision-openenv`
-- Hugging Face Dataset: `team-attention/founder-decision-rlvr-v0`
-- Hugging Face Docker Space: `team-attention/founder-decision-openenv`
+- Hugging Face Dataset: `bong-9/founder-decision-rlvr-v0`
+- Intended Hugging Face Docker Space: `bong-9/founder-decision-openenv`
 
 Publication status:
 
-- GitHub: published publicly at commit `b3b72317afa1563b844f7ebe22ace1f6199271a3`.
-- Hugging Face Dataset: pending local Hugging Face device authentication.
-- Hugging Face Docker Space: pending local Hugging Face device authentication.
+- GitHub: public.
+- Hugging Face Dataset: public; revision `d9f8ff66475ac69b8bf27831c78d9de63f8e5b8b`.
+- Hugging Face Docker Space: creation returned HTTP 402 because this account requires a PRO
+  subscription for Docker/Gradio `cpu-basic`. A static placeholder was intentionally not used
+  because it would not execute the OpenEnv contract.
 
 The publication authorization covers:
 
@@ -27,16 +29,16 @@ Exact commands from this repository root:
 ```bash
 gh repo create team-attention/founder-decision-openenv --public --source=. --remote=origin --push
 
-uv run hf repo create team-attention/founder-decision-rlvr-v0 --repo-type dataset
-uv run hf upload team-attention/founder-decision-rlvr-v0 \
+uv run hf repo create bong-9/founder-decision-rlvr-v0 --repo-type dataset
+uv run hf upload bong-9/founder-decision-rlvr-v0 \
   src/yc_founder_decision_env/assets/dataset-v0.1.0.jsonl dataset-v0.1.0.jsonl \
   --repo-type dataset
-uv run hf upload team-attention/founder-decision-rlvr-v0 \
+uv run hf upload bong-9/founder-decision-rlvr-v0 \
   src/yc_founder_decision_env/assets/environment-metadata-v0.1.0.json \
   environment-metadata-v0.1.0.json --repo-type dataset
-uv run hf upload team-attention/founder-decision-rlvr-v0 DATASET_CARD.md README.md --repo-type dataset
+uv run hf upload bong-9/founder-decision-rlvr-v0 DATASET_CARD.md README.md --repo-type dataset
 
-uv run hf repo create team-attention/founder-decision-openenv --repo-type space --space-sdk docker
-uv run hf upload team-attention/founder-decision-openenv . . --repo-type space \
+uv run hf repo create bong-9/founder-decision-openenv --repo-type space --space-sdk docker
+uv run hf upload bong-9/founder-decision-openenv . . --repo-type space \
   --exclude '.git/*' '.venv/*' 'evidence/upstream/downloads/*'
 ```

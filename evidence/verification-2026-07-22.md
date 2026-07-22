@@ -1,8 +1,8 @@
 # Verification evidence — 2026-07-22
 
-Scope: reproducibility gates plus authorized publication. The GitHub code repository was
-published after all gates passed. Hugging Face publication remains pending because the local
-CLI has no authenticated account; a browser device-code attempt expired without authorization.
+Scope: reproducibility gates plus authorized publication. The GitHub code repository and Hugging
+Face Dataset were published after all gates passed. The Docker Space cannot be created on the
+authenticated account because Hugging Face returned HTTP 402 with a PRO subscription requirement.
 
 ## G0 — Upstream and rights: PASS
 
@@ -158,5 +158,9 @@ Result:
 GitHub, HF Dataset, and Docker Space cards/layouts plus exact commands are in
 `publication/APPROVAL_REQUIRED.md`. The public GitHub repository is
 `https://github.com/team-attention/founder-decision-openenv` at initial publication commit
-`b3b72317afa1563b844f7ebe22ace1f6199271a3`. Hugging Face Dataset and Space publication are
-blocked only on local Hugging Face authentication, not on a failed technical gate.
+`b3b72317afa1563b844f7ebe22ace1f6199271a3`. The public Dataset is
+`https://huggingface.co/datasets/bong-9/founder-decision-rlvr-v0`; unauthenticated API inspection
+reported `private=false`, and all seven uploaded paths returned HTTP 200. Remote SHA-256 values
+for the record JSONL and sidecar exactly matched the local values. Docker Space creation is the
+only publication-execution blocker: Hugging Face returned HTTP 402 and stated that Docker/Gradio
+`cpu-basic` hosting requires PRO for this account. No non-executable static placeholder was used.
