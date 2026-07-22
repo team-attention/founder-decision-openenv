@@ -68,15 +68,71 @@ def test_q_update_uses_visit_dependent_alpha_and_gamma() -> None:
     state = (4, 120, 64, 31)
     next_state = (3, 110, 50, 31)
     q[(next_state, "sell_pilot")] = 2.0
-    trace = q_update(q, visits, state, "sell_pilot", 0.5, next_state, False)
+    trace = q_update(
+        q,
+        visits,
+        state,
+        "sell_pilot",
+        0.5,
+        next_state,
+        False,
+        next_actions=["sell_pilot"],
+    )
     assert trace["visit"] == 1
     assert trace["alpha"] == 1.0
     assert trace["target"] == 2.4  # 0.5 + 0.95 * 2.0
     assert q[(state, "sell_pilot")] == 2.4
-    second = q_update(q, visits, state, "sell_pilot", 0.5, next_state, True)
+    second = q_update(
+        q,
+        visits,
+        state,
+        "sell_pilot",
+        0.5,
+        next_state,
+        True,
+        next_actions=["sell_pilot"],
+    )
     assert second["visit"] == 2
     assert math.isclose(second["alpha"], 1 / (2**0.6))
     assert second["target"] == 0.5
+
+
+def test_q_update_ignores_infeasible_positive_next_value() -> None:
+    q: dict[tuple[tuple[int, int, int, int], str], float] = {}
+    visits: dict[tuple[tuple[int, int, int, int], str], int] = {}
+    state = (4, 120, 64, 31)
+    next_state = (3, 110, 50, 31)
+    q[(next_state, "sell_pilot")] = -2.0
+    q[(next_state, "fundraise")] = 10.0  # Infeasible continuation must not bootstrap.
+
+    trace = q_update(
+        q,
+        visits,
+        state,
+        "sell_pilot",
+        0.5,
+        next_state,
+        False,
+        next_actions=["sell_pilot"],
+    )
+
+    assert trace["target"] == -1.4  # 0.5 + 0.95 * -2.0
+
+
+def test_training_config_rejects_invalid_hyperparameters() -> None:
+    for kwargs in (
+        {"episodes": 0},
+        {"gamma": float("nan")},
+        {"gamma": 1.01},
+        {"epsilon_start": float("inf")},
+        {"epsilon_end": -0.01},
+        {"alpha_exponent": 0.0},
+    ):
+        try:
+            QTrainingConfig(rng_seed=1, **kwargs)
+        except ValueError:
+            continue
+        raise AssertionError(f"expected invalid config to fail: {kwargs}")
 
 
 def test_training_is_deterministic_and_train_only() -> None:

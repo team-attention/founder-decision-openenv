@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import itertools
 import json
+import math
 import random
 from collections import Counter
 from collections.abc import Callable
@@ -13,11 +15,20 @@ from typing import Any, cast
 
 from .agent_trial import build_trusted_action, payload_sha256, seal_artifact, verify_artifact
 from .models import ActionName, AgentDecision, FounderObservation
-from .q_learning import Q_RNG_SEEDS, available_actions, greedy_q_decision
+from .q_learning import (
+    ALPHA_RULE_VERSION,
+    EPSILON_SCHEDULE_VERSION,
+    Q_RNG_SEEDS,
+    TRAINING_SEEDS,
+    available_actions,
+    greedy_q_decision,
+)
 from .rewards import SYNTHETIC_UTILITY_VERSION, synthetic_utility
 from .server.environment import ACTION_ORDER, FounderDecisionEnvironment
 
 HELD_OUT_SEEDS = tuple(range(16, 24))
+TERRA_LEDGER_SCHEMA_VERSION = "terra-decision-ledger-v0.1.0"
+Q_ARTIFACT_SCHEMA_VERSION = "q-learning-artifact-v0.1.0"
 Policy = Callable[[FounderObservation], AgentDecision]
 
 
@@ -177,13 +188,127 @@ def _aggregate(episodes: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
-def _terra_decisions(terra: dict[str, Any], seed: int) -> list[AgentDecision]:
-    raw_episode = terra[str(seed)]
-    if not isinstance(raw_episode, list):
-        raise ValueError("TERRA_DECISIONS_MUST_BE_LISTS")
-    if not raw_episode or len(raw_episode) > 4:
+def _validate_terra_episode(
+    seed: int, raw_turns: list[Any], *, require_turn_provenance: bool
+) -> list[AgentDecision]:
+    if not raw_turns or len(raw_turns) > 4:
         raise ValueError("TERRA_DECISION_COUNT_INVALID")
-    return [AgentDecision.model_validate(decision) for decision in raw_episode]
+    env = FounderDecisionEnvironment()
+    observation = env.reset(seed=seed)
+    decisions: list[AgentDecision] = []
+    for raw_turn in raw_turns:
+        if observation.done:
+            raise ValueError("TERRA_TURNS_AFTER_TERMINATION")
+        if require_turn_provenance:
+            if not isinstance(raw_turn, dict):
+                raise ValueError("INVALID_TERRA_TURN")
+            expected_hash = payload_sha256(observation.model_dump(mode="json"))
+            if raw_turn.get("input_observation_sha256") != expected_hash:
+                raise ValueError("TERRA_OBSERVATION_HASH_MISMATCH")
+            if not isinstance(raw_turn.get("raw_response"), str):
+                raise ValueError("TERRA_RAW_RESPONSE_REQUIRED")
+            if raw_turn.get("repair_response") is not None and not isinstance(
+                raw_turn.get("repair_response"), str
+            ):
+                raise ValueError("INVALID_TERRA_REPAIR_RESPONSE")
+            attempts = raw_turn.get("parse_attempts")
+            if not isinstance(attempts, int) or isinstance(attempts, bool) or attempts < 1:
+                raise ValueError("INVALID_TERRA_PARSE_ATTEMPTS")
+            raw_decision = raw_turn.get("decision")
+        else:
+            raw_decision = raw_turn
+        decision = AgentDecision.model_validate(raw_decision)
+        decisions.append(decision)
+        observation = env.step(build_trusted_action(observation, decision))
+    if not observation.done and len(decisions) < 4:
+        raise ValueError("TERRA_INCOMPLETE_NONTERMINAL_EPISODE")
+    return decisions
+
+
+def _terra_input(
+    terra: dict[str, Any],
+) -> tuple[dict[int, list[AgentDecision]], dict[str, Any] | None]:
+    expected_seeds = {str(seed) for seed in HELD_OUT_SEEDS}
+    if "episodes" not in terra:
+        if set(terra) != expected_seeds:
+            raise ValueError("TERRA_HELD_OUT_SPLIT_REQUIRED")
+        return (
+            {
+                seed: _validate_terra_episode(
+                    seed, cast(list[Any], terra[str(seed)]), require_turn_provenance=False
+                )
+                for seed in HELD_OUT_SEEDS
+            },
+            None,
+        )
+
+    if terra.get("schema_version") != TERRA_LEDGER_SCHEMA_VERSION:
+        raise ValueError("INVALID_TERRA_LEDGER_SCHEMA")
+    if not verify_artifact(terra):
+        raise ValueError("TERRA_LEDGER_INTEGRITY_FAILURE")
+    policy = terra.get("policy")
+    expected_policy = {
+        "provider": "codex-subagent",
+        "model": "gpt-5.6-terra",
+        "mode": "inference",
+        "model_weight_updates": False,
+        "prompt_version": "observation-only-v0.1.0",
+    }
+    if not isinstance(policy, dict) or any(
+        policy.get(key) != value for key, value in expected_policy.items()
+    ):
+        raise ValueError("INVALID_TERRA_PROVENANCE")
+    episodes = terra.get("episodes")
+    if not isinstance(episodes, dict) or set(episodes) != expected_seeds:
+        raise ValueError("TERRA_HELD_OUT_SPLIT_REQUIRED")
+    parsed: dict[int, list[AgentDecision]] = {}
+    for seed in HELD_OUT_SEEDS:
+        episode = episodes[str(seed)]
+        if not isinstance(episode, dict) or not isinstance(episode.get("turns"), list):
+            raise ValueError("INVALID_TERRA_EPISODE")
+        parsed[seed] = _validate_terra_episode(
+            seed, cast(list[Any], episode["turns"]), require_turn_provenance=True
+        )
+    return parsed, copy.deepcopy(terra)
+
+
+def _frozen_q_protocol() -> dict[str, Any]:
+    return {
+        "rng_seeds": list(Q_RNG_SEEDS),
+        "episodes": 1000,
+        "gamma": 0.95,
+        "epsilon_schedule_version": EPSILON_SCHEDULE_VERSION,
+        "epsilon_start": 0.30,
+        "epsilon_end": 0.05,
+        "alpha_rule_version": ALPHA_RULE_VERSION,
+        "alpha_exponent": 0.6,
+        "training_seeds": list(TRAINING_SEEDS),
+        "held_out_seeds": [],
+        "utility_version": SYNTHETIC_UTILITY_VERSION,
+    }
+
+
+def _validate_q_table(table: list[dict[str, Any]]) -> None:
+    seen: set[tuple[tuple[int, int, int, int], str]] = set()
+    for row in table:
+        state = row.get("state")
+        action = row.get("action")
+        value = row.get("q")
+        if (
+            set(row) != {"state", "action", "q"}
+            or not isinstance(state, list)
+            or len(state) != 4
+            or not all(isinstance(item, int) and not isinstance(item, bool) for item in state)
+            or action not in ACTION_ORDER
+            or not isinstance(value, (int, float))
+            or isinstance(value, bool)
+            or not math.isfinite(value)
+        ):
+            raise ValueError("INVALID_Q_TABLE")
+        key = (cast(tuple[int, int, int, int], tuple(state)), cast(str, action))
+        if key in seen:
+            raise ValueError("DUPLICATE_Q_TABLE_ENTRY")
+        seen.add(key)
 
 
 def _q_runs(q_artifact: dict[str, Any]) -> list[tuple[str, list[dict[str, Any]]]]:
@@ -191,7 +316,13 @@ def _q_runs(q_artifact: dict[str, Any]) -> list[tuple[str, list[dict[str, Any]]]
     if not isinstance(raw_runs, list):
         raise ValueError("Q_RUNS_REQUIRED")
     if not raw_runs:
-        return [("test-zero-q", []) for _ in Q_RNG_SEEDS]
+        return [(f"test-zero-q-{index}", []) for index in range(len(Q_RNG_SEEDS))]
+    if q_artifact.get("schema_version") != Q_ARTIFACT_SCHEMA_VERSION:
+        raise ValueError("INVALID_Q_ARTIFACT_SCHEMA")
+    if not verify_artifact(q_artifact):
+        raise ValueError("Q_ARTIFACT_INTEGRITY_FAILURE")
+    if q_artifact.get("training_protocol") != _frozen_q_protocol():
+        raise ValueError("INVALID_Q_FROZEN_CONFIG")
     if len(raw_runs) != len(Q_RNG_SEEDS):
         raise ValueError("EXACTLY_FIVE_Q_RUNS_REQUIRED")
     parsed: list[tuple[str, list[dict[str, Any]]]] = []
@@ -200,10 +331,29 @@ def _q_runs(q_artifact: dict[str, Any]) -> list[tuple[str, list[dict[str, Any]]]
             raise ValueError("INVALID_Q_RUN")
         config = run.get("config")
         table = run.get("q_table")
-        if not isinstance(config, dict) or config.get("rng_seed") != expected_seed:
-            raise ValueError("INVALID_Q_RUN_SEED")
+        expected_config = {
+            "rng_seed": expected_seed,
+            "episodes": 1000,
+            "gamma": 0.95,
+            "epsilon_start": 0.30,
+            "epsilon_end": 0.05,
+            "alpha_exponent": 0.6,
+        }
+        if config != expected_config:
+            raise ValueError("INVALID_Q_FROZEN_CONFIG")
         if not isinstance(table, list) or not all(isinstance(row, dict) for row in table):
             raise ValueError("INVALID_Q_TABLE")
+        _validate_q_table(cast(list[dict[str, Any]], table))
+        if (
+            run.get("training_seeds") != list(TRAINING_SEEDS)
+            or run.get("held_out_seeds_seen") != []
+            or run.get("utility_version") != SYNTHETIC_UTILITY_VERSION
+            or not isinstance(run.get("episode_returns"), list)
+            or len(cast(list[Any], run["episode_returns"])) != 1000
+            or not isinstance(run.get("curve_mean_every_50"), list)
+            or len(cast(list[Any], run["curve_mean_every_50"])) != 20
+        ):
+            raise ValueError("INVALID_Q_RUN_METADATA")
         parsed.append((str(expected_seed), cast(list[dict[str, Any]], table)))
     return parsed
 
@@ -226,12 +376,10 @@ def build_held_out_report(
     terra: dict[str, Any], q_artifact: dict[str, Any], random_seeds: list[int] | None = None
 ) -> dict[str, Any]:
     """Evaluate immutable Terra/Q inputs and three fixed baselines on seeds 16..23."""
-    if set(terra) != {str(seed) for seed in HELD_OUT_SEEDS}:
-        raise ValueError("TERRA_HELD_OUT_SPLIT_REQUIRED")
     rng_seeds = list(Q_RNG_SEEDS if random_seeds is None else random_seeds)
     if not rng_seeds:
         raise ValueError("RANDOM_SEEDS_REQUIRED")
-    terra_by_seed = {seed: _terra_decisions(terra, seed) for seed in HELD_OUT_SEEDS}
+    terra_by_seed, terra_ledger = _terra_input(terra)
 
     random_episodes: list[dict[str, Any]] = []
     random_subaggregates: dict[str, dict[str, Any]] = {}
@@ -269,9 +417,12 @@ def build_held_out_report(
     oracle_episodes: list[dict[str, Any]] = []
     for seed in HELD_OUT_SEEDS:
         oracle = exhaustive_oracle(seed)
-        oracle_result = cast(dict[str, Any], oracle["result"])
+        oracle_result = copy.deepcopy(cast(dict[str, Any], oracle["result"]))
         oracle_result["oracle_decisions"] = oracle["decisions"]
         oracle_result["oracle_replay_equal"] = oracle["replay_equal"]
+        oracle_result["trajectory_sha256"] = payload_sha256(
+            {key: value for key, value in oracle_result.items() if key != "trajectory_sha256"}
+        )
         oracle_episodes.append(oracle_result)
 
     policies = {
@@ -287,8 +438,7 @@ def build_held_out_report(
             "access_advantage": "fresh-environment exhaustive query benchmark; not deployable",
         },
     }
-    report = seal_artifact(
-        {
+    payload: dict[str, Any] = {
             "schema_version": "held-out-comparison-v0.1.0",
             "dataset_revision": "0.1.0",
             "transition_model_version": "frozen-v0.1.0",
@@ -300,9 +450,11 @@ def build_held_out_report(
             "combined_reward_reason": (
                 "hard reward and synthetic utility are intentionally not scalarized"
             ),
-            "policies": policies,
-        }
-    )
+        "policies": policies,
+    }
+    if terra_ledger is not None:
+        payload["terra_ledger"] = terra_ledger
+    report = seal_artifact(payload)
     report["replay"] = {"passed": verify_held_out_replay(report)}
     return seal_artifact(report)
 
@@ -315,27 +467,75 @@ def verify_held_out_replay(report: dict[str, Any]) -> bool:
     if not isinstance(policies, dict):
         return False
     try:
+        ledger = report.get("terra_ledger")
+        terra_by_seed: dict[int, list[AgentDecision]] | None = None
+        if ledger is not None:
+            if not isinstance(ledger, dict):
+                return False
+            terra_by_seed, _ = _terra_input(ledger)
         for policy_name, aggregate in policies.items():
             if not isinstance(aggregate, dict):
                 return False
             episodes = aggregate.get("episodes")
             if not isinstance(episodes, list):
                 return False
+            replayed_episodes: list[dict[str, Any]] = []
             for episode in episodes:
                 if not isinstance(episode, dict) or not isinstance(episode.get("seed"), int):
                     return False
                 seed = cast(int, episode["seed"])
                 if policy_name == "exhaustive_oracle":
-                    replayed = exhaustive_oracle(seed)["result"]
-                    if replayed["trajectory_sha256"] != episode.get("trajectory_sha256"):
+                    oracle = exhaustive_oracle(seed)
+                    replayed = copy.deepcopy(cast(dict[str, Any], oracle["result"]))
+                    replayed["oracle_decisions"] = oracle["decisions"]
+                    replayed["oracle_replay_equal"] = oracle["replay_equal"]
+                    replayed["trajectory_sha256"] = payload_sha256(
+                        {
+                            key: value
+                            for key, value in replayed.items()
+                            if key != "trajectory_sha256"
+                        }
+                    )
+                    if replayed != episode:
                         return False
+                    replayed_episodes.append(replayed)
                     continue
                 steps = episode.get("steps")
                 if not isinstance(steps, list):
                     return False
                 decisions = [AgentDecision.model_validate(step["decision"]) for step in steps]
                 replayed = evaluate_decisions(seed, decisions)
-                if replayed["trajectory_sha256"] != episode.get("trajectory_sha256"):
+                if replayed != episode:
+                    return False
+                if policy_name == "terra" and terra_by_seed is not None:
+                    if decisions != terra_by_seed.get(seed):
+                        return False
+                replayed_episodes.append(replayed)
+            expected_aggregate = _aggregate(replayed_episodes)
+            if any(aggregate.get(key) != value for key, value in expected_aggregate.items()):
+                return False
+            if policy_name in {"random", "learned_q"}:
+                subaggregate_key = (
+                    "per_rng_seed" if policy_name == "random" else "per_training_seed"
+                )
+                subaggregates = aggregate.get(subaggregate_key)
+                if not isinstance(subaggregates, dict):
+                    return False
+                flattened: list[dict[str, Any]] = []
+                for subaggregate in subaggregates.values():
+                    if not isinstance(subaggregate, dict):
+                        return False
+                    subepisodes = subaggregate.get("episodes")
+                    if not isinstance(subepisodes, list):
+                        return False
+                    expected_subaggregate = _aggregate(cast(list[dict[str, Any]], subepisodes))
+                    if any(
+                        subaggregate.get(key) != value
+                        for key, value in expected_subaggregate.items()
+                    ):
+                        return False
+                    flattened.extend(cast(list[dict[str, Any]], subepisodes))
+                if flattened != replayed_episodes:
                     return False
     except (KeyError, TypeError, ValueError):
         return False
@@ -346,18 +546,8 @@ def _load_terra_decision_ledger(path: Path) -> dict[str, Any]:
     raw = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(raw, dict):
         raise ValueError("TERRA_LEDGER_OBJECT_REQUIRED")
-    episodes = raw.get("episodes", raw)
-    if not isinstance(episodes, dict):
-        raise ValueError("TERRA_EPISODES_REQUIRED")
-    normalized: dict[str, Any] = {}
-    for seed, episode in episodes.items():
-        if isinstance(episode, list):
-            normalized[seed] = episode
-        elif isinstance(episode, dict) and isinstance(episode.get("turns"), list):
-            normalized[seed] = [turn["decision"] for turn in episode["turns"]]
-        else:
-            raise ValueError("INVALID_TERRA_EPISODE")
-    return normalized
+    _terra_input(raw)
+    return raw
 
 
 def main() -> None:

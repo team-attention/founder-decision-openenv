@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import random
 from dataclasses import asdict, dataclass
 from pathlib import Path
@@ -18,6 +19,12 @@ EncodedState: TypeAlias = tuple[int, int, int, int]
 QKey: TypeAlias = tuple[EncodedState, ActionName]
 Q_RNG_SEEDS: tuple[int, ...] = (20260723, 20260724, 20260725, 20260726, 20260727)
 TRAINING_SEEDS: tuple[int, ...] = tuple(range(16))
+EPSILON_SCHEDULE_VERSION = "linear-floor-v0.1.0"
+ALPHA_RULE_VERSION = "visit-count-power-v0.1.0"
+
+
+def _is_finite_number(value: object) -> bool:
+    return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
 
 
 @dataclass(frozen=True)
@@ -30,6 +37,24 @@ class QTrainingConfig:
     epsilon_start: float = 0.30
     epsilon_end: float = 0.05
     alpha_exponent: float = 0.6
+
+    def __post_init__(self) -> None:
+        if (
+            not isinstance(self.episodes, int)
+            or isinstance(self.episodes, bool)
+            or self.episodes <= 0
+        ):
+            raise ValueError("EPISODES_MUST_BE_POSITIVE")
+        if not _is_finite_number(self.gamma) or not 0 <= self.gamma <= 1:
+            raise ValueError("GAMMA_MUST_BE_FINITE_IN_UNIT_INTERVAL")
+        if not _is_finite_number(self.epsilon_start) or not 0 <= self.epsilon_start <= 1:
+            raise ValueError("EPSILON_START_MUST_BE_FINITE_IN_UNIT_INTERVAL")
+        if not _is_finite_number(self.epsilon_end) or not 0 <= self.epsilon_end <= 1:
+            raise ValueError("EPSILON_END_MUST_BE_FINITE_IN_UNIT_INTERVAL")
+        if self.epsilon_end > self.epsilon_start:
+            raise ValueError("EPSILON_END_MUST_NOT_EXCEED_START")
+        if not _is_finite_number(self.alpha_exponent) or self.alpha_exponent <= 0:
+            raise ValueError("ALPHA_EXPONENT_MUST_BE_FINITE_AND_POSITIVE")
 
 
 def encode_state(observation: FounderObservation) -> EncodedState:
@@ -58,8 +83,6 @@ def available_actions(observation: FounderObservation) -> list[ActionName]:
 
 def epsilon_at(config: QTrainingConfig, episode_index: int) -> float:
     """Return the frozen epsilon schedule for the configured episode horizon."""
-    if config.episodes <= 0:
-        raise ValueError("EPISODES_MUST_BE_POSITIVE")
     if not 0 <= episode_index < config.episodes:
         raise ValueError("EPISODE_INDEX_OUT_OF_RANGE")
     if config.episodes == 1:
@@ -79,13 +102,20 @@ def q_update(
     *,
     gamma: float = 0.95,
     alpha_exponent: float = 0.6,
+    next_actions: list[ActionName],
 ) -> dict[str, Any]:
     """Apply one visit-dependent tabular Q update and return an audit trace."""
+    if not math.isfinite(gamma) or not 0 <= gamma <= 1:
+        raise ValueError("GAMMA_MUST_BE_FINITE_IN_UNIT_INTERVAL")
+    if not math.isfinite(alpha_exponent) or alpha_exponent <= 0:
+        raise ValueError("ALPHA_EXPONENT_MUST_BE_FINITE_AND_POSITIVE")
+    if not done and not next_actions:
+        raise ValueError("NONTERMINAL_STATE_REQUIRES_FEASIBLE_ACTION")
     key = (state, action)
     visits[key] = visits.get(key, 0) + 1
     alpha = 1 / (visits[key] ** alpha_exponent)
     old = q.get(key, 0.0)
-    next_values = [q.get((next_state, candidate), 0.0) for candidate in ACTION_ORDER]
+    next_values = [q.get((next_state, candidate), 0.0) for candidate in next_actions]
     target = reward if done else reward + gamma * max(next_values)
     new = old + alpha * (target - old)
     q[key] = new
@@ -195,6 +225,7 @@ def train_q_learning(config: QTrainingConfig) -> dict[str, Any]:
                 after.done,
                 gamma=config.gamma,
                 alpha_exponent=config.alpha_exponent,
+                next_actions=available_actions(after),
             )
             if episode_index in {0, config.episodes - 1}:
                 trace.append({"episode": episode_index, "seed": seed, **update})
@@ -228,6 +259,19 @@ def _artifact(episodes: int) -> dict[str, Any]:
                 "model_weight_updates": False,
                 "observation_only": True,
                 "hard_reward_is_contract_compliance": True,
+            },
+            "training_protocol": {
+                "rng_seeds": list(Q_RNG_SEEDS),
+                "episodes": episodes,
+                "gamma": 0.95,
+                "epsilon_schedule_version": EPSILON_SCHEDULE_VERSION,
+                "epsilon_start": 0.30,
+                "epsilon_end": 0.05,
+                "alpha_rule_version": ALPHA_RULE_VERSION,
+                "alpha_exponent": 0.6,
+                "training_seeds": list(TRAINING_SEEDS),
+                "held_out_seeds": [],
+                "utility_version": SYNTHETIC_UTILITY_VERSION,
             },
             "runs": [
                 train_q_learning(QTrainingConfig(rng_seed=seed, episodes=episodes))
