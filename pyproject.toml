@@ -26,6 +26,9 @@ dev = [
 server = "yc_founder_decision_env.server.app:main"
 ycfd-demo = "yc_founder_decision_env.demo:main"
 ycfd-baselines = "yc_founder_decision_env.baselines:main"
+ycfd-agent-trial = "yc_founder_decision_env.agent_trial:main"
+ycfd-q-learning = "yc_founder_decision_env.q_learning:main"
+ycfd-rl-evaluate = "yc_founder_decision_env.rl_evaluation:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -2,6 +2,8 @@ import copy
 import inspect
 import json
 import random
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -336,3 +338,21 @@ def test_committed_held_out_artifact_is_sealed_leakage_safe_and_replayable() -> 
     assert comparison["policies"]["terra"]["n_episodes"] == 8
     assert comparison["policies"]["learned_q"]["n_episodes"] == 40
     assert comparison["policies"]["exhaustive_oracle"]["n_episodes"] == 8
+
+
+@pytest.mark.parametrize(
+    "module",
+    [
+        "yc_founder_decision_env.agent_trial",
+        "yc_founder_decision_env.q_learning",
+        "yc_founder_decision_env.rl_evaluation",
+    ],
+)
+def test_rl_cli_help(module: str) -> None:
+    completed = subprocess.run(
+        [sys.executable, "-m", module, "--help"],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert completed.returncode == 0, completed.stderr
