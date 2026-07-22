@@ -6,7 +6,12 @@ from pathlib import Path
 
 import pytest
 
-from yc_founder_decision_env.agent_trial import build_trusted_action, payload_sha256, seal_artifact
+from yc_founder_decision_env.agent_trial import (
+    build_trusted_action,
+    payload_sha256,
+    seal_artifact,
+    verify_artifact,
+)
 from yc_founder_decision_env.models import AgentDecision
 from yc_founder_decision_env.q_learning import encode_state
 from yc_founder_decision_env.rl_evaluation import (
@@ -313,3 +318,21 @@ def test_replay_requires_five_learned_q_subruns(frozen_report: dict[str, object]
     }
 
     assert verify_held_out_replay(seal_artifact(report)) is False
+
+
+def test_committed_held_out_artifact_is_sealed_leakage_safe_and_replayable() -> None:
+    artifact_path = Path(__file__).parents[1] / "artifacts/rl/held-out-comparison-v0.1.0.json"
+    comparison = json.loads(artifact_path.read_text(encoding="utf-8"))
+
+    assert verify_artifact(comparison)
+    assert comparison["held_out_seeds"] == list(range(16, 24))
+    assert comparison["combined_reward"] is None
+    assert comparison["replay"]["passed"] is True
+    assert verify_held_out_replay(comparison)
+    assert "preferred_action" not in json.dumps(comparison)
+    assert "ground_truth" not in json.dumps(comparison)
+    assert comparison["policies"]["random"]["n_episodes"] == 40
+    assert comparison["policies"]["black_box_rule"]["n_episodes"] == 8
+    assert comparison["policies"]["terra"]["n_episodes"] == 8
+    assert comparison["policies"]["learned_q"]["n_episodes"] == 40
+    assert comparison["policies"]["exhaustive_oracle"]["n_episodes"] == 8

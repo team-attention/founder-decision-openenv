@@ -1,6 +1,8 @@
+import json
 import math
+from pathlib import Path
 
-from yc_founder_decision_env.agent_trial import build_trusted_action
+from yc_founder_decision_env.agent_trial import build_trusted_action, verify_artifact
 from yc_founder_decision_env.models import AgentDecision
 from yc_founder_decision_env.q_learning import (
     QTrainingConfig,
@@ -143,3 +145,16 @@ def test_training_is_deterministic_and_train_only() -> None:
     assert first["training_seeds"] == list(range(16))
     assert first["held_out_seeds_seen"] == []
     assert len(first["episode_returns"]) == 20
+
+
+def test_committed_q_artifact_has_the_frozen_five_run_protocol() -> None:
+    artifact_path = Path(__file__).parents[1] / "artifacts/rl/q-learning-v0.1.0.json"
+    artifact = json.loads(artifact_path.read_text(encoding="utf-8"))
+
+    assert verify_artifact(artifact)
+    assert [run["config"]["rng_seed"] for run in artifact["runs"]] == list(
+        range(20260723, 20260728)
+    )
+    assert all(run["config"]["episodes"] == 1000 for run in artifact["runs"])
+    assert all(run["training_seeds"] == list(range(16)) for run in artifact["runs"])
+    assert all(run["held_out_seeds_seen"] == [] for run in artifact["runs"])
