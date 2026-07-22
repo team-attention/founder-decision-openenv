@@ -26,6 +26,16 @@ class PublicActionSpec(BaseModel):
     founder_hours: int = Field(ge=0)
 
 
+class AgentDecision(BaseModel):
+    """Only fields an inference agent may choose."""
+
+    model_config = ConfigDict(extra="forbid", strict=True)
+
+    action_type: ActionName
+    rationale: str = Field(min_length=1, max_length=1200)
+    source_locator: str = Field(min_length=8, max_length=500)
+
+
 class StateClaim(BaseModel):
     """Agent claim used to make arithmetic tampering machine-verifiable."""
 
