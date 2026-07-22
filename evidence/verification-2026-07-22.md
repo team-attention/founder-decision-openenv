@@ -1,7 +1,8 @@
 # Verification evidence — 2026-07-22
 
-Scope: local publication-ready dry run only. No GitHub/Hugging Face remote was created, and no
-commit or push was made.
+Scope: reproducibility gates plus authorized publication. The GitHub code repository was
+published after all gates passed. Hugging Face publication remains pending because the local
+CLI has no authenticated account; a browser device-code attempt expired without authorization.
 
 ## G0 — Upstream and rights: PASS
 
@@ -127,7 +128,7 @@ UV_PROJECT_ENVIRONMENT="$clean_root/venv" uv run ycfd-demo
 
 Results: clean install PASS; 19 tests PASS; ruff PASS; mypy `Success: no issues found in 12
 source files`; demo replay PASS; publication dry run PASS. `uv.lock` SHA-256 is
-`32cad4c1100b1330480c1d7370a7a52e559a0dae4e536ac873438d59ef7b1afa`.
+`c9efb772f73a5e96c6a88fea3d1fde741462c0309bf254256fef0082a71b6471`.
 
 Container commands/results:
 
@@ -154,6 +155,8 @@ Result:
 {"passed":true,"remote_mutation":false,"github_layout":true,"hf_dataset_layout":true,"hf_docker_space_layout":true,"records":24}
 ```
 
-GitHub, HF Dataset, and Docker Space cards/layouts plus exact post-approval commands are in
-`publication/APPROVAL_REQUIRED.md`. `git remote -v` returned no remote. Publication is blocked
-only on the intentionally required Command Center approval, not on a failed technical gate.
+GitHub, HF Dataset, and Docker Space cards/layouts plus exact commands are in
+`publication/APPROVAL_REQUIRED.md`. The public GitHub repository is
+`https://github.com/team-attention/founder-decision-openenv` at initial publication commit
+`b3b72317afa1563b844f7ebe22ace1f6199271a3`. Hugging Face Dataset and Space publication are
+blocked only on local Hugging Face authentication, not on a failed technical gate.

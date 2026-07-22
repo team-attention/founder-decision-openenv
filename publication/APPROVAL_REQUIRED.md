@@ -7,6 +7,12 @@ avoid implying YC affiliation or endorsement:
 - Hugging Face Dataset: `team-attention/founder-decision-rlvr-v0`
 - Hugging Face Docker Space: `team-attention/founder-decision-openenv`
 
+Publication status:
+
+- GitHub: published publicly at commit `b3b72317afa1563b844f7ebe22ace1f6199271a3`.
+- Hugging Face Dataset: pending local Hugging Face device authentication.
+- Hugging Face Docker Space: pending local Hugging Face device authentication.
+
 The publication authorization covers:
 
 1. Public organization/repository names and MIT licensing.

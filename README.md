@@ -73,5 +73,5 @@ explicitly excluded from hard reward and is not calibrated to real outcomes.
 - Limitation: passing the verifier means contract compliance under a frozen simulator, not
   good business judgment or likely startup success.
 - Non-endorsement: this independent synthetic benchmark is not affiliated with or endorsed by YC.
-- Public surfaces: GitHub code, a Hugging Face Dataset, and a Hugging Face Docker Space use
-  the identifiers recorded in `publication/APPROVAL_REQUIRED.md`.
+- Public surface: the code is published on GitHub; Hugging Face Dataset and Docker Space
+  publication status and identifiers are recorded in `publication/APPROVAL_REQUIRED.md`.
