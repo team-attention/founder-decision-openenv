@@ -1,5 +1,8 @@
+import copy
 import inspect
+import json
 import random
+from pathlib import Path
 
 import pytest
 
@@ -7,8 +10,11 @@ from yc_founder_decision_env.agent_trial import build_trusted_action, payload_sh
 from yc_founder_decision_env.models import AgentDecision
 from yc_founder_decision_env.rl_evaluation import (
     HELD_OUT_SEEDS,
+    _aggregate,
+    _load_terra_decision_ledger,
     black_box_rule_decision,
     build_held_out_report,
+    evaluate_decisions,
     exhaustive_oracle,
     random_decision,
     verify_held_out_replay,
@@ -37,21 +43,9 @@ def test_exhaustive_oracle_is_deterministic_and_replayable() -> None:
 
 
 def test_report_uses_only_frozen_held_out_seeds_and_separate_scores() -> None:
-    terra = {
-        str(seed): [
-            {
-                "action_type": "abstain",
-                "rationale": "Public observation only.",
-                "source_locator": FounderDecisionEnvironment()
-                .reset(seed=seed)
-                .source_locators[0],
-            }
-            for _ in range(4)
-        ]
-        for seed in range(16, 24)
-    }
-    q_artifact = {"runs": []}
-    report = build_held_out_report(terra, q_artifact, random_seeds=[20260723])
+    report = build_held_out_report(
+        _terra_ledger(), _frozen_q_artifact(), random_seeds=[20260723]
+    )
     assert report["held_out_seeds"] == list(range(16, 24))
     assert set(report["policies"]) == {
         "random",
@@ -82,11 +76,12 @@ def _terra_ledger(*, short_seed: int | None = None) -> dict[str, object]:
         observation = env.reset(seed=seed)
         turns: list[dict[str, object]] = []
         for _ in range(4):
+            decision = _decision(seed)
             turns.append(
                 {
                     "input_observation_sha256": payload_sha256(observation.model_dump(mode="json")),
-                    "decision": _decision(seed),
-                    "raw_response": "{}",
+                    "decision": decision,
+                    "raw_response": json.dumps(decision),
                     "repair_response": None,
                     "parse_attempts": 1,
                 }
@@ -169,12 +164,39 @@ def test_report_preserves_verified_terra_ledger_provenance_and_turn_hashes() -> 
     assert report["terra_ledger"] == ledger
 
 
+def test_loader_rejects_legacy_flat_terra_map(tmp_path: Path) -> None:
+    legacy = {str(seed): [_decision(seed)] * 4 for seed in HELD_OUT_SEEDS}
+    path = tmp_path / "legacy-terra.json"
+    path.write_text(json.dumps(legacy), encoding="utf-8")
+
+    with pytest.raises(ValueError, match="INVALID_TERRA_LEDGER_SCHEMA"):
+        _load_terra_decision_ledger(path)
+
+
+def test_terra_turn_response_must_equal_stored_decision() -> None:
+    ledger = _terra_ledger()
+    turn = ledger["episodes"]["16"]["turns"][0]  # type: ignore[index]
+    response_decision = copy.deepcopy(turn["decision"])
+    response_decision["rationale"] = "Different model response."
+    turn["repair_response"] = json.dumps(response_decision)
+    turn["parse_attempts"] = 2
+    ledger = seal_artifact(ledger)
+
+    with pytest.raises(ValueError, match="TERRA_RESPONSE_DECISION_MISMATCH"):
+        build_held_out_report(ledger, _frozen_q_artifact(), [20260723])
+
+
 def test_q_artifact_requires_integrity_and_frozen_protocol() -> None:
     artifact = _frozen_q_artifact()
     artifact["runs"][0]["config"]["episodes"] = 999  # type: ignore[index]
     artifact = seal_artifact(artifact)
     with pytest.raises(ValueError, match="INVALID_Q_FROZEN_CONFIG"):
         build_held_out_report(_terra_ledger(), artifact, [20260723])
+
+
+def test_report_rejects_empty_q_runs() -> None:
+    with pytest.raises(ValueError, match="Q_RUNS_REQUIRED"):
+        build_held_out_report(_terra_ledger(), {"runs": []}, [20260723])
 
 
 def test_replay_recomputes_episode_digests_and_aggregates() -> None:
@@ -187,3 +209,75 @@ def test_replay_recomputes_episode_digests_and_aggregates() -> None:
     report = seal_artifact(report)
 
     assert verify_held_out_replay(report) is False
+
+
+@pytest.fixture(scope="module")
+def frozen_report() -> dict[str, object]:
+    return build_held_out_report(_terra_ledger(), _frozen_q_artifact())
+
+
+def test_replay_rejects_wrong_report_schema(frozen_report: dict[str, object]) -> None:
+    report = copy.deepcopy(frozen_report)
+    report["schema_version"] = "held-out-comparison-v9.9.9"
+
+    assert verify_held_out_replay(seal_artifact(report)) is False
+
+
+def test_replay_rejects_missing_policy_family(frozen_report: dict[str, object]) -> None:
+    report = copy.deepcopy(frozen_report)
+    del report["policies"]["terra"]  # type: ignore[index]
+
+    assert verify_held_out_replay(seal_artifact(report)) is False
+
+
+def test_replay_rejects_self_consistent_wrong_episode_count(
+    frozen_report: dict[str, object],
+) -> None:
+    report = copy.deepcopy(frozen_report)
+    random_aggregate = report["policies"]["random"]  # type: ignore[index]
+    subaggregates = random_aggregate["per_rng_seed"]
+    del subaggregates[next(iter(subaggregates))]
+    episodes = [
+        episode
+        for subaggregate in subaggregates.values()
+        for episode in subaggregate["episodes"]
+    ]
+    report["policies"]["random"] = {  # type: ignore[index]
+        **_aggregate(episodes),
+        "per_rng_seed": subaggregates,
+    }
+
+    assert verify_held_out_replay(seal_artifact(report)) is False
+
+
+def test_replay_rejects_self_consistent_non_heldout_seed(
+    frozen_report: dict[str, object],
+) -> None:
+    report = copy.deepcopy(frozen_report)
+    rule_aggregate = report["policies"]["black_box_rule"]  # type: ignore[index]
+    decisions = [
+        AgentDecision.model_validate(step["decision"])
+        for step in rule_aggregate["episodes"][0]["steps"]
+    ]
+    rule_aggregate["episodes"][0] = evaluate_decisions(15, decisions)
+    report["policies"]["black_box_rule"] = _aggregate(rule_aggregate["episodes"])  # type: ignore[index]
+
+    assert verify_held_out_replay(seal_artifact(report)) is False
+
+
+def test_replay_requires_five_learned_q_subruns(frozen_report: dict[str, object]) -> None:
+    report = copy.deepcopy(frozen_report)
+    learned_aggregate = report["policies"]["learned_q"]  # type: ignore[index]
+    subaggregates = learned_aggregate["per_training_seed"]
+    del subaggregates[next(iter(subaggregates))]
+    episodes = [
+        episode
+        for subaggregate in subaggregates.values()
+        for episode in subaggregate["episodes"]
+    ]
+    report["policies"]["learned_q"] = {  # type: ignore[index]
+        **_aggregate(episodes),
+        "per_training_seed": subaggregates,
+    }
+
+    assert verify_held_out_replay(seal_artifact(report)) is False

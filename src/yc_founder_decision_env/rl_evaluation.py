@@ -29,6 +29,14 @@ from .server.environment import ACTION_ORDER, FounderDecisionEnvironment
 HELD_OUT_SEEDS = tuple(range(16, 24))
 TERRA_LEDGER_SCHEMA_VERSION = "terra-decision-ledger-v0.1.0"
 Q_ARTIFACT_SCHEMA_VERSION = "q-learning-artifact-v0.1.0"
+REPORT_SCHEMA_VERSION = "held-out-comparison-v0.1.0"
+REQUIRED_POLICY_FAMILIES = {
+    "random",
+    "black_box_rule",
+    "terra",
+    "learned_q",
+    "exhaustive_oracle",
+}
 Policy = Callable[[FounderObservation], AgentDecision]
 
 
@@ -188,9 +196,7 @@ def _aggregate(episodes: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
-def _validate_terra_episode(
-    seed: int, raw_turns: list[Any], *, require_turn_provenance: bool
-) -> list[AgentDecision]:
+def _validate_terra_episode(seed: int, raw_turns: list[Any]) -> list[AgentDecision]:
     if not raw_turns or len(raw_turns) > 4:
         raise ValueError("TERRA_DECISION_COUNT_INVALID")
     env = FounderDecisionEnvironment()
@@ -199,25 +205,25 @@ def _validate_terra_episode(
     for raw_turn in raw_turns:
         if observation.done:
             raise ValueError("TERRA_TURNS_AFTER_TERMINATION")
-        if require_turn_provenance:
-            if not isinstance(raw_turn, dict):
-                raise ValueError("INVALID_TERRA_TURN")
-            expected_hash = payload_sha256(observation.model_dump(mode="json"))
-            if raw_turn.get("input_observation_sha256") != expected_hash:
-                raise ValueError("TERRA_OBSERVATION_HASH_MISMATCH")
-            if not isinstance(raw_turn.get("raw_response"), str):
-                raise ValueError("TERRA_RAW_RESPONSE_REQUIRED")
-            if raw_turn.get("repair_response") is not None and not isinstance(
-                raw_turn.get("repair_response"), str
-            ):
-                raise ValueError("INVALID_TERRA_REPAIR_RESPONSE")
-            attempts = raw_turn.get("parse_attempts")
-            if not isinstance(attempts, int) or isinstance(attempts, bool) or attempts < 1:
-                raise ValueError("INVALID_TERRA_PARSE_ATTEMPTS")
-            raw_decision = raw_turn.get("decision")
-        else:
-            raw_decision = raw_turn
-        decision = AgentDecision.model_validate(raw_decision)
+        if not isinstance(raw_turn, dict):
+            raise ValueError("INVALID_TERRA_TURN")
+        expected_hash = payload_sha256(observation.model_dump(mode="json"))
+        if raw_turn.get("input_observation_sha256") != expected_hash:
+            raise ValueError("TERRA_OBSERVATION_HASH_MISMATCH")
+        raw_response = raw_turn.get("raw_response")
+        repair_response = raw_turn.get("repair_response")
+        if not isinstance(raw_response, str):
+            raise ValueError("TERRA_RAW_RESPONSE_REQUIRED")
+        if repair_response is not None and not isinstance(repair_response, str):
+            raise ValueError("INVALID_TERRA_REPAIR_RESPONSE")
+        attempts = raw_turn.get("parse_attempts")
+        if not isinstance(attempts, int) or isinstance(attempts, bool) or attempts < 1:
+            raise ValueError("INVALID_TERRA_PARSE_ATTEMPTS")
+        decision = AgentDecision.model_validate(raw_turn.get("decision"))
+        selected_response = raw_response if repair_response is None else repair_response
+        response_decision = AgentDecision.model_validate_json(selected_response)
+        if response_decision != decision:
+            raise ValueError("TERRA_RESPONSE_DECISION_MISMATCH")
         decisions.append(decision)
         observation = env.step(build_trusted_action(observation, decision))
     if not observation.done and len(decisions) < 4:
@@ -227,21 +233,8 @@ def _validate_terra_episode(
 
 def _terra_input(
     terra: dict[str, Any],
-) -> tuple[dict[int, list[AgentDecision]], dict[str, Any] | None]:
+) -> tuple[dict[int, list[AgentDecision]], dict[str, Any]]:
     expected_seeds = {str(seed) for seed in HELD_OUT_SEEDS}
-    if "episodes" not in terra:
-        if set(terra) != expected_seeds:
-            raise ValueError("TERRA_HELD_OUT_SPLIT_REQUIRED")
-        return (
-            {
-                seed: _validate_terra_episode(
-                    seed, cast(list[Any], terra[str(seed)]), require_turn_provenance=False
-                )
-                for seed in HELD_OUT_SEEDS
-            },
-            None,
-        )
-
     if terra.get("schema_version") != TERRA_LEDGER_SCHEMA_VERSION:
         raise ValueError("INVALID_TERRA_LEDGER_SCHEMA")
     if not verify_artifact(terra):
@@ -266,9 +259,7 @@ def _terra_input(
         episode = episodes[str(seed)]
         if not isinstance(episode, dict) or not isinstance(episode.get("turns"), list):
             raise ValueError("INVALID_TERRA_EPISODE")
-        parsed[seed] = _validate_terra_episode(
-            seed, cast(list[Any], episode["turns"]), require_turn_provenance=True
-        )
+        parsed[seed] = _validate_terra_episode(seed, cast(list[Any], episode["turns"]))
     return parsed, copy.deepcopy(terra)
 
 
@@ -316,7 +307,7 @@ def _q_runs(q_artifact: dict[str, Any]) -> list[tuple[str, list[dict[str, Any]]]
     if not isinstance(raw_runs, list):
         raise ValueError("Q_RUNS_REQUIRED")
     if not raw_runs:
-        return [(f"test-zero-q-{index}", []) for index in range(len(Q_RNG_SEEDS))]
+        raise ValueError("Q_RUNS_REQUIRED")
     if q_artifact.get("schema_version") != Q_ARTIFACT_SCHEMA_VERSION:
         raise ValueError("INVALID_Q_ARTIFACT_SCHEMA")
     if not verify_artifact(q_artifact):
@@ -439,21 +430,20 @@ def build_held_out_report(
         },
     }
     payload: dict[str, Any] = {
-            "schema_version": "held-out-comparison-v0.1.0",
-            "dataset_revision": "0.1.0",
-            "transition_model_version": "frozen-v0.1.0",
-            "verifier_version": "verifier-v0.1.0",
-            "utility_version": SYNTHETIC_UTILITY_VERSION,
-            "training_seeds": list(range(16)),
-            "held_out_seeds": list(HELD_OUT_SEEDS),
-            "combined_reward": None,
-            "combined_reward_reason": (
-                "hard reward and synthetic utility are intentionally not scalarized"
-            ),
+        "schema_version": REPORT_SCHEMA_VERSION,
+        "dataset_revision": "0.1.0",
+        "transition_model_version": "frozen-v0.1.0",
+        "verifier_version": "verifier-v0.1.0",
+        "utility_version": SYNTHETIC_UTILITY_VERSION,
+        "training_seeds": list(range(16)),
+        "held_out_seeds": list(HELD_OUT_SEEDS),
+        "combined_reward": None,
+        "combined_reward_reason": (
+            "hard reward and synthetic utility are intentionally not scalarized"
+        ),
         "policies": policies,
     }
-    if terra_ledger is not None:
-        payload["terra_ledger"] = terra_ledger
+    payload["terra_ledger"] = terra_ledger
     report = seal_artifact(payload)
     report["replay"] = {"passed": verify_held_out_replay(report)}
     return seal_artifact(report)
@@ -463,21 +453,31 @@ def verify_held_out_replay(report: dict[str, Any]) -> bool:
     """Replay frozen trajectories and rerun oracle search without updating any policy."""
     if not verify_artifact(report):
         return False
+    if report.get("schema_version") != REPORT_SCHEMA_VERSION:
+        return False
+    if report.get("held_out_seeds") != list(HELD_OUT_SEEDS):
+        return False
     policies = report.get("policies")
-    if not isinstance(policies, dict):
+    if not isinstance(policies, dict) or set(policies) != REQUIRED_POLICY_FAMILIES:
         return False
     try:
         ledger = report.get("terra_ledger")
-        terra_by_seed: dict[int, list[AgentDecision]] | None = None
-        if ledger is not None:
-            if not isinstance(ledger, dict):
-                return False
-            terra_by_seed, _ = _terra_input(ledger)
+        if not isinstance(ledger, dict):
+            return False
+        terra_by_seed, _ = _terra_input(ledger)
         for policy_name, aggregate in policies.items():
             if not isinstance(aggregate, dict):
                 return False
             episodes = aggregate.get("episodes")
             if not isinstance(episodes, list):
+                return False
+            multiplicity = 5 if policy_name in {"random", "learned_q"} else 1
+            if len(episodes) != len(HELD_OUT_SEEDS) * multiplicity:
+                return False
+            episode_seeds = Counter(
+                episode.get("seed") for episode in episodes if isinstance(episode, dict)
+            )
+            if episode_seeds != Counter({seed: multiplicity for seed in HELD_OUT_SEEDS}):
                 return False
             replayed_episodes: list[dict[str, Any]] = []
             for episode in episodes:
@@ -507,9 +507,8 @@ def verify_held_out_replay(report: dict[str, Any]) -> bool:
                 replayed = evaluate_decisions(seed, decisions)
                 if replayed != episode:
                     return False
-                if policy_name == "terra" and terra_by_seed is not None:
-                    if decisions != terra_by_seed.get(seed):
-                        return False
+                if policy_name == "terra" and decisions != terra_by_seed.get(seed):
+                    return False
                 replayed_episodes.append(replayed)
             expected_aggregate = _aggregate(replayed_episodes)
             if any(aggregate.get(key) != value for key, value in expected_aggregate.items()):
@@ -521,12 +520,20 @@ def verify_held_out_replay(report: dict[str, Any]) -> bool:
                 subaggregates = aggregate.get(subaggregate_key)
                 if not isinstance(subaggregates, dict):
                     return False
+                if set(subaggregates) != {str(seed) for seed in Q_RNG_SEEDS}:
+                    return False
                 flattened: list[dict[str, Any]] = []
                 for subaggregate in subaggregates.values():
                     if not isinstance(subaggregate, dict):
                         return False
                     subepisodes = subaggregate.get("episodes")
-                    if not isinstance(subepisodes, list):
+                    if not isinstance(subepisodes, list) or len(subepisodes) != len(HELD_OUT_SEEDS):
+                        return False
+                    if Counter(
+                        episode.get("seed")
+                        for episode in subepisodes
+                        if isinstance(episode, dict)
+                    ) != Counter(HELD_OUT_SEEDS):
                         return False
                     expected_subaggregate = _aggregate(cast(list[dict[str, Any]], subepisodes))
                     if any(
