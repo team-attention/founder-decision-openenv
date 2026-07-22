@@ -1,0 +1,1184 @@
+{
+  "random": {
+    "policy": "random",
+    "split": "held_out",
+    "split_size": 8,
+    "baseline_seed": 20260722,
+    "dataset_revision": "0.1.0",
+    "transition_model_version": "frozen-v0.1.0",
+    "mean_hard_reward": 1.0,
+    "preferred_action_match_rate": 0.375,
+    "mean_final_mrr_cents": 46875.0,
+    "trajectories": [
+      {
+        "case_id": "ycfd-017",
+        "preferred_action": "change_price",
+        "preferred_action_matches": 2,
+        "final_state": {
+          "episode_id": "e54f7316-1620-55e6-be71-bac4539f8257",
+          "step_count": 4,
+          "case_id": "ycfd-017",
+          "seed": 16,
+          "week": 4,
+          "budget_cents": 111000,
+          "founder_hours": 55,
+          "active_users": 21,
+          "interviews_completed": 5,
+          "qualified_pipeline": 0,
+          "mrr_cents": 50000,
+          "price_cents": 3500,
+          "terminated": false,
+          "truncated": true,
+          "transition_model_version": "frozen-v0.1.0"
+        },
+        "steps": [
+          {
+            "action": "abstain",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "change_price",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "interview_users",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "change_price",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          }
+        ]
+      },
+      {
+        "case_id": "ycfd-018",
+        "preferred_action": "abstain",
+        "preferred_action_matches": 1,
+        "final_state": {
+          "episode_id": "4d4953f4-8bd8-54f7-9d43-62050dcca6a9",
+          "step_count": 4,
+          "case_id": "ycfd-018",
+          "seed": 17,
+          "week": 4,
+          "budget_cents": 70000,
+          "founder_hours": 39,
+          "active_users": 26,
+          "interviews_completed": 10,
+          "qualified_pipeline": 1,
+          "mrr_cents": 50000,
+          "price_cents": 3000,
+          "terminated": false,
+          "truncated": true,
+          "transition_model_version": "frozen-v0.1.0"
+        },
+        "steps": [
+          {
+            "action": "abstain",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "interview_users",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "build_feature",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "interview_users",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          }
+        ]
+      },
+      {
+        "case_id": "ycfd-019",
+        "preferred_action": "interview_users",
+        "preferred_action_matches": 1,
+        "final_state": {
+          "episode_id": "8a0fa3d7-7e68-5ef5-a63b-18a736bc87a9",
+          "step_count": 4,
+          "case_id": "ycfd-019",
+          "seed": 18,
+          "week": 4,
+          "budget_cents": 93000,
+          "founder_hours": 27,
+          "active_users": 26,
+          "interviews_completed": 7,
+          "qualified_pipeline": 2,
+          "mrr_cents": 5000,
+          "price_cents": 4000,
+          "terminated": false,
+          "truncated": true,
+          "transition_model_version": "frozen-v0.1.0"
+        },
+        "steps": [
+          {
+            "action": "interview_users",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "change_price",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "abstain",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "build_feature",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          }
+        ]
+      },
+      {
+        "case_id": "ycfd-020",
+        "preferred_action": "build_feature",
+        "preferred_action_matches": 1,
+        "final_state": {
+          "episode_id": "750fb232-b463-5658-b6f8-26c32e2d0abe",
+          "step_count": 4,
+          "case_id": "ycfd-020",
+          "seed": 19,
+          "week": 4,
+          "budget_cents": 80000,
+          "founder_hours": 0,
+          "active_users": 26,
+          "interviews_completed": 4,
+          "qualified_pipeline": 8,
+          "mrr_cents": 40000,
+          "price_cents": 4000,
+          "terminated": true,
+          "truncated": false,
+          "transition_model_version": "frozen-v0.1.0"
+        },
+        "steps": [
+          {
+            "action": "fundraise",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "build_feature",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          }
+        ]
+      },
+      {
+        "case_id": "ycfd-021",
+        "preferred_action": "sell_pilot",
+        "preferred_action_matches": 2,
+        "final_state": {
+          "episode_id": "97cd09bf-bdb9-5778-b2e6-d066c4a75a0f",
+          "step_count": 4,
+          "case_id": "ycfd-021",
+          "seed": 20,
+          "week": 4,
+          "budget_cents": 96000,
+          "founder_hours": 44,
+          "active_users": 24,
+          "interviews_completed": 0,
+          "qualified_pipeline": 4,
+          "mrr_cents": 60000,
+          "price_cents": 3000,
+          "terminated": false,
+          "truncated": true,
+          "transition_model_version": "frozen-v0.1.0"
+        },
+        "steps": [
+          {
+            "action": "change_price",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "change_price",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          }
+        ]
+      },
+      {
+        "case_id": "ycfd-022",
+        "preferred_action": "fundraise",
+        "preferred_action_matches": 1,
+        "final_state": {
+          "episode_id": "2a052737-b56e-5ea3-93d8-012163eee3b6",
+          "step_count": 4,
+          "case_id": "ycfd-022",
+          "seed": 21,
+          "week": 4,
+          "budget_cents": 48000,
+          "founder_hours": 2,
+          "active_users": 28,
+          "interviews_completed": 1,
+          "qualified_pipeline": 4,
+          "mrr_cents": 50000,
+          "price_cents": 3000,
+          "terminated": false,
+          "truncated": true,
+          "transition_model_version": "frozen-v0.1.0"
+        },
+        "steps": [
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "build_feature",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "fundraise",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "change_price",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          }
+        ]
+      },
+      {
+        "case_id": "ycfd-023",
+        "preferred_action": "change_price",
+        "preferred_action_matches": 3,
+        "final_state": {
+          "episode_id": "07f657fe-88f3-57fa-b92c-ea344fc4248e",
+          "step_count": 4,
+          "case_id": "ycfd-023",
+          "seed": 22,
+          "week": 4,
+          "budget_cents": 134000,
+          "founder_hours": 40,
+          "active_users": 26,
+          "interviews_completed": 2,
+          "qualified_pipeline": 3,
+          "mrr_cents": 55000,
+          "price_cents": 4500,
+          "terminated": false,
+          "truncated": true,
+          "transition_model_version": "frozen-v0.1.0"
+        },
+        "steps": [
+          {
+            "action": "fundraise",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "change_price",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "change_price",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "change_price",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          }
+        ]
+      },
+      {
+        "case_id": "ycfd-024",
+        "preferred_action": "abstain",
+        "preferred_action_matches": 1,
+        "final_state": {
+          "episode_id": "82d2a91d-fd2a-50d5-bf7c-b157a5fd1fbf",
+          "step_count": 4,
+          "case_id": "ycfd-024",
+          "seed": 23,
+          "week": 4,
+          "budget_cents": 174000,
+          "founder_hours": 67,
+          "active_users": 27,
+          "interviews_completed": 3,
+          "qualified_pipeline": 3,
+          "mrr_cents": 65000,
+          "price_cents": 5000,
+          "terminated": false,
+          "truncated": true,
+          "transition_model_version": "frozen-v0.1.0"
+        },
+        "steps": [
+          {
+            "action": "abstain",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "change_price",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "change_price",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "change_price",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          }
+        ]
+      }
+    ]
+  },
+  "retrieval_rule": {
+    "policy": "retrieval_rule",
+    "split": "held_out",
+    "split_size": 8,
+    "baseline_seed": 20260722,
+    "dataset_revision": "0.1.0",
+    "transition_model_version": "frozen-v0.1.0",
+    "mean_hard_reward": 1.0,
+    "preferred_action_match_rate": 0.125,
+    "mean_final_mrr_cents": 80000.0,
+    "trajectories": [
+      {
+        "case_id": "ycfd-017",
+        "preferred_action": "change_price",
+        "preferred_action_matches": 0,
+        "final_state": {
+          "episode_id": "e54f7316-1620-55e6-be71-bac4539f8257",
+          "step_count": 4,
+          "case_id": "ycfd-017",
+          "seed": 16,
+          "week": 4,
+          "budget_cents": 80000,
+          "founder_hours": 16,
+          "active_users": 20,
+          "interviews_completed": 1,
+          "qualified_pipeline": 8,
+          "mrr_cents": 100000,
+          "price_cents": 2500,
+          "terminated": false,
+          "truncated": true,
+          "transition_model_version": "frozen-v0.1.0"
+        },
+        "steps": [
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          }
+        ]
+      },
+      {
+        "case_id": "ycfd-018",
+        "preferred_action": "abstain",
+        "preferred_action_matches": 0,
+        "final_state": {
+          "episode_id": "4d4953f4-8bd8-54f7-9d43-62050dcca6a9",
+          "step_count": 4,
+          "case_id": "ycfd-018",
+          "seed": 17,
+          "week": 4,
+          "budget_cents": 132000,
+          "founder_hours": 64,
+          "active_users": 21,
+          "interviews_completed": 2,
+          "qualified_pipeline": 1,
+          "mrr_cents": 70000,
+          "price_cents": 5000,
+          "terminated": false,
+          "truncated": true,
+          "transition_model_version": "frozen-v0.1.0"
+        },
+        "steps": [
+          {
+            "action": "change_price",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "change_price",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "change_price",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "change_price",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          }
+        ]
+      },
+      {
+        "case_id": "ycfd-019",
+        "preferred_action": "interview_users",
+        "preferred_action_matches": 0,
+        "final_state": {
+          "episode_id": "8a0fa3d7-7e68-5ef5-a63b-18a736bc87a9",
+          "step_count": 4,
+          "case_id": "ycfd-019",
+          "seed": 18,
+          "week": 4,
+          "budget_cents": 120000,
+          "founder_hours": 8,
+          "active_users": 22,
+          "interviews_completed": 3,
+          "qualified_pipeline": 10,
+          "mrr_cents": 60000,
+          "price_cents": 3500,
+          "terminated": false,
+          "truncated": true,
+          "transition_model_version": "frozen-v0.1.0"
+        },
+        "steps": [
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          }
+        ]
+      },
+      {
+        "case_id": "ycfd-020",
+        "preferred_action": "build_feature",
+        "preferred_action_matches": 0,
+        "final_state": {
+          "episode_id": "750fb232-b463-5658-b6f8-26c32e2d0abe",
+          "step_count": 4,
+          "case_id": "ycfd-020",
+          "seed": 19,
+          "week": 4,
+          "budget_cents": 140000,
+          "founder_hours": 16,
+          "active_users": 23,
+          "interviews_completed": 4,
+          "qualified_pipeline": 11,
+          "mrr_cents": 70000,
+          "price_cents": 4000,
+          "terminated": false,
+          "truncated": true,
+          "transition_model_version": "frozen-v0.1.0"
+        },
+        "steps": [
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          }
+        ]
+      },
+      {
+        "case_id": "ycfd-021",
+        "preferred_action": "sell_pilot",
+        "preferred_action_matches": 4,
+        "final_state": {
+          "episode_id": "97cd09bf-bdb9-5778-b2e6-d066c4a75a0f",
+          "step_count": 4,
+          "case_id": "ycfd-021",
+          "seed": 20,
+          "week": 4,
+          "budget_cents": 80000,
+          "founder_hours": 24,
+          "active_users": 24,
+          "interviews_completed": 0,
+          "qualified_pipeline": 8,
+          "mrr_cents": 80000,
+          "price_cents": 2000,
+          "terminated": false,
+          "truncated": true,
+          "transition_model_version": "frozen-v0.1.0"
+        },
+        "steps": [
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          }
+        ]
+      },
+      {
+        "case_id": "ycfd-022",
+        "preferred_action": "fundraise",
+        "preferred_action_matches": 0,
+        "final_state": {
+          "episode_id": "2a052737-b56e-5ea3-93d8-012163eee3b6",
+          "step_count": 4,
+          "case_id": "ycfd-022",
+          "seed": 21,
+          "week": 4,
+          "budget_cents": 100000,
+          "founder_hours": 8,
+          "active_users": 25,
+          "interviews_completed": 1,
+          "qualified_pipeline": 9,
+          "mrr_cents": 90000,
+          "price_cents": 2500,
+          "terminated": false,
+          "truncated": true,
+          "transition_model_version": "frozen-v0.1.0"
+        },
+        "steps": [
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          }
+        ]
+      },
+      {
+        "case_id": "ycfd-023",
+        "preferred_action": "change_price",
+        "preferred_action_matches": 0,
+        "final_state": {
+          "episode_id": "07f657fe-88f3-57fa-b92c-ea344fc4248e",
+          "step_count": 4,
+          "case_id": "ycfd-023",
+          "seed": 22,
+          "week": 4,
+          "budget_cents": 120000,
+          "founder_hours": 16,
+          "active_users": 26,
+          "interviews_completed": 2,
+          "qualified_pipeline": 10,
+          "mrr_cents": 100000,
+          "price_cents": 3000,
+          "terminated": false,
+          "truncated": true,
+          "transition_model_version": "frozen-v0.1.0"
+        },
+        "steps": [
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "sell_pilot",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          }
+        ]
+      },
+      {
+        "case_id": "ycfd-024",
+        "preferred_action": "abstain",
+        "preferred_action_matches": 0,
+        "final_state": {
+          "episode_id": "82d2a91d-fd2a-50d5-bf7c-b157a5fd1fbf",
+          "step_count": 4,
+          "case_id": "ycfd-024",
+          "seed": 23,
+          "week": 4,
+          "budget_cents": 172000,
+          "founder_hours": 64,
+          "active_users": 27,
+          "interviews_completed": 3,
+          "qualified_pipeline": 3,
+          "mrr_cents": 70000,
+          "price_cents": 5500,
+          "terminated": false,
+          "truncated": true,
+          "transition_model_version": "frozen-v0.1.0"
+        },
+        "steps": [
+          {
+            "action": "change_price",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "change_price",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "change_price",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          },
+          {
+            "action": "change_price",
+            "reward": 1.0,
+            "components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2,
+              "future_leakage": 0.2
+            },
+            "failure_codes": []
+          }
+        ]
+      }
+    ]
+  },
+  "leakage_check": {
+    "shared_case_ids": [],
+    "passed": true
+  }
+}

@@ -1,0 +1,20 @@
+Founder Decision OpenEnv v0.1.0
+
+This project contains original synthetic cases and original Team Attention code.
+It does not contain or redistribute YC article text, transcripts, audio, or video.
+
+Compatibility dependency:
+- Hugging Face OpenEnv v0.4.1, BSD-3-Clause, tag commit
+  65c506ef94bb1f7279cb4359673b3ef81031d01f.
+
+Canonical schema source and one evidence record:
+- allenai/RLVR-GSM, revision b14884519de816306cf8ce7fc74547284b9ac548,
+  dataset card declares MIT; derived from GSM8K under MIT.
+
+Comparison evidence records (not part of the synthetic training split):
+- allenai/RLVR-MATH, revision bd2a93551b503a395fadd1a740d957559cfe6f3c, MIT.
+- sierra-research/tau2-bench, revision f0927a4b9cdfa7b374269efaa29ff7fdac90d8fc, MIT.
+- web-arena-x/webarena, revision dce04686a56253aefba7b18a4fa0937cf1dc987b,
+  Apache-2.0. See the upstream repository for the Apache-2.0 license text.
+
+YC and Startup School are marks/content of Y Combinator. No endorsement is implied.

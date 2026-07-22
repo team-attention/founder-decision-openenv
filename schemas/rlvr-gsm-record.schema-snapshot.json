@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:allenai:rlvr-gsm:b14884519de816306cf8ce7fc74547284b9ac548",
+  "title": "allenai/RLVR-GSM exact decoded record snapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["messages", "ground_truth", "dataset"],
+  "properties": {
+    "messages": {
+      "type": ["array", "null"],
+      "items": {
+        "type": ["object", "null"],
+        "additionalProperties": false,
+        "required": ["content", "role"],
+        "properties": {
+          "content": {"type": ["string", "null"]},
+          "role": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "ground_truth": {"type": ["string", "null"]},
+    "dataset": {"type": ["string", "null"]}
+  },
+  "x-nullable-semantics": "Pinned Parquet Arrow fields are nullable at top level, list element, and nested content/role. All are preserved. The 7,473 decoded train records happened to have zero top-level nulls.",
+  "x-upstream-revision": "b14884519de816306cf8ce7fc74547284b9ac548"
+}

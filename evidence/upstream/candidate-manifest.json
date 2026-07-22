@@ -1,0 +1,128 @@
+[
+  {
+    "id": "allenai-RLVR-GSM",
+    "official_url": "https://huggingface.co/datasets/allenai/RLVR-GSM",
+    "revision": "b14884519de816306cf8ce7fc74547284b9ac548",
+    "license": "MIT",
+    "license_url": "https://huggingface.co/datasets/allenai/RLVR-GSM/blob/b14884519de816306cf8ce7fc74547284b9ac548/README.md",
+    "raw_url": "https://huggingface.co/datasets/allenai/RLVR-GSM/resolve/b14884519de816306cf8ce7fc74547284b9ac548/data/train-00000-of-00001.parquet",
+    "kind": "parquet",
+    "selected": true,
+    "decision": "selected: smallest public RLVR record contract; exact schema can stay frozen while environment data lives in a keyed sidecar",
+    "raw_path": "evidence/upstream/downloads/allenai-RLVR-GSM.parquet",
+    "raw_sha256": "a7e682205fba0ecbd4f3cc0e3d28ff79c4ee977ee37e34d5044568d2aa69f2e1",
+    "record_path": "evidence/upstream/records/allenai-RLVR-GSM.record-0.json",
+    "record_sha256": "ae7833791a900f94aae1ff41428f6830b143071af815391bc98141bc1ca6efa3",
+    "record_shape": {
+      "messages": "list<element: struct<content: string, role: string>>",
+      "ground_truth": "string",
+      "dataset": "string"
+    },
+    "top_level_null_counts": {
+      "messages": 0,
+      "ground_truth": 0,
+      "dataset": 0
+    }
+  },
+  {
+    "id": "allenai-RLVR-MATH",
+    "official_url": "https://huggingface.co/datasets/allenai/RLVR-MATH",
+    "revision": "bd2a93551b503a395fadd1a740d957559cfe6f3c",
+    "license": "MIT",
+    "license_url": "https://github.com/hendrycks/math/blob/0480a17a8246c8e1c5503a403620921283ee23a9/LICENSE",
+    "raw_url": "https://huggingface.co/datasets/allenai/RLVR-MATH/resolve/bd2a93551b503a395fadd1a740d957559cfe6f3c/data/train-00000-of-00001.parquet",
+    "kind": "parquet",
+    "selected": false,
+    "decision": "rejected: adds nullable constraint fields unrelated to the founder-decision task",
+    "raw_path": "evidence/upstream/downloads/allenai-RLVR-MATH.parquet",
+    "raw_sha256": "2fb8483bf7a4ae9821bee1e715490fb8de5b59f0d2b58bd4de78cc75094d9422",
+    "record_path": "evidence/upstream/records/allenai-RLVR-MATH.record-0.json",
+    "record_sha256": "53d6e85674427a0211ae7f48e9cdf533894f9a9ae70329e4bb86b21cd06ff550",
+    "record_shape": {
+      "messages": "list<element: struct<content: string, role: string>>",
+      "ground_truth": "string",
+      "dataset": "string",
+      "constraint_type": "string",
+      "constraint": "string"
+    },
+    "top_level_null_counts": {
+      "messages": 0,
+      "ground_truth": 0,
+      "dataset": 0,
+      "constraint_type": 7500,
+      "constraint": 7500
+    }
+  },
+  {
+    "id": "tau2-bench-retail",
+    "official_url": "https://github.com/sierra-research/tau2-bench",
+    "revision": "f0927a4b9cdfa7b374269efaa29ff7fdac90d8fc",
+    "license": "MIT",
+    "license_url": "https://github.com/sierra-research/tau2-bench/blob/f0927a4b9cdfa7b374269efaa29ff7fdac90d8fc/LICENSE",
+    "raw_url": "https://raw.githubusercontent.com/sierra-research/tau2-bench/f0927a4b9cdfa7b374269efaa29ff7fdac90d8fc/data/tau2/domains/retail/tasks.json",
+    "kind": "json-array",
+    "selected": false,
+    "decision": "rejected as record schema: strong environment fit but domain-specific nested action gold would create policy-visible leakage pressure",
+    "raw_path": "evidence/upstream/downloads/tau2-bench-retail.json",
+    "raw_sha256": "8e03ebce7901bd6218e7a7dc3105faa9324091a68058f7fe61c65262868812e8",
+    "record_path": "evidence/upstream/records/tau2-bench-retail.record-0.json",
+    "record_sha256": "b346afb863372ef9f28fa2062c575ae96b4df4d855cc535dec83a8e517e6d40d",
+    "record_shape": {
+      "id": "str",
+      "description": "dict",
+      "user_scenario": "dict",
+      "initial_state": "NoneType",
+      "evaluation_criteria": "dict"
+    },
+    "top_level_null_counts": {
+      "id": 0,
+      "description": 0,
+      "user_scenario": 0,
+      "initial_state": 1,
+      "evaluation_criteria": 0
+    }
+  },
+  {
+    "id": "webarena",
+    "official_url": "https://github.com/web-arena-x/webarena",
+    "revision": "dce04686a56253aefba7b18a4fa0937cf1dc987b",
+    "license": "Apache-2.0",
+    "license_url": "https://github.com/web-arena-x/webarena/blob/dce04686a56253aefba7b18a4fa0937cf1dc987b/LICENSE",
+    "raw_url": "https://raw.githubusercontent.com/web-arena-x/webarena/dce04686a56253aefba7b18a4fa0937cf1dc987b/config_files/test.raw.json",
+    "kind": "json-array",
+    "selected": false,
+    "decision": "rejected: browser snapshot/auth/evaluator fields are not portable to this bounded synthetic task",
+    "raw_path": "evidence/upstream/downloads/webarena.json",
+    "raw_sha256": "7b50386fd69163dbc05d615d834df4c6ed2c35596e97a1b10d17451c02537652",
+    "record_path": "evidence/upstream/records/webarena.record-0.json",
+    "record_sha256": "fe3fdacdaabb95589c6523c902d471b3c601e70a175b8a8d0946bda6700352e0",
+    "record_shape": {
+      "sites": "list",
+      "task_id": "int",
+      "require_login": "bool",
+      "storage_state": "str",
+      "start_url": "str",
+      "geolocation": "NoneType",
+      "intent_template": "str",
+      "instantiation_dict": "dict",
+      "intent": "str",
+      "require_reset": "bool",
+      "eval": "dict",
+      "intent_template_id": "int"
+    },
+    "top_level_null_counts": {
+      "sites": 0,
+      "task_id": 0,
+      "require_login": 0,
+      "storage_state": 0,
+      "start_url": 0,
+      "geolocation": 1,
+      "intent_template": 0,
+      "instantiation_dict": 0,
+      "intent": 0,
+      "require_reset": 0,
+      "eval": 0,
+      "intent_template_id": 0
+    }
+  }
+]

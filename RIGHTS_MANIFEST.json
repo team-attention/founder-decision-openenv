@@ -1,0 +1,32 @@
+{
+  "manifest_version": "0.1.0",
+  "reviewed_at": "2026-07-22",
+  "project_license": "MIT",
+  "synthetic_cases": {
+    "author": "Team Attention",
+    "source_content_included": false,
+    "license": "MIT"
+  },
+  "yc": {
+    "terms_url": "https://www.ycombinator.com/legal/#tou",
+    "source_index_url": "https://www.ycombinator.com/blog/startup-school-videos",
+    "policy": "link-only/no-scrape/no-original-text-transcript-audio-video-redistribution",
+    "included": ["official URL", "heading locator", "timestamp locator when available"],
+    "excluded": ["article body", "transcript", "audio", "video", "images"]
+  },
+  "upstream": [
+    {
+      "id": "allenai/RLVR-GSM",
+      "revision": "b14884519de816306cf8ce7fc74547284b9ac548",
+      "license": "MIT",
+      "scope": "canonical schema and one evidence record"
+    },
+    {
+      "id": "huggingface/OpenEnv",
+      "revision": "65c506ef94bb1f7279cb4359673b3ef81031d01f",
+      "license": "BSD-3-Clause",
+      "scope": "runtime dependency and interface pattern"
+    }
+  ],
+  "compatibility_result": "PASS for local/public synthetic package with attribution; YC content excluded"
+}

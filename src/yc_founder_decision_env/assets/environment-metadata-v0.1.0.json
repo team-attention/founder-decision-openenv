@@ -1,0 +1,2186 @@
+[
+  {
+    "metadata_schema_version": "0.1.0",
+    "record_sha256": "779ee53a03282e0da9b9c6107e98544aa9a55a70173edeeee0f850e9528d1e9b",
+    "case_id": "ycfd-001",
+    "split": "train",
+    "initial_state": {
+      "budget_cents": 120000,
+      "founder_hours": 64,
+      "active_users": 4,
+      "interviews_completed": 0,
+      "qualified_pipeline": 0,
+      "mrr_cents": 0,
+      "price_cents": 2000
+    },
+    "allowed_actions": [
+      "interview_users",
+      "build_feature",
+      "sell_pilot",
+      "change_price",
+      "abstain"
+    ],
+    "action_costs": {
+      "interview_users": {
+        "budget_cents": 5000,
+        "hours": 8
+      },
+      "build_feature": {
+        "budget_cents": 60000,
+        "hours": 24
+      },
+      "sell_pilot": {
+        "budget_cents": 10000,
+        "hours": 14
+      },
+      "fundraise": {
+        "budget_cents": 20000,
+        "hours": 20
+      },
+      "change_price": {
+        "budget_cents": 2000,
+        "hours": 4
+      },
+      "abstain": {
+        "budget_cents": 0,
+        "hours": 1
+      }
+    },
+    "transitions": {
+      "interview_users": {
+        "interviews_completed": 4,
+        "active_users": 1
+      },
+      "build_feature": {
+        "active_users": 3
+      },
+      "sell_pilot": {
+        "qualified_pipeline": 2,
+        "mrr_cents": 15000
+      },
+      "fundraise": {
+        "qualified_pipeline": 1
+      },
+      "change_price": {
+        "price_cents": 500,
+        "mrr_cents": 5000
+      },
+      "abstain": {}
+    },
+    "source_locators": [
+      {
+        "locator_id": "yc-sus-2022-talk-users",
+        "url": "https://www.ycombinator.com/blog/startup-school-videos",
+        "heading": "How To Talk To Users with Gustaf Alstromer",
+        "timestamp_seconds": null
+      },
+      {
+        "locator_id": "yc-sus-2022-launch",
+        "url": "https://www.ycombinator.com/blog/startup-school-videos",
+        "heading": "The Best Way To Launch Your Startup with Kat Manalac",
+        "timestamp_seconds": null
+      }
+    ],
+    "future_leakage_tokens": [
+      "ground_truth",
+      "future_outcome",
+      "week 5"
+    ],
+    "preferred_action": "interview_users",
+    "synthetic": true,
+    "source_content_included": false
+  },
+  {
+    "metadata_schema_version": "0.1.0",
+    "record_sha256": "046bd58f23aa26a6679b6b617fdf750fbcdc5ef9ee2d7d26a891f40ed674c961",
+    "case_id": "ycfd-002",
+    "split": "train",
+    "initial_state": {
+      "budget_cents": 140000,
+      "founder_hours": 72,
+      "active_users": 5,
+      "interviews_completed": 1,
+      "qualified_pipeline": 1,
+      "mrr_cents": 10000,
+      "price_cents": 2500
+    },
+    "allowed_actions": [
+      "interview_users",
+      "build_feature",
+      "sell_pilot",
+      "fundraise",
+      "abstain"
+    ],
+    "action_costs": {
+      "interview_users": {
+        "budget_cents": 5000,
+        "hours": 8
+      },
+      "build_feature": {
+        "budget_cents": 60000,
+        "hours": 24
+      },
+      "sell_pilot": {
+        "budget_cents": 10000,
+        "hours": 14
+      },
+      "fundraise": {
+        "budget_cents": 20000,
+        "hours": 20
+      },
+      "change_price": {
+        "budget_cents": 2000,
+        "hours": 4
+      },
+      "abstain": {
+        "budget_cents": 0,
+        "hours": 1
+      }
+    },
+    "transitions": {
+      "interview_users": {
+        "interviews_completed": 4,
+        "active_users": 1
+      },
+      "build_feature": {
+        "active_users": 3
+      },
+      "sell_pilot": {
+        "qualified_pipeline": 2,
+        "mrr_cents": 15000
+      },
+      "fundraise": {
+        "qualified_pipeline": 1
+      },
+      "change_price": {
+        "price_cents": 500,
+        "mrr_cents": 5000
+      },
+      "abstain": {}
+    },
+    "source_locators": [
+      {
+        "locator_id": "yc-sus-2022-first-customers",
+        "url": "https://www.ycombinator.com/blog/startup-school-videos",
+        "heading": "How to Get Your First Customers with Gustaf Alstromer",
+        "timestamp_seconds": null
+      },
+      {
+        "locator_id": "yc-sus-2019-ideas",
+        "url": "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+        "heading": "How to Evaluate Startup Ideas",
+        "timestamp_seconds": 43
+      }
+    ],
+    "future_leakage_tokens": [
+      "ground_truth",
+      "future_outcome",
+      "week 5"
+    ],
+    "preferred_action": "build_feature",
+    "synthetic": true,
+    "source_content_included": false
+  },
+  {
+    "metadata_schema_version": "0.1.0",
+    "record_sha256": "7d955b5304b46809652ae9d06f72da1e8ea197f19b24ccf6e8a45e59049cfe57",
+    "case_id": "ycfd-003",
+    "split": "train",
+    "initial_state": {
+      "budget_cents": 160000,
+      "founder_hours": 80,
+      "active_users": 6,
+      "interviews_completed": 2,
+      "qualified_pipeline": 2,
+      "mrr_cents": 20000,
+      "price_cents": 3000
+    },
+    "allowed_actions": [
+      "interview_users",
+      "build_feature",
+      "sell_pilot",
+      "fundraise",
+      "change_price"
+    ],
+    "action_costs": {
+      "interview_users": {
+        "budget_cents": 5000,
+        "hours": 8
+      },
+      "build_feature": {
+        "budget_cents": 60000,
+        "hours": 24
+      },
+      "sell_pilot": {
+        "budget_cents": 10000,
+        "hours": 14
+      },
+      "fundraise": {
+        "budget_cents": 20000,
+        "hours": 20
+      },
+      "change_price": {
+        "budget_cents": 2000,
+        "hours": 4
+      },
+      "abstain": {
+        "budget_cents": 0,
+        "hours": 1
+      }
+    },
+    "transitions": {
+      "interview_users": {
+        "interviews_completed": 4,
+        "active_users": 1
+      },
+      "build_feature": {
+        "active_users": 3
+      },
+      "sell_pilot": {
+        "qualified_pipeline": 2,
+        "mrr_cents": 15000
+      },
+      "fundraise": {
+        "qualified_pipeline": 1
+      },
+      "change_price": {
+        "price_cents": 500,
+        "mrr_cents": 5000
+      },
+      "abstain": {}
+    },
+    "source_locators": [
+      {
+        "locator_id": "yc-sus-2022-mvp",
+        "url": "https://www.ycombinator.com/blog/startup-school-videos",
+        "heading": "How to Build a Minimum Viable Product with Michael Seibel",
+        "timestamp_seconds": null
+      },
+      {
+        "locator_id": "yc-sus-2019-hypothesis",
+        "url": "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+        "heading": "A startup idea is a hypothesis",
+        "timestamp_seconds": 170
+      }
+    ],
+    "future_leakage_tokens": [
+      "ground_truth",
+      "future_outcome",
+      "week 5"
+    ],
+    "preferred_action": "sell_pilot",
+    "synthetic": true,
+    "source_content_included": false
+  },
+  {
+    "metadata_schema_version": "0.1.0",
+    "record_sha256": "8a0d6984bda0fa833d278434f2a11932b19aadc694a45b7783b75fe0b46ac912",
+    "case_id": "ycfd-004",
+    "split": "train",
+    "initial_state": {
+      "budget_cents": 180000,
+      "founder_hours": 64,
+      "active_users": 7,
+      "interviews_completed": 3,
+      "qualified_pipeline": 3,
+      "mrr_cents": 30000,
+      "price_cents": 3500
+    },
+    "allowed_actions": [
+      "build_feature",
+      "sell_pilot",
+      "fundraise",
+      "change_price",
+      "abstain"
+    ],
+    "action_costs": {
+      "interview_users": {
+        "budget_cents": 5000,
+        "hours": 8
+      },
+      "build_feature": {
+        "budget_cents": 60000,
+        "hours": 24
+      },
+      "sell_pilot": {
+        "budget_cents": 10000,
+        "hours": 14
+      },
+      "fundraise": {
+        "budget_cents": 20000,
+        "hours": 20
+      },
+      "change_price": {
+        "budget_cents": 2000,
+        "hours": 4
+      },
+      "abstain": {
+        "budget_cents": 0,
+        "hours": 1
+      }
+    },
+    "transitions": {
+      "interview_users": {
+        "interviews_completed": 4,
+        "active_users": 1
+      },
+      "build_feature": {
+        "active_users": 3
+      },
+      "sell_pilot": {
+        "qualified_pipeline": 2,
+        "mrr_cents": 15000
+      },
+      "fundraise": {
+        "qualified_pipeline": 1
+      },
+      "change_price": {
+        "price_cents": 500,
+        "mrr_cents": 5000
+      },
+      "abstain": {}
+    },
+    "source_locators": [
+      {
+        "locator_id": "yc-sus-2022-pricing",
+        "url": "https://www.ycombinator.com/blog/startup-school-videos",
+        "heading": "Startup Business Models and Pricing with Aaron Epstein",
+        "timestamp_seconds": null
+      },
+      {
+        "locator_id": "yc-sus-2019-users",
+        "url": "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+        "heading": "Eric Migicovsky on How to Talk to Users",
+        "timestamp_seconds": 919
+      }
+    ],
+    "future_leakage_tokens": [
+      "ground_truth",
+      "future_outcome",
+      "week 5"
+    ],
+    "preferred_action": "fundraise",
+    "synthetic": true,
+    "source_content_included": false
+  },
+  {
+    "metadata_schema_version": "0.1.0",
+    "record_sha256": "8bfdd51fe020c474bac09cc4b9bd716446ba18ce3aa86157228bebae9fcdf785",
+    "case_id": "ycfd-005",
+    "split": "train",
+    "initial_state": {
+      "budget_cents": 120000,
+      "founder_hours": 72,
+      "active_users": 8,
+      "interviews_completed": 4,
+      "qualified_pipeline": 0,
+      "mrr_cents": 40000,
+      "price_cents": 4000
+    },
+    "allowed_actions": [
+      "interview_users",
+      "sell_pilot",
+      "fundraise",
+      "change_price",
+      "abstain"
+    ],
+    "action_costs": {
+      "interview_users": {
+        "budget_cents": 5000,
+        "hours": 8
+      },
+      "build_feature": {
+        "budget_cents": 60000,
+        "hours": 24
+      },
+      "sell_pilot": {
+        "budget_cents": 10000,
+        "hours": 14
+      },
+      "fundraise": {
+        "budget_cents": 20000,
+        "hours": 20
+      },
+      "change_price": {
+        "budget_cents": 2000,
+        "hours": 4
+      },
+      "abstain": {
+        "budget_cents": 0,
+        "hours": 1
+      }
+    },
+    "transitions": {
+      "interview_users": {
+        "interviews_completed": 4,
+        "active_users": 1
+      },
+      "build_feature": {
+        "active_users": 3
+      },
+      "sell_pilot": {
+        "qualified_pipeline": 2,
+        "mrr_cents": 15000
+      },
+      "fundraise": {
+        "qualified_pipeline": 1
+      },
+      "change_price": {
+        "price_cents": 500,
+        "mrr_cents": 5000
+      },
+      "abstain": {}
+    },
+    "source_locators": [
+      {
+        "locator_id": "yc-sus-2022-fundraising",
+        "url": "https://www.ycombinator.com/blog/startup-school-videos",
+        "heading": "How Startup Fundraising Works with Brad Flora",
+        "timestamp_seconds": null
+      },
+      {
+        "locator_id": "yc-sus-2018-products",
+        "url": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+        "heading": "Building Products",
+        "timestamp_seconds": null
+      }
+    ],
+    "future_leakage_tokens": [
+      "ground_truth",
+      "future_outcome",
+      "week 5"
+    ],
+    "preferred_action": "change_price",
+    "synthetic": true,
+    "source_content_included": false
+  },
+  {
+    "metadata_schema_version": "0.1.0",
+    "record_sha256": "97864802facc73ac5d3b5b4eab5fa627884836e421fe5a0c38f968c65db92e7f",
+    "case_id": "ycfd-006",
+    "split": "train",
+    "initial_state": {
+      "budget_cents": 140000,
+      "founder_hours": 80,
+      "active_users": 9,
+      "interviews_completed": 0,
+      "qualified_pipeline": 1,
+      "mrr_cents": 50000,
+      "price_cents": 2000
+    },
+    "allowed_actions": [
+      "interview_users",
+      "build_feature",
+      "fundraise",
+      "change_price",
+      "abstain"
+    ],
+    "action_costs": {
+      "interview_users": {
+        "budget_cents": 5000,
+        "hours": 8
+      },
+      "build_feature": {
+        "budget_cents": 60000,
+        "hours": 24
+      },
+      "sell_pilot": {
+        "budget_cents": 10000,
+        "hours": 14
+      },
+      "fundraise": {
+        "budget_cents": 20000,
+        "hours": 20
+      },
+      "change_price": {
+        "budget_cents": 2000,
+        "hours": 4
+      },
+      "abstain": {
+        "budget_cents": 0,
+        "hours": 1
+      }
+    },
+    "transitions": {
+      "interview_users": {
+        "interviews_completed": 4,
+        "active_users": 1
+      },
+      "build_feature": {
+        "active_users": 3
+      },
+      "sell_pilot": {
+        "qualified_pipeline": 2,
+        "mrr_cents": 15000
+      },
+      "fundraise": {
+        "qualified_pipeline": 1
+      },
+      "change_price": {
+        "price_cents": 500,
+        "mrr_cents": 5000
+      },
+      "abstain": {}
+    },
+    "source_locators": [
+      {
+        "locator_id": "yc-sus-2022-launch",
+        "url": "https://www.ycombinator.com/blog/startup-school-videos",
+        "heading": "The Best Way To Launch Your Startup with Kat Manalac",
+        "timestamp_seconds": null
+      },
+      {
+        "locator_id": "yc-sus-2018-sales",
+        "url": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+        "heading": "Sales From 0 to 1 Million",
+        "timestamp_seconds": null
+      }
+    ],
+    "future_leakage_tokens": [
+      "ground_truth",
+      "future_outcome",
+      "week 5"
+    ],
+    "preferred_action": "abstain",
+    "synthetic": true,
+    "source_content_included": false
+  },
+  {
+    "metadata_schema_version": "0.1.0",
+    "record_sha256": "ffb3a4df8526b486d40788b623734f6d46f0342f95d5bf73cdb9ad7caccd597f",
+    "case_id": "ycfd-007",
+    "split": "train",
+    "initial_state": {
+      "budget_cents": 160000,
+      "founder_hours": 64,
+      "active_users": 10,
+      "interviews_completed": 1,
+      "qualified_pipeline": 2,
+      "mrr_cents": 0,
+      "price_cents": 2500
+    },
+    "allowed_actions": [
+      "interview_users",
+      "build_feature",
+      "sell_pilot",
+      "change_price",
+      "abstain"
+    ],
+    "action_costs": {
+      "interview_users": {
+        "budget_cents": 5000,
+        "hours": 8
+      },
+      "build_feature": {
+        "budget_cents": 60000,
+        "hours": 24
+      },
+      "sell_pilot": {
+        "budget_cents": 10000,
+        "hours": 14
+      },
+      "fundraise": {
+        "budget_cents": 20000,
+        "hours": 20
+      },
+      "change_price": {
+        "budget_cents": 2000,
+        "hours": 4
+      },
+      "abstain": {
+        "budget_cents": 0,
+        "hours": 1
+      }
+    },
+    "transitions": {
+      "interview_users": {
+        "interviews_completed": 4,
+        "active_users": 1
+      },
+      "build_feature": {
+        "active_users": 3
+      },
+      "sell_pilot": {
+        "qualified_pipeline": 2,
+        "mrr_cents": 15000
+      },
+      "fundraise": {
+        "qualified_pipeline": 1
+      },
+      "change_price": {
+        "price_cents": 500,
+        "mrr_cents": 5000
+      },
+      "abstain": {}
+    },
+    "source_locators": [
+      {
+        "locator_id": "yc-sus-2019-ideas",
+        "url": "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+        "heading": "How to Evaluate Startup Ideas",
+        "timestamp_seconds": 43
+      },
+      {
+        "locator_id": "yc-sus-2018-fundraising",
+        "url": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+        "heading": "Fundraising Fundamentals",
+        "timestamp_seconds": null
+      }
+    ],
+    "future_leakage_tokens": [
+      "ground_truth",
+      "future_outcome",
+      "week 5"
+    ],
+    "preferred_action": "interview_users",
+    "synthetic": true,
+    "source_content_included": false
+  },
+  {
+    "metadata_schema_version": "0.1.0",
+    "record_sha256": "1bedad2e2e1c04be387113601f5afc45ec8d5e6e862f2873958c69ec9fb0ced1",
+    "case_id": "ycfd-008",
+    "split": "train",
+    "initial_state": {
+      "budget_cents": 180000,
+      "founder_hours": 72,
+      "active_users": 11,
+      "interviews_completed": 2,
+      "qualified_pipeline": 3,
+      "mrr_cents": 10000,
+      "price_cents": 3000
+    },
+    "allowed_actions": [
+      "interview_users",
+      "build_feature",
+      "sell_pilot",
+      "fundraise",
+      "abstain"
+    ],
+    "action_costs": {
+      "interview_users": {
+        "budget_cents": 5000,
+        "hours": 8
+      },
+      "build_feature": {
+        "budget_cents": 60000,
+        "hours": 24
+      },
+      "sell_pilot": {
+        "budget_cents": 10000,
+        "hours": 14
+      },
+      "fundraise": {
+        "budget_cents": 20000,
+        "hours": 20
+      },
+      "change_price": {
+        "budget_cents": 2000,
+        "hours": 4
+      },
+      "abstain": {
+        "budget_cents": 0,
+        "hours": 1
+      }
+    },
+    "transitions": {
+      "interview_users": {
+        "interviews_completed": 4,
+        "active_users": 1
+      },
+      "build_feature": {
+        "active_users": 3
+      },
+      "sell_pilot": {
+        "qualified_pipeline": 2,
+        "mrr_cents": 15000
+      },
+      "fundraise": {
+        "qualified_pipeline": 1
+      },
+      "change_price": {
+        "price_cents": 500,
+        "mrr_cents": 5000
+      },
+      "abstain": {}
+    },
+    "source_locators": [
+      {
+        "locator_id": "yc-sus-2019-hypothesis",
+        "url": "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+        "heading": "A startup idea is a hypothesis",
+        "timestamp_seconds": 170
+      },
+      {
+        "locator_id": "yc-sus-2022-talk-users",
+        "url": "https://www.ycombinator.com/blog/startup-school-videos",
+        "heading": "How To Talk To Users with Gustaf Alstromer",
+        "timestamp_seconds": null
+      }
+    ],
+    "future_leakage_tokens": [
+      "ground_truth",
+      "future_outcome",
+      "week 5"
+    ],
+    "preferred_action": "build_feature",
+    "synthetic": true,
+    "source_content_included": false
+  },
+  {
+    "metadata_schema_version": "0.1.0",
+    "record_sha256": "6f2e7d3957745ea337bdb5d913ad77e011c07b3d743ba49990d541dac8e68159",
+    "case_id": "ycfd-009",
+    "split": "train",
+    "initial_state": {
+      "budget_cents": 120000,
+      "founder_hours": 80,
+      "active_users": 12,
+      "interviews_completed": 3,
+      "qualified_pipeline": 0,
+      "mrr_cents": 20000,
+      "price_cents": 3500
+    },
+    "allowed_actions": [
+      "interview_users",
+      "build_feature",
+      "sell_pilot",
+      "fundraise",
+      "change_price"
+    ],
+    "action_costs": {
+      "interview_users": {
+        "budget_cents": 5000,
+        "hours": 8
+      },
+      "build_feature": {
+        "budget_cents": 60000,
+        "hours": 24
+      },
+      "sell_pilot": {
+        "budget_cents": 10000,
+        "hours": 14
+      },
+      "fundraise": {
+        "budget_cents": 20000,
+        "hours": 20
+      },
+      "change_price": {
+        "budget_cents": 2000,
+        "hours": 4
+      },
+      "abstain": {
+        "budget_cents": 0,
+        "hours": 1
+      }
+    },
+    "transitions": {
+      "interview_users": {
+        "interviews_completed": 4,
+        "active_users": 1
+      },
+      "build_feature": {
+        "active_users": 3
+      },
+      "sell_pilot": {
+        "qualified_pipeline": 2,
+        "mrr_cents": 15000
+      },
+      "fundraise": {
+        "qualified_pipeline": 1
+      },
+      "change_price": {
+        "price_cents": 500,
+        "mrr_cents": 5000
+      },
+      "abstain": {}
+    },
+    "source_locators": [
+      {
+        "locator_id": "yc-sus-2019-users",
+        "url": "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+        "heading": "Eric Migicovsky on How to Talk to Users",
+        "timestamp_seconds": 919
+      },
+      {
+        "locator_id": "yc-sus-2022-first-customers",
+        "url": "https://www.ycombinator.com/blog/startup-school-videos",
+        "heading": "How to Get Your First Customers with Gustaf Alstromer",
+        "timestamp_seconds": null
+      }
+    ],
+    "future_leakage_tokens": [
+      "ground_truth",
+      "future_outcome",
+      "week 5"
+    ],
+    "preferred_action": "sell_pilot",
+    "synthetic": true,
+    "source_content_included": false
+  },
+  {
+    "metadata_schema_version": "0.1.0",
+    "record_sha256": "d090ab12e0a94dd8eea36d53c3703a06d1b189285c85e4be3eaddefcfc9ac880",
+    "case_id": "ycfd-010",
+    "split": "train",
+    "initial_state": {
+      "budget_cents": 140000,
+      "founder_hours": 64,
+      "active_users": 13,
+      "interviews_completed": 4,
+      "qualified_pipeline": 1,
+      "mrr_cents": 30000,
+      "price_cents": 4000
+    },
+    "allowed_actions": [
+      "build_feature",
+      "sell_pilot",
+      "fundraise",
+      "change_price",
+      "abstain"
+    ],
+    "action_costs": {
+      "interview_users": {
+        "budget_cents": 5000,
+        "hours": 8
+      },
+      "build_feature": {
+        "budget_cents": 60000,
+        "hours": 24
+      },
+      "sell_pilot": {
+        "budget_cents": 10000,
+        "hours": 14
+      },
+      "fundraise": {
+        "budget_cents": 20000,
+        "hours": 20
+      },
+      "change_price": {
+        "budget_cents": 2000,
+        "hours": 4
+      },
+      "abstain": {
+        "budget_cents": 0,
+        "hours": 1
+      }
+    },
+    "transitions": {
+      "interview_users": {
+        "interviews_completed": 4,
+        "active_users": 1
+      },
+      "build_feature": {
+        "active_users": 3
+      },
+      "sell_pilot": {
+        "qualified_pipeline": 2,
+        "mrr_cents": 15000
+      },
+      "fundraise": {
+        "qualified_pipeline": 1
+      },
+      "change_price": {
+        "price_cents": 500,
+        "mrr_cents": 5000
+      },
+      "abstain": {}
+    },
+    "source_locators": [
+      {
+        "locator_id": "yc-sus-2018-products",
+        "url": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+        "heading": "Building Products",
+        "timestamp_seconds": null
+      },
+      {
+        "locator_id": "yc-sus-2022-mvp",
+        "url": "https://www.ycombinator.com/blog/startup-school-videos",
+        "heading": "How to Build a Minimum Viable Product with Michael Seibel",
+        "timestamp_seconds": null
+      }
+    ],
+    "future_leakage_tokens": [
+      "ground_truth",
+      "future_outcome",
+      "week 5"
+    ],
+    "preferred_action": "fundraise",
+    "synthetic": true,
+    "source_content_included": false
+  },
+  {
+    "metadata_schema_version": "0.1.0",
+    "record_sha256": "1d4409f453a5ef464fc73b0ac1e7ff6b1b275743441b3af50837800f0aae0088",
+    "case_id": "ycfd-011",
+    "split": "train",
+    "initial_state": {
+      "budget_cents": 160000,
+      "founder_hours": 72,
+      "active_users": 14,
+      "interviews_completed": 0,
+      "qualified_pipeline": 2,
+      "mrr_cents": 40000,
+      "price_cents": 2000
+    },
+    "allowed_actions": [
+      "interview_users",
+      "sell_pilot",
+      "fundraise",
+      "change_price",
+      "abstain"
+    ],
+    "action_costs": {
+      "interview_users": {
+        "budget_cents": 5000,
+        "hours": 8
+      },
+      "build_feature": {
+        "budget_cents": 60000,
+        "hours": 24
+      },
+      "sell_pilot": {
+        "budget_cents": 10000,
+        "hours": 14
+      },
+      "fundraise": {
+        "budget_cents": 20000,
+        "hours": 20
+      },
+      "change_price": {
+        "budget_cents": 2000,
+        "hours": 4
+      },
+      "abstain": {
+        "budget_cents": 0,
+        "hours": 1
+      }
+    },
+    "transitions": {
+      "interview_users": {
+        "interviews_completed": 4,
+        "active_users": 1
+      },
+      "build_feature": {
+        "active_users": 3
+      },
+      "sell_pilot": {
+        "qualified_pipeline": 2,
+        "mrr_cents": 15000
+      },
+      "fundraise": {
+        "qualified_pipeline": 1
+      },
+      "change_price": {
+        "price_cents": 500,
+        "mrr_cents": 5000
+      },
+      "abstain": {}
+    },
+    "source_locators": [
+      {
+        "locator_id": "yc-sus-2018-sales",
+        "url": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+        "heading": "Sales From 0 to 1 Million",
+        "timestamp_seconds": null
+      },
+      {
+        "locator_id": "yc-sus-2022-pricing",
+        "url": "https://www.ycombinator.com/blog/startup-school-videos",
+        "heading": "Startup Business Models and Pricing with Aaron Epstein",
+        "timestamp_seconds": null
+      }
+    ],
+    "future_leakage_tokens": [
+      "ground_truth",
+      "future_outcome",
+      "week 5"
+    ],
+    "preferred_action": "change_price",
+    "synthetic": true,
+    "source_content_included": false
+  },
+  {
+    "metadata_schema_version": "0.1.0",
+    "record_sha256": "f51149b497dc9b1955253a711593f940827f0cd9f5c61ec3ca8732758c307d35",
+    "case_id": "ycfd-012",
+    "split": "train",
+    "initial_state": {
+      "budget_cents": 180000,
+      "founder_hours": 80,
+      "active_users": 15,
+      "interviews_completed": 1,
+      "qualified_pipeline": 3,
+      "mrr_cents": 50000,
+      "price_cents": 2500
+    },
+    "allowed_actions": [
+      "interview_users",
+      "build_feature",
+      "fundraise",
+      "change_price",
+      "abstain"
+    ],
+    "action_costs": {
+      "interview_users": {
+        "budget_cents": 5000,
+        "hours": 8
+      },
+      "build_feature": {
+        "budget_cents": 60000,
+        "hours": 24
+      },
+      "sell_pilot": {
+        "budget_cents": 10000,
+        "hours": 14
+      },
+      "fundraise": {
+        "budget_cents": 20000,
+        "hours": 20
+      },
+      "change_price": {
+        "budget_cents": 2000,
+        "hours": 4
+      },
+      "abstain": {
+        "budget_cents": 0,
+        "hours": 1
+      }
+    },
+    "transitions": {
+      "interview_users": {
+        "interviews_completed": 4,
+        "active_users": 1
+      },
+      "build_feature": {
+        "active_users": 3
+      },
+      "sell_pilot": {
+        "qualified_pipeline": 2,
+        "mrr_cents": 15000
+      },
+      "fundraise": {
+        "qualified_pipeline": 1
+      },
+      "change_price": {
+        "price_cents": 500,
+        "mrr_cents": 5000
+      },
+      "abstain": {}
+    },
+    "source_locators": [
+      {
+        "locator_id": "yc-sus-2018-fundraising",
+        "url": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+        "heading": "Fundraising Fundamentals",
+        "timestamp_seconds": null
+      },
+      {
+        "locator_id": "yc-sus-2022-fundraising",
+        "url": "https://www.ycombinator.com/blog/startup-school-videos",
+        "heading": "How Startup Fundraising Works with Brad Flora",
+        "timestamp_seconds": null
+      }
+    ],
+    "future_leakage_tokens": [
+      "ground_truth",
+      "future_outcome",
+      "week 5"
+    ],
+    "preferred_action": "abstain",
+    "synthetic": true,
+    "source_content_included": false
+  },
+  {
+    "metadata_schema_version": "0.1.0",
+    "record_sha256": "d15bf6e746ce28a70d5fd7ffbd1a7e83011e220548407e926e1ce8f379bb88f0",
+    "case_id": "ycfd-013",
+    "split": "train",
+    "initial_state": {
+      "budget_cents": 120000,
+      "founder_hours": 64,
+      "active_users": 16,
+      "interviews_completed": 2,
+      "qualified_pipeline": 0,
+      "mrr_cents": 0,
+      "price_cents": 3000
+    },
+    "allowed_actions": [
+      "interview_users",
+      "build_feature",
+      "sell_pilot",
+      "change_price",
+      "abstain"
+    ],
+    "action_costs": {
+      "interview_users": {
+        "budget_cents": 5000,
+        "hours": 8
+      },
+      "build_feature": {
+        "budget_cents": 60000,
+        "hours": 24
+      },
+      "sell_pilot": {
+        "budget_cents": 10000,
+        "hours": 14
+      },
+      "fundraise": {
+        "budget_cents": 20000,
+        "hours": 20
+      },
+      "change_price": {
+        "budget_cents": 2000,
+        "hours": 4
+      },
+      "abstain": {
+        "budget_cents": 0,
+        "hours": 1
+      }
+    },
+    "transitions": {
+      "interview_users": {
+        "interviews_completed": 4,
+        "active_users": 1
+      },
+      "build_feature": {
+        "active_users": 3
+      },
+      "sell_pilot": {
+        "qualified_pipeline": 2,
+        "mrr_cents": 15000
+      },
+      "fundraise": {
+        "qualified_pipeline": 1
+      },
+      "change_price": {
+        "price_cents": 500,
+        "mrr_cents": 5000
+      },
+      "abstain": {}
+    },
+    "source_locators": [
+      {
+        "locator_id": "yc-sus-2022-talk-users",
+        "url": "https://www.ycombinator.com/blog/startup-school-videos",
+        "heading": "How To Talk To Users with Gustaf Alstromer",
+        "timestamp_seconds": null
+      },
+      {
+        "locator_id": "yc-sus-2022-launch",
+        "url": "https://www.ycombinator.com/blog/startup-school-videos",
+        "heading": "The Best Way To Launch Your Startup with Kat Manalac",
+        "timestamp_seconds": null
+      }
+    ],
+    "future_leakage_tokens": [
+      "ground_truth",
+      "future_outcome",
+      "week 5"
+    ],
+    "preferred_action": "interview_users",
+    "synthetic": true,
+    "source_content_included": false
+  },
+  {
+    "metadata_schema_version": "0.1.0",
+    "record_sha256": "adc3f1cd551a7636adaffffd534378c852df0457311c2bffd752a1651ff1717f",
+    "case_id": "ycfd-014",
+    "split": "train",
+    "initial_state": {
+      "budget_cents": 140000,
+      "founder_hours": 72,
+      "active_users": 17,
+      "interviews_completed": 3,
+      "qualified_pipeline": 1,
+      "mrr_cents": 10000,
+      "price_cents": 3500
+    },
+    "allowed_actions": [
+      "interview_users",
+      "build_feature",
+      "sell_pilot",
+      "fundraise",
+      "abstain"
+    ],
+    "action_costs": {
+      "interview_users": {
+        "budget_cents": 5000,
+        "hours": 8
+      },
+      "build_feature": {
+        "budget_cents": 60000,
+        "hours": 24
+      },
+      "sell_pilot": {
+        "budget_cents": 10000,
+        "hours": 14
+      },
+      "fundraise": {
+        "budget_cents": 20000,
+        "hours": 20
+      },
+      "change_price": {
+        "budget_cents": 2000,
+        "hours": 4
+      },
+      "abstain": {
+        "budget_cents": 0,
+        "hours": 1
+      }
+    },
+    "transitions": {
+      "interview_users": {
+        "interviews_completed": 4,
+        "active_users": 1
+      },
+      "build_feature": {
+        "active_users": 3
+      },
+      "sell_pilot": {
+        "qualified_pipeline": 2,
+        "mrr_cents": 15000
+      },
+      "fundraise": {
+        "qualified_pipeline": 1
+      },
+      "change_price": {
+        "price_cents": 500,
+        "mrr_cents": 5000
+      },
+      "abstain": {}
+    },
+    "source_locators": [
+      {
+        "locator_id": "yc-sus-2022-first-customers",
+        "url": "https://www.ycombinator.com/blog/startup-school-videos",
+        "heading": "How to Get Your First Customers with Gustaf Alstromer",
+        "timestamp_seconds": null
+      },
+      {
+        "locator_id": "yc-sus-2019-ideas",
+        "url": "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+        "heading": "How to Evaluate Startup Ideas",
+        "timestamp_seconds": 43
+      }
+    ],
+    "future_leakage_tokens": [
+      "ground_truth",
+      "future_outcome",
+      "week 5"
+    ],
+    "preferred_action": "build_feature",
+    "synthetic": true,
+    "source_content_included": false
+  },
+  {
+    "metadata_schema_version": "0.1.0",
+    "record_sha256": "f2207eae03b8153e0ba04b75365024647c0090d0ca52c1e565278be1333f8a3e",
+    "case_id": "ycfd-015",
+    "split": "train",
+    "initial_state": {
+      "budget_cents": 160000,
+      "founder_hours": 80,
+      "active_users": 18,
+      "interviews_completed": 4,
+      "qualified_pipeline": 2,
+      "mrr_cents": 20000,
+      "price_cents": 4000
+    },
+    "allowed_actions": [
+      "interview_users",
+      "build_feature",
+      "sell_pilot",
+      "fundraise",
+      "change_price"
+    ],
+    "action_costs": {
+      "interview_users": {
+        "budget_cents": 5000,
+        "hours": 8
+      },
+      "build_feature": {
+        "budget_cents": 60000,
+        "hours": 24
+      },
+      "sell_pilot": {
+        "budget_cents": 10000,
+        "hours": 14
+      },
+      "fundraise": {
+        "budget_cents": 20000,
+        "hours": 20
+      },
+      "change_price": {
+        "budget_cents": 2000,
+        "hours": 4
+      },
+      "abstain": {
+        "budget_cents": 0,
+        "hours": 1
+      }
+    },
+    "transitions": {
+      "interview_users": {
+        "interviews_completed": 4,
+        "active_users": 1
+      },
+      "build_feature": {
+        "active_users": 3
+      },
+      "sell_pilot": {
+        "qualified_pipeline": 2,
+        "mrr_cents": 15000
+      },
+      "fundraise": {
+        "qualified_pipeline": 1
+      },
+      "change_price": {
+        "price_cents": 500,
+        "mrr_cents": 5000
+      },
+      "abstain": {}
+    },
+    "source_locators": [
+      {
+        "locator_id": "yc-sus-2022-mvp",
+        "url": "https://www.ycombinator.com/blog/startup-school-videos",
+        "heading": "How to Build a Minimum Viable Product with Michael Seibel",
+        "timestamp_seconds": null
+      },
+      {
+        "locator_id": "yc-sus-2019-hypothesis",
+        "url": "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+        "heading": "A startup idea is a hypothesis",
+        "timestamp_seconds": 170
+      }
+    ],
+    "future_leakage_tokens": [
+      "ground_truth",
+      "future_outcome",
+      "week 5"
+    ],
+    "preferred_action": "sell_pilot",
+    "synthetic": true,
+    "source_content_included": false
+  },
+  {
+    "metadata_schema_version": "0.1.0",
+    "record_sha256": "feee29f21b3a0472c6150642a5e75296a39f1a900e8115c016e5ddd99cc3a71b",
+    "case_id": "ycfd-016",
+    "split": "train",
+    "initial_state": {
+      "budget_cents": 180000,
+      "founder_hours": 64,
+      "active_users": 19,
+      "interviews_completed": 0,
+      "qualified_pipeline": 3,
+      "mrr_cents": 30000,
+      "price_cents": 2000
+    },
+    "allowed_actions": [
+      "build_feature",
+      "sell_pilot",
+      "fundraise",
+      "change_price",
+      "abstain"
+    ],
+    "action_costs": {
+      "interview_users": {
+        "budget_cents": 5000,
+        "hours": 8
+      },
+      "build_feature": {
+        "budget_cents": 60000,
+        "hours": 24
+      },
+      "sell_pilot": {
+        "budget_cents": 10000,
+        "hours": 14
+      },
+      "fundraise": {
+        "budget_cents": 20000,
+        "hours": 20
+      },
+      "change_price": {
+        "budget_cents": 2000,
+        "hours": 4
+      },
+      "abstain": {
+        "budget_cents": 0,
+        "hours": 1
+      }
+    },
+    "transitions": {
+      "interview_users": {
+        "interviews_completed": 4,
+        "active_users": 1
+      },
+      "build_feature": {
+        "active_users": 3
+      },
+      "sell_pilot": {
+        "qualified_pipeline": 2,
+        "mrr_cents": 15000
+      },
+      "fundraise": {
+        "qualified_pipeline": 1
+      },
+      "change_price": {
+        "price_cents": 500,
+        "mrr_cents": 5000
+      },
+      "abstain": {}
+    },
+    "source_locators": [
+      {
+        "locator_id": "yc-sus-2022-pricing",
+        "url": "https://www.ycombinator.com/blog/startup-school-videos",
+        "heading": "Startup Business Models and Pricing with Aaron Epstein",
+        "timestamp_seconds": null
+      },
+      {
+        "locator_id": "yc-sus-2019-users",
+        "url": "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+        "heading": "Eric Migicovsky on How to Talk to Users",
+        "timestamp_seconds": 919
+      }
+    ],
+    "future_leakage_tokens": [
+      "ground_truth",
+      "future_outcome",
+      "week 5"
+    ],
+    "preferred_action": "fundraise",
+    "synthetic": true,
+    "source_content_included": false
+  },
+  {
+    "metadata_schema_version": "0.1.0",
+    "record_sha256": "1e81acef772ad2d351aab521c63fe72f0abb49a08dbe4db6079ed194ebb2188b",
+    "case_id": "ycfd-017",
+    "split": "held_out",
+    "initial_state": {
+      "budget_cents": 120000,
+      "founder_hours": 72,
+      "active_users": 20,
+      "interviews_completed": 1,
+      "qualified_pipeline": 0,
+      "mrr_cents": 40000,
+      "price_cents": 2500
+    },
+    "allowed_actions": [
+      "interview_users",
+      "sell_pilot",
+      "fundraise",
+      "change_price",
+      "abstain"
+    ],
+    "action_costs": {
+      "interview_users": {
+        "budget_cents": 5000,
+        "hours": 8
+      },
+      "build_feature": {
+        "budget_cents": 60000,
+        "hours": 24
+      },
+      "sell_pilot": {
+        "budget_cents": 10000,
+        "hours": 14
+      },
+      "fundraise": {
+        "budget_cents": 20000,
+        "hours": 20
+      },
+      "change_price": {
+        "budget_cents": 2000,
+        "hours": 4
+      },
+      "abstain": {
+        "budget_cents": 0,
+        "hours": 1
+      }
+    },
+    "transitions": {
+      "interview_users": {
+        "interviews_completed": 4,
+        "active_users": 1
+      },
+      "build_feature": {
+        "active_users": 3
+      },
+      "sell_pilot": {
+        "qualified_pipeline": 2,
+        "mrr_cents": 15000
+      },
+      "fundraise": {
+        "qualified_pipeline": 1
+      },
+      "change_price": {
+        "price_cents": 500,
+        "mrr_cents": 5000
+      },
+      "abstain": {}
+    },
+    "source_locators": [
+      {
+        "locator_id": "yc-sus-2022-fundraising",
+        "url": "https://www.ycombinator.com/blog/startup-school-videos",
+        "heading": "How Startup Fundraising Works with Brad Flora",
+        "timestamp_seconds": null
+      },
+      {
+        "locator_id": "yc-sus-2018-products",
+        "url": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+        "heading": "Building Products",
+        "timestamp_seconds": null
+      }
+    ],
+    "future_leakage_tokens": [
+      "ground_truth",
+      "future_outcome",
+      "week 5"
+    ],
+    "preferred_action": "change_price",
+    "synthetic": true,
+    "source_content_included": false
+  },
+  {
+    "metadata_schema_version": "0.1.0",
+    "record_sha256": "598df08b15bb5f16fb4fa01099e9ccb9212c7406c67e8bccb11f0494257c0c3a",
+    "case_id": "ycfd-018",
+    "split": "held_out",
+    "initial_state": {
+      "budget_cents": 140000,
+      "founder_hours": 80,
+      "active_users": 21,
+      "interviews_completed": 2,
+      "qualified_pipeline": 1,
+      "mrr_cents": 50000,
+      "price_cents": 3000
+    },
+    "allowed_actions": [
+      "interview_users",
+      "build_feature",
+      "fundraise",
+      "change_price",
+      "abstain"
+    ],
+    "action_costs": {
+      "interview_users": {
+        "budget_cents": 5000,
+        "hours": 8
+      },
+      "build_feature": {
+        "budget_cents": 60000,
+        "hours": 24
+      },
+      "sell_pilot": {
+        "budget_cents": 10000,
+        "hours": 14
+      },
+      "fundraise": {
+        "budget_cents": 20000,
+        "hours": 20
+      },
+      "change_price": {
+        "budget_cents": 2000,
+        "hours": 4
+      },
+      "abstain": {
+        "budget_cents": 0,
+        "hours": 1
+      }
+    },
+    "transitions": {
+      "interview_users": {
+        "interviews_completed": 4,
+        "active_users": 1
+      },
+      "build_feature": {
+        "active_users": 3
+      },
+      "sell_pilot": {
+        "qualified_pipeline": 2,
+        "mrr_cents": 15000
+      },
+      "fundraise": {
+        "qualified_pipeline": 1
+      },
+      "change_price": {
+        "price_cents": 500,
+        "mrr_cents": 5000
+      },
+      "abstain": {}
+    },
+    "source_locators": [
+      {
+        "locator_id": "yc-sus-2022-launch",
+        "url": "https://www.ycombinator.com/blog/startup-school-videos",
+        "heading": "The Best Way To Launch Your Startup with Kat Manalac",
+        "timestamp_seconds": null
+      },
+      {
+        "locator_id": "yc-sus-2018-sales",
+        "url": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+        "heading": "Sales From 0 to 1 Million",
+        "timestamp_seconds": null
+      }
+    ],
+    "future_leakage_tokens": [
+      "ground_truth",
+      "future_outcome",
+      "week 5"
+    ],
+    "preferred_action": "abstain",
+    "synthetic": true,
+    "source_content_included": false
+  },
+  {
+    "metadata_schema_version": "0.1.0",
+    "record_sha256": "d2721edefe80e9f1a30c6f4c2882dc7c958f7a53f2f449ce58fa4ef05ae81d2d",
+    "case_id": "ycfd-019",
+    "split": "held_out",
+    "initial_state": {
+      "budget_cents": 160000,
+      "founder_hours": 64,
+      "active_users": 22,
+      "interviews_completed": 3,
+      "qualified_pipeline": 2,
+      "mrr_cents": 0,
+      "price_cents": 3500
+    },
+    "allowed_actions": [
+      "interview_users",
+      "build_feature",
+      "sell_pilot",
+      "change_price",
+      "abstain"
+    ],
+    "action_costs": {
+      "interview_users": {
+        "budget_cents": 5000,
+        "hours": 8
+      },
+      "build_feature": {
+        "budget_cents": 60000,
+        "hours": 24
+      },
+      "sell_pilot": {
+        "budget_cents": 10000,
+        "hours": 14
+      },
+      "fundraise": {
+        "budget_cents": 20000,
+        "hours": 20
+      },
+      "change_price": {
+        "budget_cents": 2000,
+        "hours": 4
+      },
+      "abstain": {
+        "budget_cents": 0,
+        "hours": 1
+      }
+    },
+    "transitions": {
+      "interview_users": {
+        "interviews_completed": 4,
+        "active_users": 1
+      },
+      "build_feature": {
+        "active_users": 3
+      },
+      "sell_pilot": {
+        "qualified_pipeline": 2,
+        "mrr_cents": 15000
+      },
+      "fundraise": {
+        "qualified_pipeline": 1
+      },
+      "change_price": {
+        "price_cents": 500,
+        "mrr_cents": 5000
+      },
+      "abstain": {}
+    },
+    "source_locators": [
+      {
+        "locator_id": "yc-sus-2019-ideas",
+        "url": "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+        "heading": "How to Evaluate Startup Ideas",
+        "timestamp_seconds": 43
+      },
+      {
+        "locator_id": "yc-sus-2018-fundraising",
+        "url": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+        "heading": "Fundraising Fundamentals",
+        "timestamp_seconds": null
+      }
+    ],
+    "future_leakage_tokens": [
+      "ground_truth",
+      "future_outcome",
+      "week 5"
+    ],
+    "preferred_action": "interview_users",
+    "synthetic": true,
+    "source_content_included": false
+  },
+  {
+    "metadata_schema_version": "0.1.0",
+    "record_sha256": "fc5749a3232a259c02313c48b3e454b4d11ae20ed5203d5935759230430bcb98",
+    "case_id": "ycfd-020",
+    "split": "held_out",
+    "initial_state": {
+      "budget_cents": 180000,
+      "founder_hours": 72,
+      "active_users": 23,
+      "interviews_completed": 4,
+      "qualified_pipeline": 3,
+      "mrr_cents": 10000,
+      "price_cents": 4000
+    },
+    "allowed_actions": [
+      "interview_users",
+      "build_feature",
+      "sell_pilot",
+      "fundraise",
+      "abstain"
+    ],
+    "action_costs": {
+      "interview_users": {
+        "budget_cents": 5000,
+        "hours": 8
+      },
+      "build_feature": {
+        "budget_cents": 60000,
+        "hours": 24
+      },
+      "sell_pilot": {
+        "budget_cents": 10000,
+        "hours": 14
+      },
+      "fundraise": {
+        "budget_cents": 20000,
+        "hours": 20
+      },
+      "change_price": {
+        "budget_cents": 2000,
+        "hours": 4
+      },
+      "abstain": {
+        "budget_cents": 0,
+        "hours": 1
+      }
+    },
+    "transitions": {
+      "interview_users": {
+        "interviews_completed": 4,
+        "active_users": 1
+      },
+      "build_feature": {
+        "active_users": 3
+      },
+      "sell_pilot": {
+        "qualified_pipeline": 2,
+        "mrr_cents": 15000
+      },
+      "fundraise": {
+        "qualified_pipeline": 1
+      },
+      "change_price": {
+        "price_cents": 500,
+        "mrr_cents": 5000
+      },
+      "abstain": {}
+    },
+    "source_locators": [
+      {
+        "locator_id": "yc-sus-2019-hypothesis",
+        "url": "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+        "heading": "A startup idea is a hypothesis",
+        "timestamp_seconds": 170
+      },
+      {
+        "locator_id": "yc-sus-2022-talk-users",
+        "url": "https://www.ycombinator.com/blog/startup-school-videos",
+        "heading": "How To Talk To Users with Gustaf Alstromer",
+        "timestamp_seconds": null
+      }
+    ],
+    "future_leakage_tokens": [
+      "ground_truth",
+      "future_outcome",
+      "week 5"
+    ],
+    "preferred_action": "build_feature",
+    "synthetic": true,
+    "source_content_included": false
+  },
+  {
+    "metadata_schema_version": "0.1.0",
+    "record_sha256": "f99e9a139f110ffd0c31bab0597b75ba25a361e40a240b7de99a79be3aa20061",
+    "case_id": "ycfd-021",
+    "split": "held_out",
+    "initial_state": {
+      "budget_cents": 120000,
+      "founder_hours": 80,
+      "active_users": 24,
+      "interviews_completed": 0,
+      "qualified_pipeline": 0,
+      "mrr_cents": 20000,
+      "price_cents": 2000
+    },
+    "allowed_actions": [
+      "interview_users",
+      "build_feature",
+      "sell_pilot",
+      "fundraise",
+      "change_price"
+    ],
+    "action_costs": {
+      "interview_users": {
+        "budget_cents": 5000,
+        "hours": 8
+      },
+      "build_feature": {
+        "budget_cents": 60000,
+        "hours": 24
+      },
+      "sell_pilot": {
+        "budget_cents": 10000,
+        "hours": 14
+      },
+      "fundraise": {
+        "budget_cents": 20000,
+        "hours": 20
+      },
+      "change_price": {
+        "budget_cents": 2000,
+        "hours": 4
+      },
+      "abstain": {
+        "budget_cents": 0,
+        "hours": 1
+      }
+    },
+    "transitions": {
+      "interview_users": {
+        "interviews_completed": 4,
+        "active_users": 1
+      },
+      "build_feature": {
+        "active_users": 3
+      },
+      "sell_pilot": {
+        "qualified_pipeline": 2,
+        "mrr_cents": 15000
+      },
+      "fundraise": {
+        "qualified_pipeline": 1
+      },
+      "change_price": {
+        "price_cents": 500,
+        "mrr_cents": 5000
+      },
+      "abstain": {}
+    },
+    "source_locators": [
+      {
+        "locator_id": "yc-sus-2019-users",
+        "url": "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+        "heading": "Eric Migicovsky on How to Talk to Users",
+        "timestamp_seconds": 919
+      },
+      {
+        "locator_id": "yc-sus-2022-first-customers",
+        "url": "https://www.ycombinator.com/blog/startup-school-videos",
+        "heading": "How to Get Your First Customers with Gustaf Alstromer",
+        "timestamp_seconds": null
+      }
+    ],
+    "future_leakage_tokens": [
+      "ground_truth",
+      "future_outcome",
+      "week 5"
+    ],
+    "preferred_action": "sell_pilot",
+    "synthetic": true,
+    "source_content_included": false
+  },
+  {
+    "metadata_schema_version": "0.1.0",
+    "record_sha256": "dea19066c2ac7e332b7c73eedcf93869d64ebb31911a9c070b7910d47f550e60",
+    "case_id": "ycfd-022",
+    "split": "held_out",
+    "initial_state": {
+      "budget_cents": 140000,
+      "founder_hours": 64,
+      "active_users": 25,
+      "interviews_completed": 1,
+      "qualified_pipeline": 1,
+      "mrr_cents": 30000,
+      "price_cents": 2500
+    },
+    "allowed_actions": [
+      "build_feature",
+      "sell_pilot",
+      "fundraise",
+      "change_price",
+      "abstain"
+    ],
+    "action_costs": {
+      "interview_users": {
+        "budget_cents": 5000,
+        "hours": 8
+      },
+      "build_feature": {
+        "budget_cents": 60000,
+        "hours": 24
+      },
+      "sell_pilot": {
+        "budget_cents": 10000,
+        "hours": 14
+      },
+      "fundraise": {
+        "budget_cents": 20000,
+        "hours": 20
+      },
+      "change_price": {
+        "budget_cents": 2000,
+        "hours": 4
+      },
+      "abstain": {
+        "budget_cents": 0,
+        "hours": 1
+      }
+    },
+    "transitions": {
+      "interview_users": {
+        "interviews_completed": 4,
+        "active_users": 1
+      },
+      "build_feature": {
+        "active_users": 3
+      },
+      "sell_pilot": {
+        "qualified_pipeline": 2,
+        "mrr_cents": 15000
+      },
+      "fundraise": {
+        "qualified_pipeline": 1
+      },
+      "change_price": {
+        "price_cents": 500,
+        "mrr_cents": 5000
+      },
+      "abstain": {}
+    },
+    "source_locators": [
+      {
+        "locator_id": "yc-sus-2018-products",
+        "url": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+        "heading": "Building Products",
+        "timestamp_seconds": null
+      },
+      {
+        "locator_id": "yc-sus-2022-mvp",
+        "url": "https://www.ycombinator.com/blog/startup-school-videos",
+        "heading": "How to Build a Minimum Viable Product with Michael Seibel",
+        "timestamp_seconds": null
+      }
+    ],
+    "future_leakage_tokens": [
+      "ground_truth",
+      "future_outcome",
+      "week 5"
+    ],
+    "preferred_action": "fundraise",
+    "synthetic": true,
+    "source_content_included": false
+  },
+  {
+    "metadata_schema_version": "0.1.0",
+    "record_sha256": "bb1c464ffd0f5e18bd58588112028cc549bc471a7408e08736d9dd331a6e3ed3",
+    "case_id": "ycfd-023",
+    "split": "held_out",
+    "initial_state": {
+      "budget_cents": 160000,
+      "founder_hours": 72,
+      "active_users": 26,
+      "interviews_completed": 2,
+      "qualified_pipeline": 2,
+      "mrr_cents": 40000,
+      "price_cents": 3000
+    },
+    "allowed_actions": [
+      "interview_users",
+      "sell_pilot",
+      "fundraise",
+      "change_price",
+      "abstain"
+    ],
+    "action_costs": {
+      "interview_users": {
+        "budget_cents": 5000,
+        "hours": 8
+      },
+      "build_feature": {
+        "budget_cents": 60000,
+        "hours": 24
+      },
+      "sell_pilot": {
+        "budget_cents": 10000,
+        "hours": 14
+      },
+      "fundraise": {
+        "budget_cents": 20000,
+        "hours": 20
+      },
+      "change_price": {
+        "budget_cents": 2000,
+        "hours": 4
+      },
+      "abstain": {
+        "budget_cents": 0,
+        "hours": 1
+      }
+    },
+    "transitions": {
+      "interview_users": {
+        "interviews_completed": 4,
+        "active_users": 1
+      },
+      "build_feature": {
+        "active_users": 3
+      },
+      "sell_pilot": {
+        "qualified_pipeline": 2,
+        "mrr_cents": 15000
+      },
+      "fundraise": {
+        "qualified_pipeline": 1
+      },
+      "change_price": {
+        "price_cents": 500,
+        "mrr_cents": 5000
+      },
+      "abstain": {}
+    },
+    "source_locators": [
+      {
+        "locator_id": "yc-sus-2018-sales",
+        "url": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+        "heading": "Sales From 0 to 1 Million",
+        "timestamp_seconds": null
+      },
+      {
+        "locator_id": "yc-sus-2022-pricing",
+        "url": "https://www.ycombinator.com/blog/startup-school-videos",
+        "heading": "Startup Business Models and Pricing with Aaron Epstein",
+        "timestamp_seconds": null
+      }
+    ],
+    "future_leakage_tokens": [
+      "ground_truth",
+      "future_outcome",
+      "week 5"
+    ],
+    "preferred_action": "change_price",
+    "synthetic": true,
+    "source_content_included": false
+  },
+  {
+    "metadata_schema_version": "0.1.0",
+    "record_sha256": "0bddf085c3c7a3bb4b780b3e0ee162a2757b941f1898fddcddebfec6d1bf2d04",
+    "case_id": "ycfd-024",
+    "split": "held_out",
+    "initial_state": {
+      "budget_cents": 180000,
+      "founder_hours": 80,
+      "active_users": 27,
+      "interviews_completed": 3,
+      "qualified_pipeline": 3,
+      "mrr_cents": 50000,
+      "price_cents": 3500
+    },
+    "allowed_actions": [
+      "interview_users",
+      "build_feature",
+      "fundraise",
+      "change_price",
+      "abstain"
+    ],
+    "action_costs": {
+      "interview_users": {
+        "budget_cents": 5000,
+        "hours": 8
+      },
+      "build_feature": {
+        "budget_cents": 60000,
+        "hours": 24
+      },
+      "sell_pilot": {
+        "budget_cents": 10000,
+        "hours": 14
+      },
+      "fundraise": {
+        "budget_cents": 20000,
+        "hours": 20
+      },
+      "change_price": {
+        "budget_cents": 2000,
+        "hours": 4
+      },
+      "abstain": {
+        "budget_cents": 0,
+        "hours": 1
+      }
+    },
+    "transitions": {
+      "interview_users": {
+        "interviews_completed": 4,
+        "active_users": 1
+      },
+      "build_feature": {
+        "active_users": 3
+      },
+      "sell_pilot": {
+        "qualified_pipeline": 2,
+        "mrr_cents": 15000
+      },
+      "fundraise": {
+        "qualified_pipeline": 1
+      },
+      "change_price": {
+        "price_cents": 500,
+        "mrr_cents": 5000
+      },
+      "abstain": {}
+    },
+    "source_locators": [
+      {
+        "locator_id": "yc-sus-2018-fundraising",
+        "url": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+        "heading": "Fundraising Fundamentals",
+        "timestamp_seconds": null
+      },
+      {
+        "locator_id": "yc-sus-2022-fundraising",
+        "url": "https://www.ycombinator.com/blog/startup-school-videos",
+        "heading": "How Startup Fundraising Works with Brad Flora",
+        "timestamp_seconds": null
+      }
+    ],
+    "future_leakage_tokens": [
+      "ground_truth",
+      "future_outcome",
+      "week 5"
+    ],
+    "preferred_action": "abstain",
+    "synthetic": true,
+    "source_content_included": false
+  }
+]
