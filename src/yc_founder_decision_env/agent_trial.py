@@ -73,8 +73,8 @@ def run_decision_episode(
     decisions: list[AgentDecision],
     policy_metadata: dict[str, str],
 ) -> dict[str, Any]:
-    """Record exactly four agent decisions against a fresh environment instance."""
-    if len(decisions) != 4:
+    """Record up to four decisions, requiring four unless the episode terminates."""
+    if len(decisions) > 4:
         raise ValueError("EXACTLY_FOUR_DECISIONS_REQUIRED")
     env = FounderDecisionEnvironment()
     observation = env.reset(seed=seed)
@@ -98,6 +98,8 @@ def run_decision_episode(
                 "failure_codes": observation.failure_codes,
             }
         )
+    if not observation.done and len(decisions) < 4:
+        raise ValueError("EXACTLY_FOUR_DECISIONS_REQUIRED")
     trajectory: dict[str, Any] = {"seed": seed, "initial_observation": initial, "steps": steps}
     trajectory["trajectory_sha256"] = payload_sha256(trajectory)
     return seal_artifact(

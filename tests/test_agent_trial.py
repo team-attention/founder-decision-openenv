@@ -51,6 +51,32 @@ def test_episode_artifact_contains_no_private_selection_fields() -> None:
     assert replay_agent_artifact(artifact) == artifact["episode"]["trajectory_sha256"]
 
 
+def test_replay_accepts_an_episode_that_terminates_before_fourth_decision() -> None:
+    artifact = run_decision_episode(
+        20,
+        [
+            decision("build_feature"),
+            decision("build_feature"),
+            decision("abstain"),
+            decision("abstain"),
+        ],
+        {"provider": "codex", "model": "gpt-5.6-terra", "mode": "inference"},
+    )
+
+    assert len(artifact["episode"]["steps"]) == 2
+    assert artifact["episode"]["steps"][-1]["observation"]["done"] is True
+    assert replay_agent_artifact(artifact) == artifact["episode"]["trajectory_sha256"]
+
+
+def test_episode_rejects_insufficient_decisions_when_not_terminal() -> None:
+    with pytest.raises(ValueError, match="EXACTLY_FOUR_DECISIONS_REQUIRED"):
+        run_decision_episode(
+            0,
+            [decision("abstain") for _ in range(3)],
+            {"provider": "codex", "model": "gpt-5.6-terra", "mode": "inference"},
+        )
+
+
 def test_artifact_hash_rejects_tampering() -> None:
     artifact = seal_artifact({"schema_version": "test", "value": 1})
     tampered = copy.deepcopy(artifact)
