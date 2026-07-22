@@ -136,40 +136,83 @@ def replay_agent_artifact(artifact: dict[str, Any]) -> str:
     return cast(str, replayed["episode"]["trajectory_sha256"])
 
 
-def _read_decision_input(path: Path) -> tuple[dict[str, str], list[dict[str, Any]]]:
+TERRA_LEDGER_SCHEMA_VERSION = "terra-decision-ledger-v0.1.0"
+
+
+def _read_decision_input(path: Path) -> tuple[dict[str, Any], dict[str, list[AgentDecision]]]:
+    """Load only a sealed structured Terra ledger, never decision shorthand."""
     raw = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(raw, dict):
         raise ValueError("DECISIONS_OBJECT_REQUIRED")
+    if raw.get("schema_version") != TERRA_LEDGER_SCHEMA_VERSION:
+        raise ValueError("INVALID_TERRA_LEDGER_SCHEMA")
+    if not verify_artifact(raw):
+        raise ValueError("TERRA_LEDGER_INTEGRITY_FAILURE")
     policy = raw.get("policy")
     episodes = raw.get("episodes")
-    if not isinstance(policy, dict) or not all(
-        isinstance(key, str) and isinstance(value, str) for key, value in policy.items()
-    ):
+    expected_policy = {
+        "provider": "codex-subagent",
+        "model": "gpt-5.6-terra",
+        "mode": "inference",
+        "model_weight_updates": False,
+        "prompt_version": "observation-only-v0.1.0",
+    }
+    if not isinstance(policy, dict) or policy != expected_policy:
         raise ValueError("POLICY_METADATA_REQUIRED")
-    if not isinstance(episodes, list) or not episodes:
+    if not isinstance(episodes, dict) or not episodes:
         raise ValueError("EPISODES_REQUIRED")
-    parsed = [cast(dict[str, Any], item) for item in episodes if isinstance(item, dict)]
-    if len(parsed) != len(episodes):
-        raise ValueError("INVALID_EPISODE")
-    return cast(dict[str, str], policy), parsed
+    parsed: dict[str, list[AgentDecision]] = {}
+    for seed_text, episode in episodes.items():
+        if (
+            not isinstance(seed_text, str)
+            or not seed_text.isdecimal()
+            or not isinstance(episode, dict)
+        ):
+            raise ValueError("INVALID_EPISODE")
+        seed = int(seed_text)
+        turns = episode.get("turns")
+        if not isinstance(turns, list) or not turns or len(turns) > 4:
+            raise ValueError("INVALID_TERRA_TURNS")
+        env = FounderDecisionEnvironment()
+        observation = env.reset(seed=seed)
+        decisions: list[AgentDecision] = []
+        for turn in turns:
+            if observation.done or not isinstance(turn, dict):
+                raise ValueError("INVALID_TERRA_TURN")
+            if turn.get("input_observation_sha256") != payload_sha256(
+                observation.model_dump(mode="json")
+            ):
+                raise ValueError("TERRA_OBSERVATION_HASH_MISMATCH")
+            raw_response = turn.get("raw_response")
+            repair_response = turn.get("repair_response")
+            attempts = turn.get("parse_attempts")
+            if (
+                not isinstance(raw_response, str)
+                or repair_response is not None and not isinstance(repair_response, str)
+                or not isinstance(attempts, int)
+                or isinstance(attempts, bool)
+                or attempts < 1
+            ):
+                raise ValueError("INVALID_TERRA_RESPONSE")
+            decision = AgentDecision.model_validate(turn.get("decision"))
+            selected = raw_response if repair_response is None else repair_response
+            if AgentDecision.model_validate_json(selected) != decision:
+                raise ValueError("TERRA_RESPONSE_DECISION_MISMATCH")
+            decisions.append(decision)
+            observation = env.step(build_trusted_action(observation, decision))
+        if not observation.done and len(decisions) < 4:
+            raise ValueError("TERRA_INCOMPLETE_NONTERMINAL_EPISODE")
+        parsed[seed_text] = decisions
+    return cast(dict[str, Any], policy), parsed
 
 
-def _seal_input_episodes(path: Path) -> list[dict[str, Any]]:
+def _seal_input_episodes(path: Path) -> dict[str, dict[str, Any]]:
     policy, episodes = _read_decision_input(path)
-    seen_seeds: set[int] = set()
-    artifacts: list[dict[str, Any]] = []
-    for item in episodes:
-        seed = item.get("seed")
-        decisions = item.get("decisions")
-        if not isinstance(seed, int) or isinstance(seed, bool) or not isinstance(decisions, list):
-            raise ValueError("EPISODE_SEED_AND_DECISIONS_REQUIRED")
-        if seed in seen_seeds:
-            raise ValueError("DUPLICATE_SEED")
-        seen_seeds.add(seed)
-        parsed_decisions = [AgentDecision.model_validate(value) for value in decisions]
-        artifact = run_decision_episode(seed, parsed_decisions, policy)
+    artifacts: dict[str, dict[str, Any]] = {}
+    for seed_text, decisions in episodes.items():
+        artifact = run_decision_episode(int(seed_text), decisions, policy)
         replay_agent_artifact(artifact)
-        artifacts.append(artifact)
+        artifacts[seed_text] = artifact
     return artifacts
 
 
@@ -179,7 +222,12 @@ def main() -> None:
     parser.add_argument("--decisions", required=True, type=Path)
     parser.add_argument("--output", required=True, type=Path)
     args = parser.parse_args()
-    artifacts = _seal_input_episodes(args.decisions)
+    artifacts = seal_artifact(
+        {
+            "schema_version": "terra-agent-episodes-v0.1.0",
+            "episodes": _seal_input_episodes(args.decisions),
+        }
+    )
     args.output.write_text(
         json.dumps(artifacts, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",

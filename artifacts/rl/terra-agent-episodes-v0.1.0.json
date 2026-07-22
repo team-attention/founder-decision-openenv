@@ -1,0 +1,4182 @@
+{
+  "episodes": {
+    "16": {
+      "claims": {
+        "hard_reward_is_contract_compliance": true,
+        "model_weight_updates": false,
+        "observation_only": true
+      },
+      "episode": {
+        "initial_observation": {
+          "action_specs": [
+            {
+              "action_type": "interview_users",
+              "allowed": true,
+              "founder_hours": 8,
+              "spend_cents": 5000
+            },
+            {
+              "action_type": "build_feature",
+              "allowed": false,
+              "founder_hours": 24,
+              "spend_cents": 60000
+            },
+            {
+              "action_type": "sell_pilot",
+              "allowed": true,
+              "founder_hours": 14,
+              "spend_cents": 10000
+            },
+            {
+              "action_type": "fundraise",
+              "allowed": true,
+              "founder_hours": 20,
+              "spend_cents": 20000
+            },
+            {
+              "action_type": "change_price",
+              "allowed": true,
+              "founder_hours": 4,
+              "spend_cents": 2000
+            },
+            {
+              "action_type": "abstain",
+              "allowed": true,
+              "founder_hours": 1,
+              "spend_cents": 0
+            }
+          ],
+          "active_users": 20,
+          "allowed_actions": [
+            "interview_users",
+            "sell_pilot",
+            "fundraise",
+            "change_price",
+            "abstain"
+          ],
+          "budget_cents": 120000,
+          "case_id": "ycfd-017",
+          "done": false,
+          "failure_codes": [],
+          "founder_hours": 72,
+          "interviews_completed": 1,
+          "metadata": {
+            "hard_reward_only": true,
+            "transition_model_version": "frozen-v0.1.0"
+          },
+          "mrr_cents": 40000,
+          "price_cents": 2500,
+          "qualified_pipeline": 0,
+          "reward": 0.0,
+          "reward_components": {
+            "action_validity": 0.0,
+            "budget_time_constraints": 0.0,
+            "future_leakage": 0.0,
+            "source_locator_validity": 0.0,
+            "state_arithmetic": 0.0
+          },
+          "source_locators": [
+            "https://www.ycombinator.com/blog/startup-school-videos",
+            "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+          ],
+          "terminated": false,
+          "truncated": false,
+          "week": 0
+        },
+        "seed": 16,
+        "steps": [
+          {
+            "decision": {
+              "action_type": "interview_users",
+              "rationale": "With 20 active users but only one completed interview, the highest-leverage next move is to learn directly from users before changing price, selling more broadly, or raising funds. The cost is low relative to available budget and preserves optionality for the remaining steps.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-videos"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "d45dee92b4e8476ca08f5f1a10db7f4a01448d77ae0f112e447606dba992a470",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": false,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": true,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 21,
+              "allowed_actions": [
+                "interview_users",
+                "sell_pilot",
+                "fundraise",
+                "change_price",
+                "abstain"
+              ],
+              "budget_cents": 115000,
+              "case_id": "ycfd-017",
+              "done": false,
+              "failure_codes": [],
+              "founder_hours": 64,
+              "interviews_completed": 5,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 40000,
+              "price_cents": 2500,
+              "qualified_pipeline": 0,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-videos",
+                "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+              ],
+              "terminated": false,
+              "truncated": false,
+              "week": 1
+            },
+            "step": 0,
+            "trusted_action": {
+              "action_type": "interview_users",
+              "claim": {
+                "budget_after_cents": 115000,
+                "founder_hours_after": 64,
+                "observed_step": 0
+              },
+              "founder_hours": 8,
+              "rationale": "With 20 active users but only one completed interview, the highest-leverage next move is to learn directly from users before changing price, selling more broadly, or raising funds. The cost is low relative to available budget and preserves optionality for the remaining steps.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-videos",
+              "spend_cents": 5000
+            }
+          },
+          {
+            "decision": {
+              "action_type": "sell_pilot",
+              "rationale": "The initial interview round has expanded to five completed conversations, while qualified pipeline remains zero. A focused pilot sale now tests whether the learned problem converts into concrete customer commitment and creates the strongest near-term signal of demand.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "1088baf71970f9fc80275ab4e7b76696aa6e00263cbe1341f7ec4a4715c42a44",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": false,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": true,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 21,
+              "allowed_actions": [
+                "interview_users",
+                "sell_pilot",
+                "fundraise",
+                "change_price",
+                "abstain"
+              ],
+              "budget_cents": 105000,
+              "case_id": "ycfd-017",
+              "done": false,
+              "failure_codes": [],
+              "founder_hours": 50,
+              "interviews_completed": 5,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 55000,
+              "price_cents": 2500,
+              "qualified_pipeline": 2,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-videos",
+                "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+              ],
+              "terminated": false,
+              "truncated": false,
+              "week": 2
+            },
+            "step": 1,
+            "trusted_action": {
+              "action_type": "sell_pilot",
+              "claim": {
+                "budget_after_cents": 105000,
+                "founder_hours_after": 50,
+                "observed_step": 1
+              },
+              "founder_hours": 14,
+              "rationale": "The initial interview round has expanded to five completed conversations, while qualified pipeline remains zero. A focused pilot sale now tests whether the learned problem converts into concrete customer commitment and creates the strongest near-term signal of demand.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+              "spend_cents": 10000
+            }
+          },
+          {
+            "decision": {
+              "action_type": "sell_pilot",
+              "rationale": "The first sales effort produced two qualified prospects and higher MRR, providing direct evidence that focused selling is working. Continuing pilot sales is the most efficient way to convert the emerging pipeline and validate repeatable demand before fundraising or pricing changes.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-videos"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "3c9426793f6b1fad66b7e86c5aaaedab7b82db155167bc0122cc41692cc670bd",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": false,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": true,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 21,
+              "allowed_actions": [
+                "interview_users",
+                "sell_pilot",
+                "fundraise",
+                "change_price",
+                "abstain"
+              ],
+              "budget_cents": 95000,
+              "case_id": "ycfd-017",
+              "done": false,
+              "failure_codes": [],
+              "founder_hours": 36,
+              "interviews_completed": 5,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 70000,
+              "price_cents": 2500,
+              "qualified_pipeline": 4,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-videos",
+                "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+              ],
+              "terminated": false,
+              "truncated": false,
+              "week": 3
+            },
+            "step": 2,
+            "trusted_action": {
+              "action_type": "sell_pilot",
+              "claim": {
+                "budget_after_cents": 95000,
+                "founder_hours_after": 36,
+                "observed_step": 2
+              },
+              "founder_hours": 14,
+              "rationale": "The first sales effort produced two qualified prospects and higher MRR, providing direct evidence that focused selling is working. Continuing pilot sales is the most efficient way to convert the emerging pipeline and validate repeatable demand before fundraising or pricing changes.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-videos",
+              "spend_cents": 10000
+            }
+          },
+          {
+            "decision": {
+              "action_type": "sell_pilot",
+              "rationale": "Qualified pipeline and MRR have increased after consecutive pilot-selling efforts, while budget and founder time remain sufficient for one more focused sales cycle. Converting the growing pipeline provides stronger validation and revenue than shifting attention to fundraising or an unvalidated price change.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "54617734708becb64f65d16c163e18c8f5129694fe8082be05cbbc7c88de56eb",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": false,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": true,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 21,
+              "allowed_actions": [
+                "interview_users",
+                "sell_pilot",
+                "fundraise",
+                "change_price",
+                "abstain"
+              ],
+              "budget_cents": 85000,
+              "case_id": "ycfd-017",
+              "done": true,
+              "failure_codes": [],
+              "founder_hours": 22,
+              "interviews_completed": 5,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 85000,
+              "price_cents": 2500,
+              "qualified_pipeline": 6,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-videos",
+                "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+              ],
+              "terminated": false,
+              "truncated": true,
+              "week": 4
+            },
+            "step": 3,
+            "trusted_action": {
+              "action_type": "sell_pilot",
+              "claim": {
+                "budget_after_cents": 85000,
+                "founder_hours_after": 22,
+                "observed_step": 3
+              },
+              "founder_hours": 14,
+              "rationale": "Qualified pipeline and MRR have increased after consecutive pilot-selling efforts, while budget and founder time remain sufficient for one more focused sales cycle. Converting the growing pipeline provides stronger validation and revenue than shifting attention to fundraising or an unvalidated price change.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+              "spend_cents": 10000
+            }
+          }
+        ],
+        "trajectory_sha256": "21733c81a0e3550673625c65ad4e68e7b6c3b0e01d2647701edb056cafa447da"
+      },
+      "integrity_sha256": "b6505c4944236ccb4be8bceaf15dbb06a9ef44e937180aa4b8e24ecfca7d3e3b",
+      "policy": {
+        "mode": "inference",
+        "model": "gpt-5.6-terra",
+        "model_weight_updates": false,
+        "prompt_version": "observation-only-v0.1.0",
+        "provider": "codex-subagent"
+      },
+      "schema_version": "agent-episode-v0.1.0"
+    },
+    "17": {
+      "claims": {
+        "hard_reward_is_contract_compliance": true,
+        "model_weight_updates": false,
+        "observation_only": true
+      },
+      "episode": {
+        "initial_observation": {
+          "action_specs": [
+            {
+              "action_type": "interview_users",
+              "allowed": true,
+              "founder_hours": 8,
+              "spend_cents": 5000
+            },
+            {
+              "action_type": "build_feature",
+              "allowed": true,
+              "founder_hours": 24,
+              "spend_cents": 60000
+            },
+            {
+              "action_type": "sell_pilot",
+              "allowed": false,
+              "founder_hours": 14,
+              "spend_cents": 10000
+            },
+            {
+              "action_type": "fundraise",
+              "allowed": true,
+              "founder_hours": 20,
+              "spend_cents": 20000
+            },
+            {
+              "action_type": "change_price",
+              "allowed": true,
+              "founder_hours": 4,
+              "spend_cents": 2000
+            },
+            {
+              "action_type": "abstain",
+              "allowed": true,
+              "founder_hours": 1,
+              "spend_cents": 0
+            }
+          ],
+          "active_users": 21,
+          "allowed_actions": [
+            "interview_users",
+            "build_feature",
+            "fundraise",
+            "change_price",
+            "abstain"
+          ],
+          "budget_cents": 140000,
+          "case_id": "ycfd-018",
+          "done": false,
+          "failure_codes": [],
+          "founder_hours": 80,
+          "interviews_completed": 2,
+          "metadata": {
+            "hard_reward_only": true,
+            "transition_model_version": "frozen-v0.1.0"
+          },
+          "mrr_cents": 50000,
+          "price_cents": 3000,
+          "qualified_pipeline": 1,
+          "reward": 0.0,
+          "reward_components": {
+            "action_validity": 0.0,
+            "budget_time_constraints": 0.0,
+            "future_leakage": 0.0,
+            "source_locator_validity": 0.0,
+            "state_arithmetic": 0.0
+          },
+          "source_locators": [
+            "https://www.ycombinator.com/blog/startup-school-videos",
+            "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+          ],
+          "terminated": false,
+          "truncated": false,
+          "week": 0
+        },
+        "seed": 17,
+        "steps": [
+          {
+            "decision": {
+              "action_type": "interview_users",
+              "rationale": "With only two interviews completed, prioritize validating user needs before committing scarce budget to building or fundraising.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-videos"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "ffaa7817d1dbdf725b064f07eb484a6481b9d7b507c38042a40631ccec12f037",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": true,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": false,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 22,
+              "allowed_actions": [
+                "interview_users",
+                "build_feature",
+                "fundraise",
+                "change_price",
+                "abstain"
+              ],
+              "budget_cents": 135000,
+              "case_id": "ycfd-018",
+              "done": false,
+              "failure_codes": [],
+              "founder_hours": 72,
+              "interviews_completed": 6,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 50000,
+              "price_cents": 3000,
+              "qualified_pipeline": 1,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-videos",
+                "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+              ],
+              "terminated": false,
+              "truncated": false,
+              "week": 1
+            },
+            "step": 0,
+            "trusted_action": {
+              "action_type": "interview_users",
+              "claim": {
+                "budget_after_cents": 135000,
+                "founder_hours_after": 72,
+                "observed_step": 0
+              },
+              "founder_hours": 8,
+              "rationale": "With only two interviews completed, prioritize validating user needs before committing scarce budget to building or fundraising.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-videos",
+              "spend_cents": 5000
+            }
+          },
+          {
+            "decision": {
+              "action_type": "interview_users",
+              "rationale": "Six interviews remain too few to confidently prioritize a costly feature; continue learning while preserving capital.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-videos"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "3569c02ac94413769d2988754b1d63a44700d761cf9521300a49d479a2b6f85a",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": true,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": false,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 23,
+              "allowed_actions": [
+                "interview_users",
+                "build_feature",
+                "fundraise",
+                "change_price",
+                "abstain"
+              ],
+              "budget_cents": 130000,
+              "case_id": "ycfd-018",
+              "done": false,
+              "failure_codes": [],
+              "founder_hours": 64,
+              "interviews_completed": 10,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 50000,
+              "price_cents": 3000,
+              "qualified_pipeline": 1,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-videos",
+                "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+              ],
+              "terminated": false,
+              "truncated": false,
+              "week": 2
+            },
+            "step": 1,
+            "trusted_action": {
+              "action_type": "interview_users",
+              "claim": {
+                "budget_after_cents": 130000,
+                "founder_hours_after": 64,
+                "observed_step": 1
+              },
+              "founder_hours": 8,
+              "rationale": "Six interviews remain too few to confidently prioritize a costly feature; continue learning while preserving capital.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-videos",
+              "spend_cents": 5000
+            }
+          },
+          {
+            "decision": {
+              "action_type": "interview_users",
+              "rationale": "The qualified pipeline is still flat despite limited evidence; another focused interview cycle is the lowest-cost way to identify a validated next move.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "a47ea0e873056588f826bcdecdfaeb34cd6217a769700abdc6172f566e64dda7",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": true,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": false,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 24,
+              "allowed_actions": [
+                "interview_users",
+                "build_feature",
+                "fundraise",
+                "change_price",
+                "abstain"
+              ],
+              "budget_cents": 125000,
+              "case_id": "ycfd-018",
+              "done": false,
+              "failure_codes": [],
+              "founder_hours": 56,
+              "interviews_completed": 14,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 50000,
+              "price_cents": 3000,
+              "qualified_pipeline": 1,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-videos",
+                "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+              ],
+              "terminated": false,
+              "truncated": false,
+              "week": 3
+            },
+            "step": 2,
+            "trusted_action": {
+              "action_type": "interview_users",
+              "claim": {
+                "budget_after_cents": 125000,
+                "founder_hours_after": 56,
+                "observed_step": 2
+              },
+              "founder_hours": 8,
+              "rationale": "The qualified pipeline is still flat despite limited evidence; another focused interview cycle is the lowest-cost way to identify a validated next move.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+              "spend_cents": 5000
+            }
+          },
+          {
+            "decision": {
+              "action_type": "interview_users",
+              "rationale": "User and pipeline growth remain modest, so preserving capital while deepening direct customer understanding is preferable to a large build or fundraising effort.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-videos"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "854ce9acc87ec8c2ccf3cb6be62d3ed87ac5f208506b80f0aaa8969fb9c102c7",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": true,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": false,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 25,
+              "allowed_actions": [
+                "interview_users",
+                "build_feature",
+                "fundraise",
+                "change_price",
+                "abstain"
+              ],
+              "budget_cents": 120000,
+              "case_id": "ycfd-018",
+              "done": true,
+              "failure_codes": [],
+              "founder_hours": 48,
+              "interviews_completed": 18,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 50000,
+              "price_cents": 3000,
+              "qualified_pipeline": 1,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-videos",
+                "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+              ],
+              "terminated": false,
+              "truncated": true,
+              "week": 4
+            },
+            "step": 3,
+            "trusted_action": {
+              "action_type": "interview_users",
+              "claim": {
+                "budget_after_cents": 120000,
+                "founder_hours_after": 48,
+                "observed_step": 3
+              },
+              "founder_hours": 8,
+              "rationale": "User and pipeline growth remain modest, so preserving capital while deepening direct customer understanding is preferable to a large build or fundraising effort.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-videos",
+              "spend_cents": 5000
+            }
+          }
+        ],
+        "trajectory_sha256": "6d7fc401c86e3318cca77514668a2662b39b86928e4a1cc1117f880a7fc889dd"
+      },
+      "integrity_sha256": "944e168365363438eac66de6ce047894483a616e842cf3ed55dc934dde8364ca",
+      "policy": {
+        "mode": "inference",
+        "model": "gpt-5.6-terra",
+        "model_weight_updates": false,
+        "prompt_version": "observation-only-v0.1.0",
+        "provider": "codex-subagent"
+      },
+      "schema_version": "agent-episode-v0.1.0"
+    },
+    "18": {
+      "claims": {
+        "hard_reward_is_contract_compliance": true,
+        "model_weight_updates": false,
+        "observation_only": true
+      },
+      "episode": {
+        "initial_observation": {
+          "action_specs": [
+            {
+              "action_type": "interview_users",
+              "allowed": true,
+              "founder_hours": 8,
+              "spend_cents": 5000
+            },
+            {
+              "action_type": "build_feature",
+              "allowed": true,
+              "founder_hours": 24,
+              "spend_cents": 60000
+            },
+            {
+              "action_type": "sell_pilot",
+              "allowed": true,
+              "founder_hours": 14,
+              "spend_cents": 10000
+            },
+            {
+              "action_type": "fundraise",
+              "allowed": false,
+              "founder_hours": 20,
+              "spend_cents": 20000
+            },
+            {
+              "action_type": "change_price",
+              "allowed": true,
+              "founder_hours": 4,
+              "spend_cents": 2000
+            },
+            {
+              "action_type": "abstain",
+              "allowed": true,
+              "founder_hours": 1,
+              "spend_cents": 0
+            }
+          ],
+          "active_users": 22,
+          "allowed_actions": [
+            "interview_users",
+            "build_feature",
+            "sell_pilot",
+            "change_price",
+            "abstain"
+          ],
+          "budget_cents": 160000,
+          "case_id": "ycfd-019",
+          "done": false,
+          "failure_codes": [],
+          "founder_hours": 64,
+          "interviews_completed": 3,
+          "metadata": {
+            "hard_reward_only": true,
+            "transition_model_version": "frozen-v0.1.0"
+          },
+          "mrr_cents": 0,
+          "price_cents": 3500,
+          "qualified_pipeline": 2,
+          "reward": 0.0,
+          "reward_components": {
+            "action_validity": 0.0,
+            "budget_time_constraints": 0.0,
+            "future_leakage": 0.0,
+            "source_locator_validity": 0.0,
+            "state_arithmetic": 0.0
+          },
+          "source_locators": [
+            "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+            "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+          ],
+          "terminated": false,
+          "truncated": false,
+          "week": 0
+        },
+        "seed": 18,
+        "steps": [
+          {
+            "decision": {
+              "action_type": "sell_pilot",
+              "rationale": "With qualified pipeline and no revenue, pursue paid pilot validation before feature investment.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "2555a525db50565a1d7f301313f0a30fe326cb62e51d4072386ddd72bb77e853",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": true,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": true,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": false,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 22,
+              "allowed_actions": [
+                "interview_users",
+                "build_feature",
+                "sell_pilot",
+                "change_price",
+                "abstain"
+              ],
+              "budget_cents": 150000,
+              "case_id": "ycfd-019",
+              "done": false,
+              "failure_codes": [],
+              "founder_hours": 50,
+              "interviews_completed": 3,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 15000,
+              "price_cents": 3500,
+              "qualified_pipeline": 4,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+                "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+              ],
+              "terminated": false,
+              "truncated": false,
+              "week": 1
+            },
+            "step": 0,
+            "trusted_action": {
+              "action_type": "sell_pilot",
+              "claim": {
+                "budget_after_cents": 150000,
+                "founder_hours_after": 50,
+                "observed_step": 0
+              },
+              "founder_hours": 14,
+              "rationale": "With qualified pipeline and no revenue, pursue paid pilot validation before feature investment.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+              "spend_cents": 10000
+            }
+          },
+          {
+            "decision": {
+              "action_type": "sell_pilot",
+              "rationale": "Early revenue and a growing qualified pipeline support continued direct sales to validate repeatable demand.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "4a9463cbe74ab369e5de42315ccf0077f5fbad3d2374c3829f781ca9edf75023",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": true,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": true,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": false,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 22,
+              "allowed_actions": [
+                "interview_users",
+                "build_feature",
+                "sell_pilot",
+                "change_price",
+                "abstain"
+              ],
+              "budget_cents": 140000,
+              "case_id": "ycfd-019",
+              "done": false,
+              "failure_codes": [],
+              "founder_hours": 36,
+              "interviews_completed": 3,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 30000,
+              "price_cents": 3500,
+              "qualified_pipeline": 6,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+                "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+              ],
+              "terminated": false,
+              "truncated": false,
+              "week": 2
+            },
+            "step": 1,
+            "trusted_action": {
+              "action_type": "sell_pilot",
+              "claim": {
+                "budget_after_cents": 140000,
+                "founder_hours_after": 36,
+                "observed_step": 1
+              },
+              "founder_hours": 14,
+              "rationale": "Early revenue and a growing qualified pipeline support continued direct sales to validate repeatable demand.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+              "spend_cents": 10000
+            }
+          },
+          {
+            "decision": {
+              "action_type": "sell_pilot",
+              "rationale": "MRR and qualified pipeline are rising through sales, so extend the validated sales motion rather than divert scarce time to building.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "cdd69d46a5d20fc803c794f15087f02678c5ec5efbc0b1e0be2be7e8be5c27d4",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": true,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": true,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": false,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 22,
+              "allowed_actions": [
+                "interview_users",
+                "build_feature",
+                "sell_pilot",
+                "change_price",
+                "abstain"
+              ],
+              "budget_cents": 130000,
+              "case_id": "ycfd-019",
+              "done": false,
+              "failure_codes": [],
+              "founder_hours": 22,
+              "interviews_completed": 3,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 45000,
+              "price_cents": 3500,
+              "qualified_pipeline": 8,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+                "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+              ],
+              "terminated": false,
+              "truncated": false,
+              "week": 3
+            },
+            "step": 2,
+            "trusted_action": {
+              "action_type": "sell_pilot",
+              "claim": {
+                "budget_after_cents": 130000,
+                "founder_hours_after": 22,
+                "observed_step": 2
+              },
+              "founder_hours": 14,
+              "rationale": "MRR and qualified pipeline are rising through sales, so extend the validated sales motion rather than divert scarce time to building.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+              "spend_cents": 10000
+            }
+          },
+          {
+            "decision": {
+              "action_type": "sell_pilot",
+              "rationale": "The sales motion continues to increase both MRR and qualified pipeline, and selling remains feasible within available founder hours.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "2ad81eeeae59700e4f546a2a66c644a9d6a9fe5f9cae7f4a007df39eddf9a5b5",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": true,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": true,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": false,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 22,
+              "allowed_actions": [
+                "interview_users",
+                "build_feature",
+                "sell_pilot",
+                "change_price",
+                "abstain"
+              ],
+              "budget_cents": 120000,
+              "case_id": "ycfd-019",
+              "done": true,
+              "failure_codes": [],
+              "founder_hours": 8,
+              "interviews_completed": 3,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 60000,
+              "price_cents": 3500,
+              "qualified_pipeline": 10,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+                "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+              ],
+              "terminated": false,
+              "truncated": true,
+              "week": 4
+            },
+            "step": 3,
+            "trusted_action": {
+              "action_type": "sell_pilot",
+              "claim": {
+                "budget_after_cents": 120000,
+                "founder_hours_after": 8,
+                "observed_step": 3
+              },
+              "founder_hours": 14,
+              "rationale": "The sales motion continues to increase both MRR and qualified pipeline, and selling remains feasible within available founder hours.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+              "spend_cents": 10000
+            }
+          }
+        ],
+        "trajectory_sha256": "edc906ccde264aefcf46bfb09b443d6cf758423ab07152882a76ae1ac3ed456b"
+      },
+      "integrity_sha256": "2766623ca696c412ea5c7f49eb1bb62907a8674e3704dfb6e4f8a32ce4399092",
+      "policy": {
+        "mode": "inference",
+        "model": "gpt-5.6-terra",
+        "model_weight_updates": false,
+        "prompt_version": "observation-only-v0.1.0",
+        "provider": "codex-subagent"
+      },
+      "schema_version": "agent-episode-v0.1.0"
+    },
+    "19": {
+      "claims": {
+        "hard_reward_is_contract_compliance": true,
+        "model_weight_updates": false,
+        "observation_only": true
+      },
+      "episode": {
+        "initial_observation": {
+          "action_specs": [
+            {
+              "action_type": "interview_users",
+              "allowed": true,
+              "founder_hours": 8,
+              "spend_cents": 5000
+            },
+            {
+              "action_type": "build_feature",
+              "allowed": true,
+              "founder_hours": 24,
+              "spend_cents": 60000
+            },
+            {
+              "action_type": "sell_pilot",
+              "allowed": true,
+              "founder_hours": 14,
+              "spend_cents": 10000
+            },
+            {
+              "action_type": "fundraise",
+              "allowed": true,
+              "founder_hours": 20,
+              "spend_cents": 20000
+            },
+            {
+              "action_type": "change_price",
+              "allowed": false,
+              "founder_hours": 4,
+              "spend_cents": 2000
+            },
+            {
+              "action_type": "abstain",
+              "allowed": true,
+              "founder_hours": 1,
+              "spend_cents": 0
+            }
+          ],
+          "active_users": 23,
+          "allowed_actions": [
+            "interview_users",
+            "build_feature",
+            "sell_pilot",
+            "fundraise",
+            "abstain"
+          ],
+          "budget_cents": 180000,
+          "case_id": "ycfd-020",
+          "done": false,
+          "failure_codes": [],
+          "founder_hours": 72,
+          "interviews_completed": 4,
+          "metadata": {
+            "hard_reward_only": true,
+            "transition_model_version": "frozen-v0.1.0"
+          },
+          "mrr_cents": 10000,
+          "price_cents": 4000,
+          "qualified_pipeline": 3,
+          "reward": 0.0,
+          "reward_components": {
+            "action_validity": 0.0,
+            "budget_time_constraints": 0.0,
+            "future_leakage": 0.0,
+            "source_locator_validity": 0.0,
+            "state_arithmetic": 0.0
+          },
+          "source_locators": [
+            "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+            "https://www.ycombinator.com/blog/startup-school-videos"
+          ],
+          "terminated": false,
+          "truncated": false,
+          "week": 0
+        },
+        "seed": 19,
+        "steps": [
+          {
+            "decision": {
+              "action_type": "sell_pilot",
+              "rationale": "Qualified pipeline exists while revenue is low; prioritize converting demand into paid validation.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-videos"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "523fde7fb2b6415dd34ac645c033c7e0a59b6614d38af4c09fed066420fa2bfc",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": true,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": true,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": false,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 23,
+              "allowed_actions": [
+                "interview_users",
+                "build_feature",
+                "sell_pilot",
+                "fundraise",
+                "abstain"
+              ],
+              "budget_cents": 170000,
+              "case_id": "ycfd-020",
+              "done": false,
+              "failure_codes": [],
+              "founder_hours": 58,
+              "interviews_completed": 4,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 25000,
+              "price_cents": 4000,
+              "qualified_pipeline": 5,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+                "https://www.ycombinator.com/blog/startup-school-videos"
+              ],
+              "terminated": false,
+              "truncated": false,
+              "week": 1
+            },
+            "step": 0,
+            "trusted_action": {
+              "action_type": "sell_pilot",
+              "claim": {
+                "budget_after_cents": 170000,
+                "founder_hours_after": 58,
+                "observed_step": 0
+              },
+              "founder_hours": 14,
+              "rationale": "Qualified pipeline exists while revenue is low; prioritize converting demand into paid validation.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-videos",
+              "spend_cents": 10000
+            }
+          },
+          {
+            "decision": {
+              "action_type": "sell_pilot",
+              "rationale": "Pipeline and MRR are improving; continue converting qualified demand with a low-cost action.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-videos"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "5106dd04ccf5279f2e5aa8252d6444de3516dae49cc188ea285daf94394544fc",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": true,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": true,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": false,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 23,
+              "allowed_actions": [
+                "interview_users",
+                "build_feature",
+                "sell_pilot",
+                "fundraise",
+                "abstain"
+              ],
+              "budget_cents": 160000,
+              "case_id": "ycfd-020",
+              "done": false,
+              "failure_codes": [],
+              "founder_hours": 44,
+              "interviews_completed": 4,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 40000,
+              "price_cents": 4000,
+              "qualified_pipeline": 7,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+                "https://www.ycombinator.com/blog/startup-school-videos"
+              ],
+              "terminated": false,
+              "truncated": false,
+              "week": 2
+            },
+            "step": 1,
+            "trusted_action": {
+              "action_type": "sell_pilot",
+              "claim": {
+                "budget_after_cents": 160000,
+                "founder_hours_after": 44,
+                "observed_step": 1
+              },
+              "founder_hours": 14,
+              "rationale": "Pipeline and MRR are improving; continue converting qualified demand with a low-cost action.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-videos",
+              "spend_cents": 10000
+            }
+          },
+          {
+            "decision": {
+              "action_type": "sell_pilot",
+              "rationale": "Qualified pipeline and MRR continue rising; focus remaining capacity on converting demand.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-videos"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "22b42106947db1cf493403136f11488bd69b2ba309edf267c121b75cc0ff3938",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": true,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": true,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": false,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 23,
+              "allowed_actions": [
+                "interview_users",
+                "build_feature",
+                "sell_pilot",
+                "fundraise",
+                "abstain"
+              ],
+              "budget_cents": 150000,
+              "case_id": "ycfd-020",
+              "done": false,
+              "failure_codes": [],
+              "founder_hours": 30,
+              "interviews_completed": 4,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 55000,
+              "price_cents": 4000,
+              "qualified_pipeline": 9,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+                "https://www.ycombinator.com/blog/startup-school-videos"
+              ],
+              "terminated": false,
+              "truncated": false,
+              "week": 3
+            },
+            "step": 2,
+            "trusted_action": {
+              "action_type": "sell_pilot",
+              "claim": {
+                "budget_after_cents": 150000,
+                "founder_hours_after": 30,
+                "observed_step": 2
+              },
+              "founder_hours": 14,
+              "rationale": "Qualified pipeline and MRR continue rising; focus remaining capacity on converting demand.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-videos",
+              "spend_cents": 10000
+            }
+          },
+          {
+            "decision": {
+              "action_type": "sell_pilot",
+              "rationale": "Pipeline and MRR are growing; use available capacity to convert qualified prospects.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-videos"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "c9a3abfaa6e3bd64b3c9044ba7a18e90fbfcf519911a5121e0b239052ac329a8",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": true,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": true,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": false,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 23,
+              "allowed_actions": [
+                "interview_users",
+                "build_feature",
+                "sell_pilot",
+                "fundraise",
+                "abstain"
+              ],
+              "budget_cents": 140000,
+              "case_id": "ycfd-020",
+              "done": true,
+              "failure_codes": [],
+              "founder_hours": 16,
+              "interviews_completed": 4,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 70000,
+              "price_cents": 4000,
+              "qualified_pipeline": 11,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+                "https://www.ycombinator.com/blog/startup-school-videos"
+              ],
+              "terminated": false,
+              "truncated": true,
+              "week": 4
+            },
+            "step": 3,
+            "trusted_action": {
+              "action_type": "sell_pilot",
+              "claim": {
+                "budget_after_cents": 140000,
+                "founder_hours_after": 16,
+                "observed_step": 3
+              },
+              "founder_hours": 14,
+              "rationale": "Pipeline and MRR are growing; use available capacity to convert qualified prospects.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-videos",
+              "spend_cents": 10000
+            }
+          }
+        ],
+        "trajectory_sha256": "dcd9c3d4601ed18c323dabbadf9e6c0bca86a60a8727dbe0f8e1ca3dde79f83a"
+      },
+      "integrity_sha256": "1f8dcaae74a91192cfee751db8637cdff048916345dd42d0082c35eb797cf1fa",
+      "policy": {
+        "mode": "inference",
+        "model": "gpt-5.6-terra",
+        "model_weight_updates": false,
+        "prompt_version": "observation-only-v0.1.0",
+        "provider": "codex-subagent"
+      },
+      "schema_version": "agent-episode-v0.1.0"
+    },
+    "20": {
+      "claims": {
+        "hard_reward_is_contract_compliance": true,
+        "model_weight_updates": false,
+        "observation_only": true
+      },
+      "episode": {
+        "initial_observation": {
+          "action_specs": [
+            {
+              "action_type": "interview_users",
+              "allowed": true,
+              "founder_hours": 8,
+              "spend_cents": 5000
+            },
+            {
+              "action_type": "build_feature",
+              "allowed": true,
+              "founder_hours": 24,
+              "spend_cents": 60000
+            },
+            {
+              "action_type": "sell_pilot",
+              "allowed": true,
+              "founder_hours": 14,
+              "spend_cents": 10000
+            },
+            {
+              "action_type": "fundraise",
+              "allowed": true,
+              "founder_hours": 20,
+              "spend_cents": 20000
+            },
+            {
+              "action_type": "change_price",
+              "allowed": true,
+              "founder_hours": 4,
+              "spend_cents": 2000
+            },
+            {
+              "action_type": "abstain",
+              "allowed": false,
+              "founder_hours": 1,
+              "spend_cents": 0
+            }
+          ],
+          "active_users": 24,
+          "allowed_actions": [
+            "interview_users",
+            "build_feature",
+            "sell_pilot",
+            "fundraise",
+            "change_price"
+          ],
+          "budget_cents": 120000,
+          "case_id": "ycfd-021",
+          "done": false,
+          "failure_codes": [],
+          "founder_hours": 80,
+          "interviews_completed": 0,
+          "metadata": {
+            "hard_reward_only": true,
+            "transition_model_version": "frozen-v0.1.0"
+          },
+          "mrr_cents": 20000,
+          "price_cents": 2000,
+          "qualified_pipeline": 0,
+          "reward": 0.0,
+          "reward_components": {
+            "action_validity": 0.0,
+            "budget_time_constraints": 0.0,
+            "future_leakage": 0.0,
+            "source_locator_validity": 0.0,
+            "state_arithmetic": 0.0
+          },
+          "source_locators": [
+            "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+            "https://www.ycombinator.com/blog/startup-school-videos"
+          ],
+          "terminated": false,
+          "truncated": false,
+          "week": 0
+        },
+        "seed": 20,
+        "steps": [
+          {
+            "decision": {
+              "action_type": "interview_users",
+              "rationale": "With 24 active users but no completed interviews or qualified pipeline, the lowest-cost action most directly reduces uncertainty before committing substantial build, sales, fundraising, or pricing effort.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "8ed424d00e4b77fed08e72bea9aba00020675e467b6c9c1f113066528a073950",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": true,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": true,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": false,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 25,
+              "allowed_actions": [
+                "interview_users",
+                "build_feature",
+                "sell_pilot",
+                "fundraise",
+                "change_price"
+              ],
+              "budget_cents": 115000,
+              "case_id": "ycfd-021",
+              "done": false,
+              "failure_codes": [],
+              "founder_hours": 72,
+              "interviews_completed": 4,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 20000,
+              "price_cents": 2000,
+              "qualified_pipeline": 0,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+                "https://www.ycombinator.com/blog/startup-school-videos"
+              ],
+              "terminated": false,
+              "truncated": false,
+              "week": 1
+            },
+            "step": 0,
+            "trusted_action": {
+              "action_type": "interview_users",
+              "claim": {
+                "budget_after_cents": 115000,
+                "founder_hours_after": 72,
+                "observed_step": 0
+              },
+              "founder_hours": 8,
+              "rationale": "With 24 active users but no completed interviews or qualified pipeline, the lowest-cost action most directly reduces uncertainty before committing substantial build, sales, fundraising, or pricing effort.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+              "spend_cents": 5000
+            }
+          },
+          {
+            "decision": {
+              "action_type": "sell_pilot",
+              "rationale": "Four user interviews have established initial contact while 25 active users and existing MRR indicate a live base; pursuing a pilot is the most direct next test of willingness to pay and can create qualified demand without the larger commitments of building or fundraising.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-videos"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "f4482f3d1ce9864d09e7f2abbe5425f0f28731b448721e90bd0e121be6e89e7b",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": true,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": true,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": false,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 25,
+              "allowed_actions": [
+                "interview_users",
+                "build_feature",
+                "sell_pilot",
+                "fundraise",
+                "change_price"
+              ],
+              "budget_cents": 105000,
+              "case_id": "ycfd-021",
+              "done": false,
+              "failure_codes": [],
+              "founder_hours": 58,
+              "interviews_completed": 4,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 35000,
+              "price_cents": 2000,
+              "qualified_pipeline": 2,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+                "https://www.ycombinator.com/blog/startup-school-videos"
+              ],
+              "terminated": false,
+              "truncated": false,
+              "week": 2
+            },
+            "step": 1,
+            "trusted_action": {
+              "action_type": "sell_pilot",
+              "claim": {
+                "budget_after_cents": 105000,
+                "founder_hours_after": 58,
+                "observed_step": 1
+              },
+              "founder_hours": 14,
+              "rationale": "Four user interviews have established initial contact while 25 active users and existing MRR indicate a live base; pursuing a pilot is the most direct next test of willingness to pay and can create qualified demand without the larger commitments of building or fundraising.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-videos",
+              "spend_cents": 10000
+            }
+          },
+          {
+            "decision": {
+              "action_type": "build_feature",
+              "rationale": "The prior signals now include two qualified prospects and increased MRR, providing a concrete basis to invest in a focused feature that serves demonstrated demand; the budget and founder-hour requirements remain feasible.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-videos"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "3d4f4032ce08aaa5b030ad68fb0bdf1a0f209264a32bc338bdc46b9607868c58",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": true,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": true,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": false,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 28,
+              "allowed_actions": [
+                "interview_users",
+                "build_feature",
+                "sell_pilot",
+                "fundraise",
+                "change_price"
+              ],
+              "budget_cents": 45000,
+              "case_id": "ycfd-021",
+              "done": false,
+              "failure_codes": [],
+              "founder_hours": 34,
+              "interviews_completed": 4,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 35000,
+              "price_cents": 2000,
+              "qualified_pipeline": 2,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+                "https://www.ycombinator.com/blog/startup-school-videos"
+              ],
+              "terminated": false,
+              "truncated": false,
+              "week": 3
+            },
+            "step": 2,
+            "trusted_action": {
+              "action_type": "build_feature",
+              "claim": {
+                "budget_after_cents": 45000,
+                "founder_hours_after": 34,
+                "observed_step": 2
+              },
+              "founder_hours": 24,
+              "rationale": "The prior signals now include two qualified prospects and increased MRR, providing a concrete basis to invest in a focused feature that serves demonstrated demand; the budget and founder-hour requirements remain feasible.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-videos",
+              "spend_cents": 60000
+            }
+          },
+          {
+            "decision": {
+              "action_type": "sell_pilot",
+              "rationale": "With two qualified prospects, stable MRR, and insufficient budget for the feature build, converting demand through additional pilots is the most feasible action to strengthen revenue and validation within the remaining budget and founder hours.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-videos"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "d2e0269f9e7da446c6b6f8e3593b4d3339d3ba2be34435e6e1c0ec4dfbc18f3d",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": true,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": true,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": false,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 28,
+              "allowed_actions": [
+                "interview_users",
+                "build_feature",
+                "sell_pilot",
+                "fundraise",
+                "change_price"
+              ],
+              "budget_cents": 35000,
+              "case_id": "ycfd-021",
+              "done": true,
+              "failure_codes": [],
+              "founder_hours": 20,
+              "interviews_completed": 4,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 50000,
+              "price_cents": 2000,
+              "qualified_pipeline": 4,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky",
+                "https://www.ycombinator.com/blog/startup-school-videos"
+              ],
+              "terminated": false,
+              "truncated": true,
+              "week": 4
+            },
+            "step": 3,
+            "trusted_action": {
+              "action_type": "sell_pilot",
+              "claim": {
+                "budget_after_cents": 35000,
+                "founder_hours_after": 20,
+                "observed_step": 3
+              },
+              "founder_hours": 14,
+              "rationale": "With two qualified prospects, stable MRR, and insufficient budget for the feature build, converting demand through additional pilots is the most feasible action to strengthen revenue and validation within the remaining budget and founder hours.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-videos",
+              "spend_cents": 10000
+            }
+          }
+        ],
+        "trajectory_sha256": "d5c2599d0e43f844c1914152cbd3a5c763a14117a2d3306a33fc0650cbbe421a"
+      },
+      "integrity_sha256": "556fa264452ab14406371214284c8b39582758f6170bc8c29006284994119979",
+      "policy": {
+        "mode": "inference",
+        "model": "gpt-5.6-terra",
+        "model_weight_updates": false,
+        "prompt_version": "observation-only-v0.1.0",
+        "provider": "codex-subagent"
+      },
+      "schema_version": "agent-episode-v0.1.0"
+    },
+    "21": {
+      "claims": {
+        "hard_reward_is_contract_compliance": true,
+        "model_weight_updates": false,
+        "observation_only": true
+      },
+      "episode": {
+        "initial_observation": {
+          "action_specs": [
+            {
+              "action_type": "interview_users",
+              "allowed": false,
+              "founder_hours": 8,
+              "spend_cents": 5000
+            },
+            {
+              "action_type": "build_feature",
+              "allowed": true,
+              "founder_hours": 24,
+              "spend_cents": 60000
+            },
+            {
+              "action_type": "sell_pilot",
+              "allowed": true,
+              "founder_hours": 14,
+              "spend_cents": 10000
+            },
+            {
+              "action_type": "fundraise",
+              "allowed": true,
+              "founder_hours": 20,
+              "spend_cents": 20000
+            },
+            {
+              "action_type": "change_price",
+              "allowed": true,
+              "founder_hours": 4,
+              "spend_cents": 2000
+            },
+            {
+              "action_type": "abstain",
+              "allowed": true,
+              "founder_hours": 1,
+              "spend_cents": 0
+            }
+          ],
+          "active_users": 25,
+          "allowed_actions": [
+            "build_feature",
+            "sell_pilot",
+            "fundraise",
+            "change_price",
+            "abstain"
+          ],
+          "budget_cents": 140000,
+          "case_id": "ycfd-022",
+          "done": false,
+          "failure_codes": [],
+          "founder_hours": 64,
+          "interviews_completed": 1,
+          "metadata": {
+            "hard_reward_only": true,
+            "transition_model_version": "frozen-v0.1.0"
+          },
+          "mrr_cents": 30000,
+          "price_cents": 2500,
+          "qualified_pipeline": 1,
+          "reward": 0.0,
+          "reward_components": {
+            "action_validity": 0.0,
+            "budget_time_constraints": 0.0,
+            "future_leakage": 0.0,
+            "source_locator_validity": 0.0,
+            "state_arithmetic": 0.0
+          },
+          "source_locators": [
+            "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+            "https://www.ycombinator.com/blog/startup-school-videos"
+          ],
+          "terminated": false,
+          "truncated": false,
+          "week": 0
+        },
+        "seed": 21,
+        "steps": [
+          {
+            "decision": {
+              "action_type": "sell_pilot",
+              "rationale": "A qualified pipeline opportunity can be converted with modest spend and founder time, producing clearer demand evidence than building before more user learning.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "0ddb2e7ea3a1a142e7a56c7ac6be35aad344f7da079d3a61483038f9001a57f2",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": false,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": true,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": true,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 25,
+              "allowed_actions": [
+                "build_feature",
+                "sell_pilot",
+                "fundraise",
+                "change_price",
+                "abstain"
+              ],
+              "budget_cents": 130000,
+              "case_id": "ycfd-022",
+              "done": false,
+              "failure_codes": [],
+              "founder_hours": 50,
+              "interviews_completed": 1,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 45000,
+              "price_cents": 2500,
+              "qualified_pipeline": 3,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+                "https://www.ycombinator.com/blog/startup-school-videos"
+              ],
+              "terminated": false,
+              "truncated": false,
+              "week": 1
+            },
+            "step": 0,
+            "trusted_action": {
+              "action_type": "sell_pilot",
+              "claim": {
+                "budget_after_cents": 130000,
+                "founder_hours_after": 50,
+                "observed_step": 0
+              },
+              "founder_hours": 14,
+              "rationale": "A qualified pipeline opportunity can be converted with modest spend and founder time, producing clearer demand evidence than building before more user learning.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+              "spend_cents": 10000
+            }
+          },
+          {
+            "decision": {
+              "action_type": "sell_pilot",
+              "rationale": "Qualified pipeline has grown to three while resources remain sufficient; prioritize converting demonstrated demand into revenue before committing to higher-cost development or fundraising.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "890a254926b1256e70c6657f609f571aa99ff3afcd5aafa8e805b65a3f670185",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": false,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": true,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": true,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 25,
+              "allowed_actions": [
+                "build_feature",
+                "sell_pilot",
+                "fundraise",
+                "change_price",
+                "abstain"
+              ],
+              "budget_cents": 120000,
+              "case_id": "ycfd-022",
+              "done": false,
+              "failure_codes": [],
+              "founder_hours": 36,
+              "interviews_completed": 1,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 60000,
+              "price_cents": 2500,
+              "qualified_pipeline": 5,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+                "https://www.ycombinator.com/blog/startup-school-videos"
+              ],
+              "terminated": false,
+              "truncated": false,
+              "week": 2
+            },
+            "step": 1,
+            "trusted_action": {
+              "action_type": "sell_pilot",
+              "claim": {
+                "budget_after_cents": 120000,
+                "founder_hours_after": 36,
+                "observed_step": 1
+              },
+              "founder_hours": 14,
+              "rationale": "Qualified pipeline has grown to three while resources remain sufficient; prioritize converting demonstrated demand into revenue before committing to higher-cost development or fundraising.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+              "spend_cents": 10000
+            }
+          },
+          {
+            "decision": {
+              "action_type": "sell_pilot",
+              "rationale": "The qualified pipeline continues to expand and MRR is increasing; use the available 14 founder hours to convert demand while preserving capital for later product decisions.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "bfb6ba300855fde1650fa71a45a91db129bfc2227712245cdddd8f21f90e1ea6",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": false,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": true,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": true,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 25,
+              "allowed_actions": [
+                "build_feature",
+                "sell_pilot",
+                "fundraise",
+                "change_price",
+                "abstain"
+              ],
+              "budget_cents": 110000,
+              "case_id": "ycfd-022",
+              "done": false,
+              "failure_codes": [],
+              "founder_hours": 22,
+              "interviews_completed": 1,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 75000,
+              "price_cents": 2500,
+              "qualified_pipeline": 7,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+                "https://www.ycombinator.com/blog/startup-school-videos"
+              ],
+              "terminated": false,
+              "truncated": false,
+              "week": 3
+            },
+            "step": 2,
+            "trusted_action": {
+              "action_type": "sell_pilot",
+              "claim": {
+                "budget_after_cents": 110000,
+                "founder_hours_after": 22,
+                "observed_step": 2
+              },
+              "founder_hours": 14,
+              "rationale": "The qualified pipeline continues to expand and MRR is increasing; use the available 14 founder hours to convert demand while preserving capital for later product decisions.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+              "spend_cents": 10000
+            }
+          },
+          {
+            "decision": {
+              "action_type": "sell_pilot",
+              "rationale": "Seven qualified prospects and rising MRR indicate strong near-term conversion potential; selling pilots fits within the remaining budget and 22 founder hours.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "94b20de36e1e606288a11660a254b484b4e735f2259a5f49c2c9d6bc63f9ed05",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": false,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": true,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": true,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 25,
+              "allowed_actions": [
+                "build_feature",
+                "sell_pilot",
+                "fundraise",
+                "change_price",
+                "abstain"
+              ],
+              "budget_cents": 100000,
+              "case_id": "ycfd-022",
+              "done": true,
+              "failure_codes": [],
+              "founder_hours": 8,
+              "interviews_completed": 1,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 90000,
+              "price_cents": 2500,
+              "qualified_pipeline": 9,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+                "https://www.ycombinator.com/blog/startup-school-videos"
+              ],
+              "terminated": false,
+              "truncated": true,
+              "week": 4
+            },
+            "step": 3,
+            "trusted_action": {
+              "action_type": "sell_pilot",
+              "claim": {
+                "budget_after_cents": 100000,
+                "founder_hours_after": 8,
+                "observed_step": 3
+              },
+              "founder_hours": 14,
+              "rationale": "Seven qualified prospects and rising MRR indicate strong near-term conversion potential; selling pilots fits within the remaining budget and 22 founder hours.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+              "spend_cents": 10000
+            }
+          }
+        ],
+        "trajectory_sha256": "20aa1665241a457c32e0aa467ce09555ca6d4dd3902b815602904bd3cc9d0ddc"
+      },
+      "integrity_sha256": "91518a8e67f2d7f569e5cb235f8bc3d617d7451c0d6f82910b689bea7cf98eb1",
+      "policy": {
+        "mode": "inference",
+        "model": "gpt-5.6-terra",
+        "model_weight_updates": false,
+        "prompt_version": "observation-only-v0.1.0",
+        "provider": "codex-subagent"
+      },
+      "schema_version": "agent-episode-v0.1.0"
+    },
+    "22": {
+      "claims": {
+        "hard_reward_is_contract_compliance": true,
+        "model_weight_updates": false,
+        "observation_only": true
+      },
+      "episode": {
+        "initial_observation": {
+          "action_specs": [
+            {
+              "action_type": "interview_users",
+              "allowed": true,
+              "founder_hours": 8,
+              "spend_cents": 5000
+            },
+            {
+              "action_type": "build_feature",
+              "allowed": false,
+              "founder_hours": 24,
+              "spend_cents": 60000
+            },
+            {
+              "action_type": "sell_pilot",
+              "allowed": true,
+              "founder_hours": 14,
+              "spend_cents": 10000
+            },
+            {
+              "action_type": "fundraise",
+              "allowed": true,
+              "founder_hours": 20,
+              "spend_cents": 20000
+            },
+            {
+              "action_type": "change_price",
+              "allowed": true,
+              "founder_hours": 4,
+              "spend_cents": 2000
+            },
+            {
+              "action_type": "abstain",
+              "allowed": true,
+              "founder_hours": 1,
+              "spend_cents": 0
+            }
+          ],
+          "active_users": 26,
+          "allowed_actions": [
+            "interview_users",
+            "sell_pilot",
+            "fundraise",
+            "change_price",
+            "abstain"
+          ],
+          "budget_cents": 160000,
+          "case_id": "ycfd-023",
+          "done": false,
+          "failure_codes": [],
+          "founder_hours": 72,
+          "interviews_completed": 2,
+          "metadata": {
+            "hard_reward_only": true,
+            "transition_model_version": "frozen-v0.1.0"
+          },
+          "mrr_cents": 40000,
+          "price_cents": 3000,
+          "qualified_pipeline": 2,
+          "reward": 0.0,
+          "reward_components": {
+            "action_validity": 0.0,
+            "budget_time_constraints": 0.0,
+            "future_leakage": 0.0,
+            "source_locator_validity": 0.0,
+            "state_arithmetic": 0.0
+          },
+          "source_locators": [
+            "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+            "https://www.ycombinator.com/blog/startup-school-videos"
+          ],
+          "terminated": false,
+          "truncated": false,
+          "week": 0
+        },
+        "seed": 22,
+        "steps": [
+          {
+            "decision": {
+              "action_type": "interview_users",
+              "rationale": "Only 2 interviews are completed; this is the lowest-cost evidence-gathering action among meaningful options (5000 cents, 8 founder-hours).",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-videos"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "6d4e4ecbf94088d397f366dc126714ea4e4ad8bb3aba1e7d7c6197e61c203235",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": false,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": true,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 27,
+              "allowed_actions": [
+                "interview_users",
+                "sell_pilot",
+                "fundraise",
+                "change_price",
+                "abstain"
+              ],
+              "budget_cents": 155000,
+              "case_id": "ycfd-023",
+              "done": false,
+              "failure_codes": [],
+              "founder_hours": 64,
+              "interviews_completed": 6,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 40000,
+              "price_cents": 3000,
+              "qualified_pipeline": 2,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+                "https://www.ycombinator.com/blog/startup-school-videos"
+              ],
+              "terminated": false,
+              "truncated": false,
+              "week": 1
+            },
+            "step": 0,
+            "trusted_action": {
+              "action_type": "interview_users",
+              "claim": {
+                "budget_after_cents": 155000,
+                "founder_hours_after": 64,
+                "observed_step": 0
+              },
+              "founder_hours": 8,
+              "rationale": "Only 2 interviews are completed; this is the lowest-cost evidence-gathering action among meaningful options (5000 cents, 8 founder-hours).",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-videos",
+              "spend_cents": 5000
+            }
+          },
+          {
+            "decision": {
+              "action_type": "sell_pilot",
+              "rationale": "With 6 interviews completed and 2 qualified pipeline opportunities, selling a pilot converts existing demand evidence using 10000 cents and 14 founder-hours.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "3b40895e61dc99786ca51c29fa5c2a79254e253ab583cad51b27129fb57a0d42",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": false,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": true,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 27,
+              "allowed_actions": [
+                "interview_users",
+                "sell_pilot",
+                "fundraise",
+                "change_price",
+                "abstain"
+              ],
+              "budget_cents": 145000,
+              "case_id": "ycfd-023",
+              "done": false,
+              "failure_codes": [],
+              "founder_hours": 50,
+              "interviews_completed": 6,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 55000,
+              "price_cents": 3000,
+              "qualified_pipeline": 4,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+                "https://www.ycombinator.com/blog/startup-school-videos"
+              ],
+              "terminated": false,
+              "truncated": false,
+              "week": 2
+            },
+            "step": 1,
+            "trusted_action": {
+              "action_type": "sell_pilot",
+              "claim": {
+                "budget_after_cents": 145000,
+                "founder_hours_after": 50,
+                "observed_step": 1
+              },
+              "founder_hours": 14,
+              "rationale": "With 6 interviews completed and 2 qualified pipeline opportunities, selling a pilot converts existing demand evidence using 10000 cents and 14 founder-hours.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+              "spend_cents": 10000
+            }
+          },
+          {
+            "decision": {
+              "action_type": "sell_pilot",
+              "rationale": "Qualified pipeline has grown to 4 and MRR to 55000 cents; selling a pilot focuses the available 145000 cents and 50 founder-hours on conversion.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "c7dd1ef4d73d47ce0b4415c198d0545cf96ceb56f4d58aad3abf751481a151a6",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": false,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": true,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 27,
+              "allowed_actions": [
+                "interview_users",
+                "sell_pilot",
+                "fundraise",
+                "change_price",
+                "abstain"
+              ],
+              "budget_cents": 135000,
+              "case_id": "ycfd-023",
+              "done": false,
+              "failure_codes": [],
+              "founder_hours": 36,
+              "interviews_completed": 6,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 70000,
+              "price_cents": 3000,
+              "qualified_pipeline": 6,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+                "https://www.ycombinator.com/blog/startup-school-videos"
+              ],
+              "terminated": false,
+              "truncated": false,
+              "week": 3
+            },
+            "step": 2,
+            "trusted_action": {
+              "action_type": "sell_pilot",
+              "claim": {
+                "budget_after_cents": 135000,
+                "founder_hours_after": 36,
+                "observed_step": 2
+              },
+              "founder_hours": 14,
+              "rationale": "Qualified pipeline has grown to 4 and MRR to 55000 cents; selling a pilot focuses the available 145000 cents and 50 founder-hours on conversion.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+              "spend_cents": 10000
+            }
+          },
+          {
+            "decision": {
+              "action_type": "sell_pilot",
+              "rationale": "The qualified pipeline is 6 and MRR is 70000 cents; selling a pilot is an allowed conversion action within the remaining 135000-cent budget and 36 founder-hours.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "a487f04a1631109ab1bf5866e7d3f063c0ef120c0d6d20788780b14ddd67da99",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": false,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": true,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 27,
+              "allowed_actions": [
+                "interview_users",
+                "sell_pilot",
+                "fundraise",
+                "change_price",
+                "abstain"
+              ],
+              "budget_cents": 125000,
+              "case_id": "ycfd-023",
+              "done": true,
+              "failure_codes": [],
+              "founder_hours": 22,
+              "interviews_completed": 6,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 85000,
+              "price_cents": 3000,
+              "qualified_pipeline": 8,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+                "https://www.ycombinator.com/blog/startup-school-videos"
+              ],
+              "terminated": false,
+              "truncated": true,
+              "week": 4
+            },
+            "step": 3,
+            "trusted_action": {
+              "action_type": "sell_pilot",
+              "claim": {
+                "budget_after_cents": 125000,
+                "founder_hours_after": 22,
+                "observed_step": 3
+              },
+              "founder_hours": 14,
+              "rationale": "The qualified pipeline is 6 and MRR is 70000 cents; selling a pilot is an allowed conversion action within the remaining 135000-cent budget and 36 founder-hours.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+              "spend_cents": 10000
+            }
+          }
+        ],
+        "trajectory_sha256": "6a3b667f7c705a7f376feb2fd1a0b5c101a9aba9e6ced53ec0351197478d7fb8"
+      },
+      "integrity_sha256": "eb98863de2992fb05af0018324032181972201c956930d3a2a8e4d451099ed33",
+      "policy": {
+        "mode": "inference",
+        "model": "gpt-5.6-terra",
+        "model_weight_updates": false,
+        "prompt_version": "observation-only-v0.1.0",
+        "provider": "codex-subagent"
+      },
+      "schema_version": "agent-episode-v0.1.0"
+    },
+    "23": {
+      "claims": {
+        "hard_reward_is_contract_compliance": true,
+        "model_weight_updates": false,
+        "observation_only": true
+      },
+      "episode": {
+        "initial_observation": {
+          "action_specs": [
+            {
+              "action_type": "interview_users",
+              "allowed": true,
+              "founder_hours": 8,
+              "spend_cents": 5000
+            },
+            {
+              "action_type": "build_feature",
+              "allowed": true,
+              "founder_hours": 24,
+              "spend_cents": 60000
+            },
+            {
+              "action_type": "sell_pilot",
+              "allowed": false,
+              "founder_hours": 14,
+              "spend_cents": 10000
+            },
+            {
+              "action_type": "fundraise",
+              "allowed": true,
+              "founder_hours": 20,
+              "spend_cents": 20000
+            },
+            {
+              "action_type": "change_price",
+              "allowed": true,
+              "founder_hours": 4,
+              "spend_cents": 2000
+            },
+            {
+              "action_type": "abstain",
+              "allowed": true,
+              "founder_hours": 1,
+              "spend_cents": 0
+            }
+          ],
+          "active_users": 27,
+          "allowed_actions": [
+            "interview_users",
+            "build_feature",
+            "fundraise",
+            "change_price",
+            "abstain"
+          ],
+          "budget_cents": 180000,
+          "case_id": "ycfd-024",
+          "done": false,
+          "failure_codes": [],
+          "founder_hours": 80,
+          "interviews_completed": 3,
+          "metadata": {
+            "hard_reward_only": true,
+            "transition_model_version": "frozen-v0.1.0"
+          },
+          "mrr_cents": 50000,
+          "price_cents": 3500,
+          "qualified_pipeline": 3,
+          "reward": 0.0,
+          "reward_components": {
+            "action_validity": 0.0,
+            "budget_time_constraints": 0.0,
+            "future_leakage": 0.0,
+            "source_locator_validity": 0.0,
+            "state_arithmetic": 0.0
+          },
+          "source_locators": [
+            "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+            "https://www.ycombinator.com/blog/startup-school-videos"
+          ],
+          "terminated": false,
+          "truncated": false,
+          "week": 0
+        },
+        "seed": 23,
+        "steps": [
+          {
+            "decision": {
+              "action_type": "interview_users",
+              "rationale": "With only three interviews completed, prioritize learning from existing users before allocating substantial build or fundraising resources.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "2ac00a5647f7f2cd7f61bd2649cbeeaca7c3867e133c335ea5ba76c3803e355f",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": true,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": false,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 28,
+              "allowed_actions": [
+                "interview_users",
+                "build_feature",
+                "fundraise",
+                "change_price",
+                "abstain"
+              ],
+              "budget_cents": 175000,
+              "case_id": "ycfd-024",
+              "done": false,
+              "failure_codes": [],
+              "founder_hours": 72,
+              "interviews_completed": 7,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 50000,
+              "price_cents": 3500,
+              "qualified_pipeline": 3,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+                "https://www.ycombinator.com/blog/startup-school-videos"
+              ],
+              "terminated": false,
+              "truncated": false,
+              "week": 1
+            },
+            "step": 0,
+            "trusted_action": {
+              "action_type": "interview_users",
+              "claim": {
+                "budget_after_cents": 175000,
+                "founder_hours_after": 72,
+                "observed_step": 0
+              },
+              "founder_hours": 8,
+              "rationale": "With only three interviews completed, prioritize learning from existing users before allocating substantial build or fundraising resources.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+              "spend_cents": 5000
+            }
+          },
+          {
+            "decision": {
+              "action_type": "interview_users",
+              "rationale": "Seven interviews provide early signal, but the small user base and unchanged revenue support gathering more user evidence before committing 24 founder-hours and 60,000 cents to a feature.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "da7f417f9dc0a4afbb5956affcbe9ecd2422ad1e14c50e66a85586ae0e935d0c",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": true,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": false,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 29,
+              "allowed_actions": [
+                "interview_users",
+                "build_feature",
+                "fundraise",
+                "change_price",
+                "abstain"
+              ],
+              "budget_cents": 170000,
+              "case_id": "ycfd-024",
+              "done": false,
+              "failure_codes": [],
+              "founder_hours": 64,
+              "interviews_completed": 11,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 50000,
+              "price_cents": 3500,
+              "qualified_pipeline": 3,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+                "https://www.ycombinator.com/blog/startup-school-videos"
+              ],
+              "terminated": false,
+              "truncated": false,
+              "week": 2
+            },
+            "step": 1,
+            "trusted_action": {
+              "action_type": "interview_users",
+              "claim": {
+                "budget_after_cents": 170000,
+                "founder_hours_after": 64,
+                "observed_step": 1
+              },
+              "founder_hours": 8,
+              "rationale": "Seven interviews provide early signal, but the small user base and unchanged revenue support gathering more user evidence before committing 24 founder-hours and 60,000 cents to a feature.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+              "spend_cents": 5000
+            }
+          },
+          {
+            "decision": {
+              "action_type": "build_feature",
+              "rationale": "With 11 completed interviews and sufficient remaining budget and founder capacity, invest in a focused feature to test the user evidence in product usage.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "44250e431ea92457e0725384bb61ed583c693564af26717b5b7b84cef5de4713",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": true,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": false,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 32,
+              "allowed_actions": [
+                "interview_users",
+                "build_feature",
+                "fundraise",
+                "change_price",
+                "abstain"
+              ],
+              "budget_cents": 110000,
+              "case_id": "ycfd-024",
+              "done": false,
+              "failure_codes": [],
+              "founder_hours": 40,
+              "interviews_completed": 11,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 50000,
+              "price_cents": 3500,
+              "qualified_pipeline": 3,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+                "https://www.ycombinator.com/blog/startup-school-videos"
+              ],
+              "terminated": false,
+              "truncated": false,
+              "week": 3
+            },
+            "step": 2,
+            "trusted_action": {
+              "action_type": "build_feature",
+              "claim": {
+                "budget_after_cents": 110000,
+                "founder_hours_after": 40,
+                "observed_step": 2
+              },
+              "founder_hours": 24,
+              "rationale": "With 11 completed interviews and sufficient remaining budget and founder capacity, invest in a focused feature to test the user evidence in product usage.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+              "spend_cents": 60000
+            }
+          },
+          {
+            "decision": {
+              "action_type": "change_price",
+              "rationale": "With 11 interviews completed and limited remaining capacity, a low-cost price test can generate direct monetization evidence without the large resource commitment of another feature build.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+            },
+            "failure_codes": [],
+            "hard_reward": 1.0,
+            "hard_reward_components": {
+              "action_validity": 0.2,
+              "budget_time_constraints": 0.2,
+              "future_leakage": 0.2,
+              "source_locator_validity": 0.2,
+              "state_arithmetic": 0.2
+            },
+            "input_observation_sha256": "a321055906f9dc0738da08ba05a03d9a28a3a23e74abe93550e9f9266b507013",
+            "observation": {
+              "action_specs": [
+                {
+                  "action_type": "interview_users",
+                  "allowed": true,
+                  "founder_hours": 8,
+                  "spend_cents": 5000
+                },
+                {
+                  "action_type": "build_feature",
+                  "allowed": true,
+                  "founder_hours": 24,
+                  "spend_cents": 60000
+                },
+                {
+                  "action_type": "sell_pilot",
+                  "allowed": false,
+                  "founder_hours": 14,
+                  "spend_cents": 10000
+                },
+                {
+                  "action_type": "fundraise",
+                  "allowed": true,
+                  "founder_hours": 20,
+                  "spend_cents": 20000
+                },
+                {
+                  "action_type": "change_price",
+                  "allowed": true,
+                  "founder_hours": 4,
+                  "spend_cents": 2000
+                },
+                {
+                  "action_type": "abstain",
+                  "allowed": true,
+                  "founder_hours": 1,
+                  "spend_cents": 0
+                }
+              ],
+              "active_users": 32,
+              "allowed_actions": [
+                "interview_users",
+                "build_feature",
+                "fundraise",
+                "change_price",
+                "abstain"
+              ],
+              "budget_cents": 108000,
+              "case_id": "ycfd-024",
+              "done": true,
+              "failure_codes": [],
+              "founder_hours": 36,
+              "interviews_completed": 11,
+              "metadata": {
+                "hard_reward_only": true,
+                "transition_model_version": "frozen-v0.1.0"
+              },
+              "mrr_cents": 55000,
+              "price_cents": 4000,
+              "qualified_pipeline": 3,
+              "reward": 1.0,
+              "reward_components": {
+                "action_validity": 0.2,
+                "budget_time_constraints": 0.2,
+                "future_leakage": 0.2,
+                "source_locator_validity": 0.2,
+                "state_arithmetic": 0.2
+              },
+              "source_locators": [
+                "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+                "https://www.ycombinator.com/blog/startup-school-videos"
+              ],
+              "terminated": false,
+              "truncated": true,
+              "week": 4
+            },
+            "step": 3,
+            "trusted_action": {
+              "action_type": "change_price",
+              "claim": {
+                "budget_after_cents": 108000,
+                "founder_hours_after": 36,
+                "observed_step": 3
+              },
+              "founder_hours": 4,
+              "rationale": "With 11 interviews completed and limited remaining capacity, a low-cost price test can generate direct monetization evidence without the large resource commitment of another feature build.",
+              "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum",
+              "spend_cents": 2000
+            }
+          }
+        ],
+        "trajectory_sha256": "c875c3a868a6f6a0eba9dc33cf76727c68a0c2465405a5a193ba0ed7847e692c"
+      },
+      "integrity_sha256": "5cb5a421f5eaa64e4aba9a8b2547acd3f1bba7f4849d3227d810ff6570c3ba57",
+      "policy": {
+        "mode": "inference",
+        "model": "gpt-5.6-terra",
+        "model_weight_updates": false,
+        "prompt_version": "observation-only-v0.1.0",
+        "provider": "codex-subagent"
+      },
+      "schema_version": "agent-episode-v0.1.0"
+    }
+  },
+  "integrity_sha256": "de40fc5cf0754deebad1ee80716de6e6bad8efa12abcc7b6353b6679183cbc3f",
+  "schema_version": "terra-agent-episodes-v0.1.0"
+}
