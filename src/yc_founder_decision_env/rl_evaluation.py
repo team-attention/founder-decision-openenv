@@ -40,6 +40,20 @@ REQUIRED_POLICY_FAMILIES = {
 Policy = Callable[[FounderObservation], AgentDecision]
 
 
+def _frozen_report_metadata() -> dict[str, Any]:
+    return {
+        "dataset_revision": "0.1.0",
+        "transition_model_version": "frozen-v0.1.0",
+        "verifier_version": "verifier-v0.1.0",
+        "utility_version": SYNTHETIC_UTILITY_VERSION,
+        "training_seeds": list(TRAINING_SEEDS),
+        "combined_reward": None,
+        "combined_reward_reason": (
+            "hard reward and synthetic utility are intentionally not scalarized"
+        ),
+    }
+
+
 def _decision(observation: FounderObservation, action: ActionName, label: str) -> AgentDecision:
     return AgentDecision(
         action_type=action,
@@ -334,6 +348,8 @@ def _q_runs(q_artifact: dict[str, Any]) -> list[tuple[str, list[dict[str, Any]]]
             raise ValueError("INVALID_Q_FROZEN_CONFIG")
         if not isinstance(table, list) or not all(isinstance(row, dict) for row in table):
             raise ValueError("INVALID_Q_TABLE")
+        if not table:
+            raise ValueError("EMPTY_Q_TABLE")
         _validate_q_table(cast(list[dict[str, Any]], table))
         if (
             run.get("training_seeds") != list(TRAINING_SEEDS)
@@ -431,16 +447,8 @@ def build_held_out_report(
     }
     payload: dict[str, Any] = {
         "schema_version": REPORT_SCHEMA_VERSION,
-        "dataset_revision": "0.1.0",
-        "transition_model_version": "frozen-v0.1.0",
-        "verifier_version": "verifier-v0.1.0",
-        "utility_version": SYNTHETIC_UTILITY_VERSION,
-        "training_seeds": list(range(16)),
+        **_frozen_report_metadata(),
         "held_out_seeds": list(HELD_OUT_SEEDS),
-        "combined_reward": None,
-        "combined_reward_reason": (
-            "hard reward and synthetic utility are intentionally not scalarized"
-        ),
         "policies": policies,
     }
     payload["terra_ledger"] = terra_ledger
@@ -454,6 +462,12 @@ def verify_held_out_replay(report: dict[str, Any]) -> bool:
     if not verify_artifact(report):
         return False
     if report.get("schema_version") != REPORT_SCHEMA_VERSION:
+        return False
+    expected_metadata = _frozen_report_metadata()
+    if any(
+        field not in report or report[field] != value
+        for field, value in expected_metadata.items()
+    ):
         return False
     if report.get("held_out_seeds") != list(HELD_OUT_SEEDS):
         return False

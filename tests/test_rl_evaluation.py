@@ -8,6 +8,7 @@ import pytest
 
 from yc_founder_decision_env.agent_trial import build_trusted_action, payload_sha256, seal_artifact
 from yc_founder_decision_env.models import AgentDecision
+from yc_founder_decision_env.q_learning import encode_state
 from yc_founder_decision_env.rl_evaluation import (
     HELD_OUT_SEEDS,
     _aggregate,
@@ -110,6 +111,10 @@ def _terra_ledger(*, short_seed: int | None = None) -> dict[str, object]:
 
 
 def _frozen_q_artifact() -> dict[str, object]:
+    observation = FounderDecisionEnvironment().reset(seed=0)
+    state = list(encode_state(observation))
+    q_table = [{"state": state, "action": "abstain", "q": 0.0}]
+    visit_counts = [{"state": state, "action": "abstain", "count": 1}]
     runs = [
         {
             "config": {
@@ -125,8 +130,8 @@ def _frozen_q_artifact() -> dict[str, object]:
             "utility_version": "synthetic-utility-v0.1.0",
             "episode_returns": [0.0] * 1000,
             "curve_mean_every_50": [0.0] * 20,
-            "q_table": [],
-            "visit_counts": [],
+            "q_table": copy.deepcopy(q_table),
+            "visit_counts": copy.deepcopy(visit_counts),
             "representative_updates": [],
         }
         for rng_seed in range(20260723, 20260728)
@@ -199,6 +204,15 @@ def test_report_rejects_empty_q_runs() -> None:
         build_held_out_report(_terra_ledger(), {"runs": []}, [20260723])
 
 
+def test_report_rejects_empty_q_table_in_any_learned_run() -> None:
+    artifact = _frozen_q_artifact()
+    artifact["runs"][2]["q_table"] = []  # type: ignore[index]
+    artifact = seal_artifact(artifact)
+
+    with pytest.raises(ValueError, match="EMPTY_Q_TABLE"):
+        build_held_out_report(_terra_ledger(), artifact, [20260723])
+
+
 def test_replay_recomputes_episode_digests_and_aggregates() -> None:
     report = build_held_out_report(_terra_ledger(), _frozen_q_artifact(), [20260723])
     tampered = report["policies"]["terra"]["episodes"][0]
@@ -221,6 +235,24 @@ def test_replay_rejects_wrong_report_schema(frozen_report: dict[str, object]) ->
     report["schema_version"] = "held-out-comparison-v9.9.9"
 
     assert verify_held_out_replay(seal_artifact(report)) is False
+
+
+def test_replay_rejects_resealed_frozen_metadata_changes(
+    frozen_report: dict[str, object],
+) -> None:
+    alterations = {
+        "training_seeds": list(range(15)),
+        "dataset_revision": "0.1.1",
+        "transition_model_version": "changed-v0.1.0",
+        "verifier_version": "verifier-v0.2.0",
+        "utility_version": "synthetic-utility-v0.2.0",
+        "combined_reward": 0.0,
+        "combined_reward_reason": "scalarized",
+    }
+    for field, altered_value in alterations.items():
+        report = copy.deepcopy(frozen_report)
+        report[field] = altered_value
+        assert verify_held_out_replay(seal_artifact(report)) is False, field
 
 
 def test_replay_rejects_missing_policy_family(frozen_report: dict[str, object]) -> None:
