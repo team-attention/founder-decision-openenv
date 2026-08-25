@@ -15,6 +15,27 @@ ActionName = Literal[
 ]
 
 
+class PublicActionSpec(BaseModel):
+    """Agent-visible action contract; contains no outcome or preference data."""
+
+    model_config = ConfigDict(extra="forbid", strict=True)
+
+    action_type: ActionName
+    allowed: bool
+    spend_cents: int = Field(ge=0)
+    founder_hours: int = Field(ge=0)
+
+
+class AgentDecision(BaseModel):
+    """Only fields an inference agent may choose."""
+
+    model_config = ConfigDict(extra="forbid", strict=True)
+
+    action_type: ActionName
+    rationale: str = Field(min_length=1, max_length=1200)
+    source_locator: str = Field(min_length=8, max_length=500)
+
+
 class StateClaim(BaseModel):
     """Agent claim used to make arithmetic tampering machine-verifiable."""
 
@@ -90,6 +111,7 @@ class FounderObservation(Observation):
     mrr_cents: int
     price_cents: int
     allowed_actions: list[ActionName]
+    action_specs: list[PublicActionSpec]
     source_locators: list[str]
     reward_components: RewardComponents
     failure_codes: list[str]

@@ -1,0 +1,479 @@
+{
+  "episodes": {
+    "16": {
+      "orchestration_task_id": "/root/terra_policy_seed16",
+      "turns": [
+        {
+          "decision": {
+            "action_type": "interview_users",
+            "rationale": "With 20 active users but only one completed interview, the highest-leverage next move is to learn directly from users before changing price, selling more broadly, or raising funds. The cost is low relative to available budget and preserves optionality for the remaining steps.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-videos"
+          },
+          "input_observation_sha256": "d45dee92b4e8476ca08f5f1a10db7f4a01448d77ae0f112e447606dba992a470",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"interview_users\",\"rationale\":\"With 20 active users but only one completed interview, the highest-leverage next move is to learn directly from users before changing price, selling more broadly, or raising funds. The cost is low relative to available budget and preserves optionality for the remaining steps.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-videos\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "3a7e892711f1af41dd67266a8c1c6d59635dfb0c2407cb7de89b58e009b83a87"
+        },
+        {
+          "decision": {
+            "action_type": "sell_pilot",
+            "rationale": "The initial interview round has expanded to five completed conversations, while qualified pipeline remains zero. A focused pilot sale now tests whether the learned problem converts into concrete customer commitment and creates the strongest near-term signal of demand.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+          },
+          "input_observation_sha256": "1088baf71970f9fc80275ab4e7b76696aa6e00263cbe1341f7ec4a4715c42a44",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"sell_pilot\",\"rationale\":\"The initial interview round has expanded to five completed conversations, while qualified pipeline remains zero. A focused pilot sale now tests whether the learned problem converts into concrete customer commitment and creates the strongest near-term signal of demand.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-2018-curriculum\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "7c4fdd6854eeb2078554caf6bfedcbf1cd7c2f23f3483c4b6084e0c9087456e8"
+        },
+        {
+          "decision": {
+            "action_type": "sell_pilot",
+            "rationale": "The first sales effort produced two qualified prospects and higher MRR, providing direct evidence that focused selling is working. Continuing pilot sales is the most efficient way to convert the emerging pipeline and validate repeatable demand before fundraising or pricing changes.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-videos"
+          },
+          "input_observation_sha256": "3c9426793f6b1fad66b7e86c5aaaedab7b82db155167bc0122cc41692cc670bd",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"sell_pilot\",\"rationale\":\"The first sales effort produced two qualified prospects and higher MRR, providing direct evidence that focused selling is working. Continuing pilot sales is the most efficient way to convert the emerging pipeline and validate repeatable demand before fundraising or pricing changes.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-videos\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "890998e91b8a93e869a03b48d31234a826e0be741ee302b2f08f962eba4ec18d"
+        },
+        {
+          "decision": {
+            "action_type": "sell_pilot",
+            "rationale": "Qualified pipeline and MRR have increased after consecutive pilot-selling efforts, while budget and founder time remain sufficient for one more focused sales cycle. Converting the growing pipeline provides stronger validation and revenue than shifting attention to fundraising or an unvalidated price change.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+          },
+          "input_observation_sha256": "54617734708becb64f65d16c163e18c8f5129694fe8082be05cbbc7c88de56eb",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"sell_pilot\",\"rationale\":\"Qualified pipeline and MRR have increased after consecutive pilot-selling efforts, while budget and founder time remain sufficient for one more focused sales cycle. Converting the growing pipeline provides stronger validation and revenue than shifting attention to fundraising or an unvalidated price change.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-2018-curriculum\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "2e5bdfad5cb64f7a1e2ab37a0872b4acce31643ab0ff8656cf0b54f14faf7a25"
+        }
+      ]
+    },
+    "17": {
+      "orchestration_task_id": "/root/terra_policy_seed17",
+      "turns": [
+        {
+          "decision": {
+            "action_type": "interview_users",
+            "rationale": "With only two interviews completed, prioritize validating user needs before committing scarce budget to building or fundraising.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-videos"
+          },
+          "input_observation_sha256": "ffaa7817d1dbdf725b064f07eb484a6481b9d7b507c38042a40631ccec12f037",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"interview_users\",\"rationale\":\"With only two interviews completed, prioritize validating user needs before committing scarce budget to building or fundraising.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-videos\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "346aa495fc826f1950964b9d257433e3c5ac49c8691d79de7275fc76cf1f8d0c"
+        },
+        {
+          "decision": {
+            "action_type": "interview_users",
+            "rationale": "Six interviews remain too few to confidently prioritize a costly feature; continue learning while preserving capital.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-videos"
+          },
+          "input_observation_sha256": "3569c02ac94413769d2988754b1d63a44700d761cf9521300a49d479a2b6f85a",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"interview_users\",\"rationale\":\"Six interviews remain too few to confidently prioritize a costly feature; continue learning while preserving capital.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-videos\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "8ca5423f1f9ce7e169a885db29d64613c661d57fc5282b98709cc7b9ff47a1a4"
+        },
+        {
+          "decision": {
+            "action_type": "interview_users",
+            "rationale": "The qualified pipeline is still flat despite limited evidence; another focused interview cycle is the lowest-cost way to identify a validated next move.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+          },
+          "input_observation_sha256": "a47ea0e873056588f826bcdecdfaeb34cd6217a769700abdc6172f566e64dda7",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"interview_users\",\"rationale\":\"The qualified pipeline is still flat despite limited evidence; another focused interview cycle is the lowest-cost way to identify a validated next move.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-2018-curriculum\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "5cac2284a3f5a6993743d3e6cd2fc3db6716edc247069b078ff4c0bf60e87cce"
+        },
+        {
+          "decision": {
+            "action_type": "interview_users",
+            "rationale": "User and pipeline growth remain modest, so preserving capital while deepening direct customer understanding is preferable to a large build or fundraising effort.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-videos"
+          },
+          "input_observation_sha256": "854ce9acc87ec8c2ccf3cb6be62d3ed87ac5f208506b80f0aaa8969fb9c102c7",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"interview_users\",\"rationale\":\"User and pipeline growth remain modest, so preserving capital while deepening direct customer understanding is preferable to a large build or fundraising effort.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-videos\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "2cbcebdcc8b1e867ec2a8c98ac3add619f67d9b304b22d0e47645fb1035ab997"
+        }
+      ]
+    },
+    "18": {
+      "orchestration_task_id": "/root/terra_policy_seed18",
+      "turns": [
+        {
+          "decision": {
+            "action_type": "sell_pilot",
+            "rationale": "With qualified pipeline and no revenue, pursue paid pilot validation before feature investment.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+          },
+          "input_observation_sha256": "2555a525db50565a1d7f301313f0a30fe326cb62e51d4072386ddd72bb77e853",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"sell_pilot\",\"rationale\":\"With qualified pipeline and no revenue, pursue paid pilot validation before feature investment.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-2018-curriculum\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "f79c8ab350b1cb4fa5b7096a6f0ef8bc8c200173e484a654798ec2a17b630f0b"
+        },
+        {
+          "decision": {
+            "action_type": "sell_pilot",
+            "rationale": "Early revenue and a growing qualified pipeline support continued direct sales to validate repeatable demand.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+          },
+          "input_observation_sha256": "4a9463cbe74ab369e5de42315ccf0077f5fbad3d2374c3829f781ca9edf75023",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"sell_pilot\",\"rationale\":\"Early revenue and a growing qualified pipeline support continued direct sales to validate repeatable demand.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-2018-curriculum\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "82d6815d79e7e8577fc960e8519a1d47675d8ad139fcf6fdaa8881a461bee350"
+        },
+        {
+          "decision": {
+            "action_type": "sell_pilot",
+            "rationale": "MRR and qualified pipeline are rising through sales, so extend the validated sales motion rather than divert scarce time to building.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+          },
+          "input_observation_sha256": "cdd69d46a5d20fc803c794f15087f02678c5ec5efbc0b1e0be2be7e8be5c27d4",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"sell_pilot\",\"rationale\":\"MRR and qualified pipeline are rising through sales, so extend the validated sales motion rather than divert scarce time to building.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-2018-curriculum\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "8d2b4c9121e40c211082ac2fc28e621cf1735b6e458c0dc6be973f4b68439883"
+        },
+        {
+          "decision": {
+            "action_type": "sell_pilot",
+            "rationale": "The sales motion continues to increase both MRR and qualified pipeline, and selling remains feasible within available founder hours.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+          },
+          "input_observation_sha256": "2ad81eeeae59700e4f546a2a66c644a9d6a9fe5f9cae7f4a007df39eddf9a5b5",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"sell_pilot\",\"rationale\":\"The sales motion continues to increase both MRR and qualified pipeline, and selling remains feasible within available founder hours.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-2018-curriculum\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "aa2c11949180158b70164e5a300b91feeea2a51e0510644d79a9263521857ce4"
+        }
+      ]
+    },
+    "19": {
+      "orchestration_task_id": "/root/terra_policy_seed19",
+      "turns": [
+        {
+          "decision": {
+            "action_type": "sell_pilot",
+            "rationale": "Qualified pipeline exists while revenue is low; prioritize converting demand into paid validation.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-videos"
+          },
+          "input_observation_sha256": "523fde7fb2b6415dd34ac645c033c7e0a59b6614d38af4c09fed066420fa2bfc",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"sell_pilot\",\"rationale\":\"Qualified pipeline exists while revenue is low; prioritize converting demand into paid validation.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-videos\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "83111fe5955819927f75487293aa16b9c56f7150166109490c289d20e637cdd1"
+        },
+        {
+          "decision": {
+            "action_type": "sell_pilot",
+            "rationale": "Pipeline and MRR are improving; continue converting qualified demand with a low-cost action.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-videos"
+          },
+          "input_observation_sha256": "5106dd04ccf5279f2e5aa8252d6444de3516dae49cc188ea285daf94394544fc",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"sell_pilot\",\"rationale\":\"Pipeline and MRR are improving; continue converting qualified demand with a low-cost action.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-videos\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "cc486c201ad19d3dcef74f3be6cff5aee598299f67509ece0da7fcc7e37cb3f2"
+        },
+        {
+          "decision": {
+            "action_type": "sell_pilot",
+            "rationale": "Qualified pipeline and MRR continue rising; focus remaining capacity on converting demand.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-videos"
+          },
+          "input_observation_sha256": "22b42106947db1cf493403136f11488bd69b2ba309edf267c121b75cc0ff3938",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"sell_pilot\",\"rationale\":\"Qualified pipeline and MRR continue rising; focus remaining capacity on converting demand.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-videos\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "c665503864bb52a582a219d8a3c83949d8a44a9d9059f3d2a6a667b7478d451c"
+        },
+        {
+          "decision": {
+            "action_type": "sell_pilot",
+            "rationale": "Pipeline and MRR are growing; use available capacity to convert qualified prospects.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-videos"
+          },
+          "input_observation_sha256": "c9a3abfaa6e3bd64b3c9044ba7a18e90fbfcf519911a5121e0b239052ac329a8",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"sell_pilot\",\"rationale\":\"Pipeline and MRR are growing; use available capacity to convert qualified prospects.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-videos\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "c6e0a2d4ea3b364ff7ab86609de98c3414799cab5a21673afb256579e1563758"
+        }
+      ]
+    },
+    "20": {
+      "orchestration_task_id": "/root/terra_policy_seed20",
+      "turns": [
+        {
+          "decision": {
+            "action_type": "interview_users",
+            "rationale": "With 24 active users but no completed interviews or qualified pipeline, the lowest-cost action most directly reduces uncertainty before committing substantial build, sales, fundraising, or pricing effort.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky"
+          },
+          "input_observation_sha256": "8ed424d00e4b77fed08e72bea9aba00020675e467b6c9c1f113066528a073950",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"interview_users\",\"rationale\":\"With 24 active users but no completed interviews or qualified pipeline, the lowest-cost action most directly reduces uncertainty before committing substantial build, sales, fundraising, or pricing effort.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "14dc5e3fafd785ff0c1031cb35c7f440b576b83e6d0504f4e5ea2ecbc4d09560"
+        },
+        {
+          "decision": {
+            "action_type": "sell_pilot",
+            "rationale": "Four user interviews have established initial contact while 25 active users and existing MRR indicate a live base; pursuing a pilot is the most direct next test of willingness to pay and can create qualified demand without the larger commitments of building or fundraising.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-videos"
+          },
+          "input_observation_sha256": "f4482f3d1ce9864d09e7f2abbe5425f0f28731b448721e90bd0e121be6e89e7b",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"sell_pilot\",\"rationale\":\"Four user interviews have established initial contact while 25 active users and existing MRR indicate a live base; pursuing a pilot is the most direct next test of willingness to pay and can create qualified demand without the larger commitments of building or fundraising.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-videos\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "9acb57033409c86a6dca22f9d8b24d4921e9aecf2eaa83cadafb3625ed032e28"
+        },
+        {
+          "decision": {
+            "action_type": "build_feature",
+            "rationale": "The prior signals now include two qualified prospects and increased MRR, providing a concrete basis to invest in a focused feature that serves demonstrated demand; the budget and founder-hour requirements remain feasible.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-videos"
+          },
+          "input_observation_sha256": "3d4f4032ce08aaa5b030ad68fb0bdf1a0f209264a32bc338bdc46b9607868c58",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"build_feature\",\"rationale\":\"The prior signals now include two qualified prospects and increased MRR, providing a concrete basis to invest in a focused feature that serves demonstrated demand; the budget and founder-hour requirements remain feasible.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-videos\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "d5131aea7c6e7fe99069f84c7233381dc604efbf75cf7ab9195e0fc308775a62"
+        },
+        {
+          "decision": {
+            "action_type": "sell_pilot",
+            "rationale": "With two qualified prospects, stable MRR, and insufficient budget for the feature build, converting demand through additional pilots is the most feasible action to strengthen revenue and validation within the remaining budget and founder hours.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-videos"
+          },
+          "input_observation_sha256": "d2e0269f9e7da446c6b6f8e3593b4d3339d3ba2be34435e6e1c0ec4dfbc18f3d",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"sell_pilot\",\"rationale\":\"With two qualified prospects, stable MRR, and insufficient budget for the feature build, converting demand through additional pilots is the most feasible action to strengthen revenue and validation within the remaining budget and founder hours.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-videos\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "18956445a378e1b32b5de42f7a124b735717f17abafeeaf554bf5acaef02a21c"
+        }
+      ]
+    },
+    "21": {
+      "orchestration_task_id": "/root/terra_policy_seed21",
+      "turns": [
+        {
+          "decision": {
+            "action_type": "sell_pilot",
+            "rationale": "A qualified pipeline opportunity can be converted with modest spend and founder time, producing clearer demand evidence than building before more user learning.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+          },
+          "input_observation_sha256": "0ddb2e7ea3a1a142e7a56c7ac6be35aad344f7da079d3a61483038f9001a57f2",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"sell_pilot\",\"rationale\":\"A qualified pipeline opportunity can be converted with modest spend and founder time, producing clearer demand evidence than building before more user learning.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-2018-curriculum\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "c7df8db033d927bdf3c3603a5941ed48de7d1a05f4dda3bed4ec930aeb2826be"
+        },
+        {
+          "decision": {
+            "action_type": "sell_pilot",
+            "rationale": "Qualified pipeline has grown to three while resources remain sufficient; prioritize converting demonstrated demand into revenue before committing to higher-cost development or fundraising.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+          },
+          "input_observation_sha256": "890a254926b1256e70c6657f609f571aa99ff3afcd5aafa8e805b65a3f670185",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"sell_pilot\",\"rationale\":\"Qualified pipeline has grown to three while resources remain sufficient; prioritize converting demonstrated demand into revenue before committing to higher-cost development or fundraising.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-2018-curriculum\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "3f607d34ba00cf64b95ea84b7a260cdf6765b467256cd18c2b16ae5c60e9a45e"
+        },
+        {
+          "decision": {
+            "action_type": "sell_pilot",
+            "rationale": "The qualified pipeline continues to expand and MRR is increasing; use the available 14 founder hours to convert demand while preserving capital for later product decisions.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+          },
+          "input_observation_sha256": "bfb6ba300855fde1650fa71a45a91db129bfc2227712245cdddd8f21f90e1ea6",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"sell_pilot\",\"rationale\":\"The qualified pipeline continues to expand and MRR is increasing; use the available 14 founder hours to convert demand while preserving capital for later product decisions.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-2018-curriculum\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "22b694093f0d970e5fab131efa8d13359c9cfac4a00b47c0529235d2e19ea3a5"
+        },
+        {
+          "decision": {
+            "action_type": "sell_pilot",
+            "rationale": "Seven qualified prospects and rising MRR indicate strong near-term conversion potential; selling pilots fits within the remaining budget and 22 founder hours.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+          },
+          "input_observation_sha256": "94b20de36e1e606288a11660a254b484b4e735f2259a5f49c2c9d6bc63f9ed05",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"sell_pilot\",\"rationale\":\"Seven qualified prospects and rising MRR indicate strong near-term conversion potential; selling pilots fits within the remaining budget and 22 founder hours.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-2018-curriculum\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "2588defd6745768bff98e1abf8e749e51c96810ea821dc8be73b25361d415a54"
+        }
+      ]
+    },
+    "22": {
+      "orchestration_task_id": "/root/terra_policy_seed22",
+      "turns": [
+        {
+          "decision": {
+            "action_type": "interview_users",
+            "rationale": "Only 2 interviews are completed; this is the lowest-cost evidence-gathering action among meaningful options (5000 cents, 8 founder-hours).",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-videos"
+          },
+          "input_observation_sha256": "6d4e4ecbf94088d397f366dc126714ea4e4ad8bb3aba1e7d7c6197e61c203235",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"interview_users\",\"rationale\":\"Only 2 interviews are completed; this is the lowest-cost evidence-gathering action among meaningful options (5000 cents, 8 founder-hours).\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-videos\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "d7bbedae297bbb90b2c4ca41230962f34bf4b895c2838e33d85e183889383ace"
+        },
+        {
+          "decision": {
+            "action_type": "sell_pilot",
+            "rationale": "With 6 interviews completed and 2 qualified pipeline opportunities, selling a pilot converts existing demand evidence using 10000 cents and 14 founder-hours.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+          },
+          "input_observation_sha256": "3b40895e61dc99786ca51c29fa5c2a79254e253ab583cad51b27129fb57a0d42",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"sell_pilot\",\"rationale\":\"With 6 interviews completed and 2 qualified pipeline opportunities, selling a pilot converts existing demand evidence using 10000 cents and 14 founder-hours.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-2018-curriculum\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "5821cb03160b6ebcb4861702014bbbf237c3fd8895e9c7eebce4713ddba75003"
+        },
+        {
+          "decision": {
+            "action_type": "sell_pilot",
+            "rationale": "Qualified pipeline has grown to 4 and MRR to 55000 cents; selling a pilot focuses the available 145000 cents and 50 founder-hours on conversion.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+          },
+          "input_observation_sha256": "c7dd1ef4d73d47ce0b4415c198d0545cf96ceb56f4d58aad3abf751481a151a6",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"sell_pilot\",\"rationale\":\"Qualified pipeline has grown to 4 and MRR to 55000 cents; selling a pilot focuses the available 145000 cents and 50 founder-hours on conversion.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-2018-curriculum\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "d8aac3f8d1717f89fc21fcde4506a06399deb1f31e8d811fe4de5eea050e04f2"
+        },
+        {
+          "decision": {
+            "action_type": "sell_pilot",
+            "rationale": "The qualified pipeline is 6 and MRR is 70000 cents; selling a pilot is an allowed conversion action within the remaining 135000-cent budget and 36 founder-hours.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+          },
+          "input_observation_sha256": "a487f04a1631109ab1bf5866e7d3f063c0ef120c0d6d20788780b14ddd67da99",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"sell_pilot\",\"rationale\":\"The qualified pipeline is 6 and MRR is 70000 cents; selling a pilot is an allowed conversion action within the remaining 135000-cent budget and 36 founder-hours.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-2018-curriculum\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "1d093cfa743b9ce0003ded8e70618fbc77ce35555b916185d7a6589d7e3d8bad"
+        }
+      ]
+    },
+    "23": {
+      "orchestration_task_id": "/root/terra_policy_seed23",
+      "turns": [
+        {
+          "decision": {
+            "action_type": "interview_users",
+            "rationale": "With only three interviews completed, prioritize learning from existing users before allocating substantial build or fundraising resources.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+          },
+          "input_observation_sha256": "2ac00a5647f7f2cd7f61bd2649cbeeaca7c3867e133c335ea5ba76c3803e355f",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"interview_users\",\"rationale\":\"With only three interviews completed, prioritize learning from existing users before allocating substantial build or fundraising resources.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-2018-curriculum\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "51bc2c8d700cc21fa21efe918999879edaacefe6d57d8fe59ffe22d891c90c56"
+        },
+        {
+          "decision": {
+            "action_type": "interview_users",
+            "rationale": "Seven interviews provide early signal, but the small user base and unchanged revenue support gathering more user evidence before committing 24 founder-hours and 60,000 cents to a feature.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+          },
+          "input_observation_sha256": "da7f417f9dc0a4afbb5956affcbe9ecd2422ad1e14c50e66a85586ae0e935d0c",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"interview_users\",\"rationale\":\"Seven interviews provide early signal, but the small user base and unchanged revenue support gathering more user evidence before committing 24 founder-hours and 60,000 cents to a feature.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-2018-curriculum\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "6b969b5046a125c3bf506dd74e7f880d930596ef16ff86c0ef6ea38c3f79dbb7"
+        },
+        {
+          "decision": {
+            "action_type": "build_feature",
+            "rationale": "With 11 completed interviews and sufficient remaining budget and founder capacity, invest in a focused feature to test the user evidence in product usage.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+          },
+          "input_observation_sha256": "44250e431ea92457e0725384bb61ed583c693564af26717b5b7b84cef5de4713",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"build_feature\",\"rationale\":\"With 11 completed interviews and sufficient remaining budget and founder capacity, invest in a focused feature to test the user evidence in product usage.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-2018-curriculum\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "da1115cd9733ce919cc713b8a58e0ea9e691be8744dc7b5e9c09c1e9d613ee89"
+        },
+        {
+          "decision": {
+            "action_type": "change_price",
+            "rationale": "With 11 interviews completed and limited remaining capacity, a low-cost price test can generate direct monetization evidence without the large resource commitment of another feature build.",
+            "source_locator": "https://www.ycombinator.com/blog/startup-school-2018-curriculum"
+          },
+          "input_observation_sha256": "a321055906f9dc0738da08ba05a03d9a28a3a23e74abe93550e9f9266b507013",
+          "parse_attempts": 1,
+          "raw_response": "{\"action_type\":\"change_price\",\"rationale\":\"With 11 interviews completed and limited remaining capacity, a low-cost price test can generate direct monetization evidence without the large resource commitment of another feature build.\",\"source_locator\":\"https://www.ycombinator.com/blog/startup-school-2018-curriculum\"}",
+          "repair_response": null,
+          "request_envelope_sha256": "c9e75aa5bb8f42d8780b10ee42cd211af2b17739fc1d139d86cf05814ed5c6d8"
+        }
+      ]
+    }
+  },
+  "integrity_sha256": "fb4453d4058cbf714550b07b301f0275b3aa34084b9047ffe73d3abb7a056894",
+  "orchestration_attestation": "session-attested orchestration metadata; not cryptographically provider-signed by Codex",
+  "policy": {
+    "mode": "inference",
+    "model": "gpt-5.6-terra",
+    "model_weight_updates": false,
+    "prompt_version": "observation-only-v0.1.0",
+    "provider": "codex-subagent"
+  },
+  "request_contract": {
+    "decision_schema": {
+      "additionalProperties": false,
+      "description": "Only fields an inference agent may choose.",
+      "properties": {
+        "action_type": {
+          "enum": [
+            "interview_users",
+            "build_feature",
+            "sell_pilot",
+            "fundraise",
+            "change_price",
+            "abstain"
+          ],
+          "title": "Action Type",
+          "type": "string"
+        },
+        "rationale": {
+          "maxLength": 1200,
+          "minLength": 1,
+          "title": "Rationale",
+          "type": "string"
+        },
+        "source_locator": {
+          "maxLength": 500,
+          "minLength": 8,
+          "title": "Source Locator",
+          "type": "string"
+        }
+      },
+      "required": [
+        "action_type",
+        "rationale",
+        "source_locator"
+      ],
+      "title": "AgentDecision",
+      "type": "object"
+    },
+    "decision_schema_sha256": "9da93b7dd08e9f200f4400215abb933edda94eb1068cd1b1b87c3d77e96e5d70",
+    "instruction": "You are selecting one action in a frozen four-step synthetic founder-decision benchmark.\nUse only the JSON observation in this message. Choose exactly one action. Return JSON only,\nmatching the supplied AgentDecision schema. Do not infer or request preferred_action,\nground_truth, transition tables, future observations, Q values, or oracle output. Costs and\nallowed flags in action_specs are authoritative. The source_locator must be copied exactly\nfrom source_locators. This is inference only; no model weights are updated."
+  },
+  "schema_version": "terra-decision-ledger-v0.1.0"
+}

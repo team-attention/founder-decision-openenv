@@ -76,3 +76,24 @@ explicitly excluded from hard reward and is not calibrated to real outcomes.
 - Public surfaces: code is on GitHub and records are on the Hugging Face Dataset Hub. The
   Docker Space is blocked by the host's PRO requirement; exact status and identifiers are in
   `publication/APPROVAL_REQUIRED.md`.
+
+## Agent and RL trials
+
+The environment supports observation-only inference-agent episodes and real tabular
+Q-learning. The learner updates a local Q table under `synthetic-utility-v0.1.0`; it does
+not update Codex, Claude, Terra, or other model weights. Hard verifier reward remains a
+separate contract-compliance metric.
+
+```bash
+uv run ycfd-q-learning --episodes 1000 --output artifacts/rl/q-learning-v0.1.0.json
+uv run ycfd-rl-evaluate \
+  --terra-decisions artifacts/rl/terra-held-out-decisions-v0.1.0.json \
+  --q-artifact artifacts/rl/q-learning-v0.1.0.json \
+  --output artifacts/rl/held-out-comparison-v0.1.0.json
+```
+
+See [`docs/RL_EXPERIMENT.md`](docs/RL_EXPERIMENT.md) for the frozen protocol, Terra adapter
+boundary, results, hashes, and replay instructions. The Terra ledger freezes the exact
+instruction and decision schema, hashes every model-visible request envelope, and maps each
+held-out seed to a unique session-attested Codex task ID. This is repository integrity evidence,
+not a cryptographic provider signature for model selection or task identity.

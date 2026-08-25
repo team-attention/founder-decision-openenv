@@ -6,7 +6,14 @@ from uuid import NAMESPACE_URL, uuid5
 from openenv.core.env_server.interfaces import Environment
 
 from ..data import load_bundle, record_sha256
-from ..models import FounderAction, FounderObservation, FounderState, RewardComponents
+from ..models import (
+    ActionName,
+    FounderAction,
+    FounderObservation,
+    FounderState,
+    PublicActionSpec,
+    RewardComponents,
+)
 from ..verifier import verify_action
 
 ZERO_REWARD = RewardComponents(
@@ -15,6 +22,15 @@ ZERO_REWARD = RewardComponents(
     source_locator_validity=0.0,
     state_arithmetic=0.0,
     future_leakage=0.0,
+)
+
+ACTION_ORDER: tuple[ActionName, ...] = (
+    "interview_users",
+    "build_feature",
+    "sell_pilot",
+    "fundraise",
+    "change_price",
+    "abstain",
 )
 
 
@@ -106,6 +122,7 @@ class FounderDecisionEnvironment(Environment):
             mrr_cents=self._state.mrr_cents,
             price_cents=self._state.price_cents,
             allowed_actions=self._sidecar["allowed_actions"],
+            action_specs=self._public_action_specs(),
             source_locators=[item["url"] for item in self._sidecar["source_locators"]],
             reward_components=components,
             failure_codes=failure_codes,
@@ -118,6 +135,19 @@ class FounderDecisionEnvironment(Environment):
                 "hard_reward_only": True,
             },
         )
+
+    def _public_action_specs(self) -> list[PublicActionSpec]:
+        assert self._sidecar is not None
+        allowed = set(self._sidecar["allowed_actions"])
+        return [
+            PublicActionSpec(
+                action_type=name,
+                allowed=name in allowed,
+                spend_cents=self._sidecar["action_costs"][name]["budget_cents"],
+                founder_hours=self._sidecar["action_costs"][name]["hours"],
+            )
+            for name in ACTION_ORDER
+        ]
 
     @property
     def state(self) -> FounderState:
